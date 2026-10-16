@@ -1,0 +1,4 @@
+# Netlify reads this on every push: no build step, publish the site/ folder as it is.
+[build]
+  publish = "site"
+  command = ""
