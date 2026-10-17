@@ -13,7 +13,7 @@ import html, re, sys, os
 SITE = sys.argv[1]
 FORM = "pre-engagement"
 # Private URL: unlisted and hard to guess. Change SLUG to rotate the link (old link then 404s).
-SLUG = "pack-2woipwnn5y"
+SLUG = "preengagement-2woipwnn5y"
 PREVIEW = "--preview" in sys.argv  # standalone file for a clickable preview: inline CSS, submit simulated
 E = html.escape
 
