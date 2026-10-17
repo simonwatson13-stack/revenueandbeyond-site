@@ -29,7 +29,7 @@ DOMAIN = 'https://revenueandbeyond.com'
 TAG_SLUG = {'Pipeline & Sales': 'pipeline-sales', 'Founder Journey': 'founder-journey',
             'Founder Dependency & Exit Value': 'founder-dependency-exit-value', 'Leadership & Team': 'leadership-team',
             'Events & Announcements': 'events-announcements', 'Market Commentary': 'market-commentary',
-            'Podcasts & talks': 'podcasts-talks'}
+            'Podcasts, talks & videos': 'podcasts-talks'}
 SHELL = 'the-customers-you-d-rather-not-have'      # an existing Insights page used as the page shell
 CARD_CSS_MARK = '/* founder-read cards (add_insight.py) */'
 CARD_CSS = CARD_CSS_MARK + '''
