@@ -157,7 +157,7 @@ def render_item(it):
         return '<div class="pe-pair">' + "".join(field(*f) for f in it[1]) + '</div>'
     if t == "ideal":
         rows = "".join(
-            f'<div class="pe-row"><label for="{(i:=nid())}"><b>{E(l)}</b><span>{E(h)}</span></label>'
+            f'<div class="pe-row"><div class="pe-rl"><label for="{(i:=nid())}"><b>{E(l)}</b></label><span>{E(h)}</span></div>'
             f'<input id="{i}" type="text" name="{E(k)}"></div>' for k, l, h in it[1])
         return f'<div class="pe-q"><p class="pe-label">Describe your ideal client. Who are they?</p><div class="pe-table">{rows}</div></div>'
     if t == "team":
@@ -282,8 +282,8 @@ CSS = '''<script>document.documentElement.classList.add('js')</script>
 .pe-table{border:2px solid var(--teal);border-radius:14px;overflow:hidden;box-shadow:4px 4px 0 var(--teal)}
 .pe-row{display:grid;grid-template-columns:240px 1fr;border-top:1.5px solid var(--teal)}
 .pe-row:first-child{border-top:0}
-.pe-row label{margin:0;padding:10px 14px;background:var(--offwhite);border-right:1.5px solid var(--teal);font-weight:400}
-.pe-row label b{display:block;font-size:14.5px}.pe-row label span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
+.pe-rl{padding:10px 14px;background:var(--offwhite);border-right:1.5px solid var(--teal)}.pe-row label{margin:0;font-weight:400}
+.pe-row label b{display:block;font-size:14.5px}.pe-rl span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
 .pe-card .pe-row input{border:0;border-radius:0;box-shadow:none}
 .pe-card .pe-row input:focus{box-shadow:inset 0 0 0 3px var(--green)}
 .pe-people{display:grid;gap:12px}
@@ -315,7 +315,7 @@ html:not(.js) .pe-step+.pe-step{margin-top:56px;padding-top:40px;border-top:2px 
 @media (max-width:700px){
   .pe-body{padding:22px 18px 4px}.pe-top{padding:12px 16px}.pe-foot{padding:18px;flex-wrap:wrap}
   .pe-pair{grid-template-columns:1fr}
-  .pe-row{grid-template-columns:1fr}.pe-row label{border-right:0;border-bottom:1.5px solid var(--teal)}
+  .pe-row{grid-template-columns:1fr}.pe-rl{border-right:0;border-bottom:1.5px solid var(--teal)}
   .pe-person{grid-template-columns:24px 1fr;}.pe-person select,.pe-person input:last-child{grid-column:2}
   .pe-mx{grid-template-columns:1fr;gap:8px}.pe-mx-c{flex-wrap:wrap}.pe-mx-c input{flex-basis:100%}
   .pe-err,.pe-ok{order:-1;flex-basis:100%}.pe-actions{flex:1;justify-content:flex-end}
