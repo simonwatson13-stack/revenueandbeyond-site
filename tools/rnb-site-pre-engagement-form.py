@@ -183,6 +183,37 @@ def render_item(it):
                 f'<div class="pe-matrix">{out}</div></div>')
     raise ValueError(t)
 
+def schema_item(it):
+    t = it[0]
+    if t == "q":
+        return [{"t": "f", "k": it[1], "l": it[2]}]
+    if t == "pair":
+        return [{"t": "f", "k": f[0], "l": f[1], "short": True} for f in it[1]]
+    if t == "ideal":
+        return [{"t": "tbl", "q": "Describe your ideal client. Who are they?", "head": ["Attribute", "Your answer"], "widths": [3000, 6638],
+                 "rows": [[{"text": l, "hint": h}, {"k": k}] for k, l, h in it[1]]}]
+    if t == "team":
+        return [{"t": "tbl", "q": "Who do you currently have supporting marketing and sales?", "hint": "Capacity: full-time, part-time, freelance, VA or offshore.",
+                 "head": ["Role or name", "Capacity", "What they do and how it's working"], "widths": [2600, 1800, 5238],
+                 "rows": [[{"k": f"09 Team {n} role or name"}, {"k": f"09 Team {n} capacity"}, {"k": f"09 Team {n} what they do"}] for n in range(1, it[1] + 1)]}]
+    if t == "matrix":
+        _, pre, q, hint, sl, sopts, extra, notes, rows = it
+        head = ["Area" if pre.startswith("10") else "Asset", sl] + ([extra[0]] if extra else []) + [notes]
+        widths = [3100, 1300] + ([1100] if extra else []) + [4138 if extra else 5238]
+        out = []
+        for r in rows:
+            row = [{"text": r}, {"k": f"{pre} {r} {sl.rstrip('?').lower()}"}]
+            if extra: row.append({"k": f"{pre} {r} {extra[0].lower()}"})
+            row.append({"k": f"{pre} {r} notes"})
+            out.append(row)
+        return [{"t": "tbl", "q": q, "hint": hint, "head": head, "widths": widths, "rows": out}]
+    raise ValueError(t)
+
+import json
+SCHEMA = [{"n": n, "title": t, "intro": i, "optional": o, "items": [x for it in items for x in schema_item(it)]}
+          for n, (t, i, o, items) in enumerate(S, 1)]
+SCHEMA_JSON = json.dumps(SCHEMA, ensure_ascii=False).replace("</", "<\\/")
+
 accents = ["var(--green)", "var(--purple)", "var(--sky)"]
 steps = []
 for n, (title, intro, opt, items) in enumerate(S, 1):
@@ -238,10 +269,12 @@ FORM_HTML = f'''
         <p class="eyebrow">All done</p>
         <h2>Thank you for the <span class="mk">honesty</span>.</h2>
         <p>Your answers are with me. I will read every one before the call, so the time together goes on your business, not on background.</p>
-        <p class="small">A copy is not emailed to you, so if you want one, use the button below before you close this page.</p>
-        <p><button type="button" class="btn btn-ghost btn-sm" id="peCopy">Download a copy of my answers</button></p>
+        <p class="small">A copy is not emailed to you. Download your answers as a Word document to keep, or to edit and send back.</p>
+        <p><button type="button" class="btn btn-ghost btn-sm" id="peCopy">Download my answers (Word)</button></p>
+        <p class="small pe-dlmsg" id="peDlMsg" role="status" hidden></p>
       </div>
     </div>
+    <script id="peSchema" type="application/json">{SCHEMA_JSON}</script>
     <p class="small pe-privacy">Your answers come straight to me and are not shared. See the <a class="link" href="/privacy-policy.html">privacy policy</a>. Questions? Email <a class="link" href="mailto:simon@revenueandbeyond.com">simon@revenueandbeyond.com</a>.</p>
   </div>
 </section>
@@ -398,8 +431,17 @@ JS = '''
       .catch(function(){ b.disabled=false; b.textContent='Send it to Simon';
         err.textContent='That did not send. Your answers are still saved here. Try again, or email simon@revenueandbeyond.com.'; err.hidden=false; });
   });
+  function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
   document.getElementById('peCopy').addEventListener('click',function(){
-    try{var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lastText],{type:'text/plain'}));a.download='my-pre-engagement-answers.txt';document.body.appendChild(a);a.click();a.remove();}catch(x){}
+    var b=this, msg=document.getElementById('peDlMsg'); b.disabled=true; b.textContent='Preparing your document...'; msg.hidden=true;
+    var vals={}; fields().forEach(function(f){vals[f.name]=f.value||'';});
+    var co=(vals['01 Company name']||'answers').replace(/[\\/:*?"<>|]+/g,'').trim().slice(0,60)||'answers';
+    (window.docx?Promise.resolve():loadScript('/assets/js/docx-9.7.1.min.js'))
+      .then(function(){return window.peBuildDocx?null:loadScript('/assets/js/pe-docx.js?v=1');})
+      .then(function(){return window.peBuildDocx(vals);})
+      .then(function(blob){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Pre-engagement pack - '+co+'.docx';document.body.appendChild(a);a.click();a.remove();
+        b.disabled=false;b.textContent='Download my answers (Word)';msg.textContent='Downloaded. Check your downloads folder.';msg.hidden=false;})
+      .catch(function(){b.disabled=false;b.textContent='Download my answers (Word)';msg.textContent='The download did not work. Please try again, or email simon@revenueandbeyond.com for a copy.';msg.hidden=false;});
   });
 })();
 </script>
