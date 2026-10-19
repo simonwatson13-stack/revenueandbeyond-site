@@ -45,6 +45,11 @@
 .vt-chip{position:absolute; left:16px; bottom:16px; background:#fff; border:2px solid var(--teal); border-radius:10px; padding:5px 12px; font-weight:800; font-size:.85rem; color:var(--teal); box-shadow:3px 3px 0 var(--teal); transform:rotate(-2deg); pointer-events:none}
 .vt-copy{margin-top:44px}
 @media (max-width:600px){.vt-frame .play{width:64px; height:64px; margin:-32px 0 0 -32px}.vt-frame .play span{margin:-10px 0 0 -6px; border-width:10px 0 10px 17px}.vt-copy{margin-top:34px}}
+.vt-split{display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:56px; align-items:center; max-width:880px}
+.vt-tall{aspect-ratio:9/16; margin:0}
+.vt-split .vt-side{text-align:left}
+.vt-split .vt-side h2,.vt-split .vt-side blockquote{margin-left:0}
+@media (max-width:760px){.vt-split{grid-template-columns:1fr; gap:36px}.vt-tall{max-width:280px; width:100%; justify-self:center}.vt-split .vt-side{text-align:center}.vt-split .vt-side h2,.vt-split .vt-side blockquote{margin-left:auto}}
 </style>
 </head>
 <body class="pg-testimonials">
@@ -98,10 +103,17 @@
 </section>
 
 <section class="block">
-  <div class="col proof reveal">
-    <h2>&ldquo;Our pipeline is now stronger and more predictable.&rdquo;</h2>
-    <blockquote>&ldquo;Working with Simon from Revenue &amp; Beyond has been transformational for WorkSavi. He's a founder and sales architecture expert who rebuilt our entire sales engine, bringing clarity, structure, and confidence. Our pipeline is now stronger and more predictable. We added over £1.7m in pipeline inside 6 months, and we've closed a total of £500k since we started working together.&rdquo;</blockquote>
-    <cite>Matt Cayton, Founder &amp; CEO, WorkSavi</cite>
+  <div class="col-wide reveal vt-split">
+    <div class="vt-frame vt-tall" data-yt="QNRb0AMuvTI">
+      <img src="https://i.ytimg.com/vi/QNRb0AMuvTI/hqdefault.jpg" alt="Matt Cayton, Founder and CEO of WorkSavi, talking about working with Simon Watson" loading="lazy" width="480" height="360" onerror="this.style.visibility='hidden'">
+      <button type="button" class="play" aria-label="Play video: Matt Cayton, WorkSavi, on working with Simon Watson"><span></span></button>
+      <span class="vt-chip">Watch &middot; 2 min</span>
+    </div>
+    <div class="proof vt-side">
+      <h2>&ldquo;Our pipeline is now stronger and more predictable.&rdquo;</h2>
+      <blockquote>&ldquo;Working with Simon from Revenue &amp; Beyond has been transformational for WorkSavi. He's a founder and sales architecture expert who rebuilt our entire sales engine, bringing clarity, structure, and confidence. Our pipeline is now stronger and more predictable. We added over £1.7m in pipeline inside 6 months, and we've closed a total of £500k since we started working together.&rdquo;</blockquote>
+      <cite>Matt Cayton, Founder &amp; CEO, WorkSavi</cite>
+    </div>
   </div>
 </section>
 
@@ -239,6 +251,9 @@
       // 3. desktop exit intent: pointer leaves through the top of the window
       if(!mobile) document.addEventListener('mouseout',function(e){if(!e.relatedTarget&&e.clientY<=0&&Date.now()-born>4000) open();});
     })();
+</script>
+<script>
+document.querySelectorAll('.vt-frame[data-yt]:not(#homeVideo)').forEach(function(v){var b=v.querySelector('.play'),id=v.getAttribute('data-yt');if(b&&id)b.addEventListener('click',function(){v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" title="Client testimonial video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';});});
 </script>
 </body>
 </html>
