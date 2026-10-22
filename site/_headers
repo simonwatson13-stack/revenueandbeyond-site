@@ -8,3 +8,8 @@
 
 /assets/style.css
   Cache-Control: public, max-age=0, must-revalidate
+
+/pipeline-x8k3vq/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer

@@ -10,3 +10,9 @@ Seeded on 16 Oct 2026 from the published Netlify deploy of 10 Oct 2026 (deploy 6
 Rules
 - Every change goes through this repo. Netlify Drop uploads would be overwritten by the next push.
 - Keep the hidden pre-engagement form page and any other unlinked pages inside `site/`, or they disappear on the next deploy.
+
+Private deal pipeline
+- Page: `site/pipeline-x8k3vq/` (unlisted, noindex, not in the sitemap). Opens behind a passcode.
+- API: `netlify/functions/pipeline.mjs` at `/api/pipeline`. Checks the `x-pipeline-key` header against the Netlify environment variable `PIPELINE_PASSCODE`; without that variable set it refuses every request.
+- Storage: Netlify Blobs (store `pipeline`, key `board`). Simon's edits live there, not in this repo.
+- Weekly sweep: `data/pipeline-feed.json` (outside `site/`, bundled into the function, never served). The Monday scheduled task rewrites this file and pushes. On the next load the board adds new deals, updates deals Simon has not touched, and shows changes to deals he has edited as suggestions. Deleted deals are never re-added.

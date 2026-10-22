@@ -2,3 +2,9 @@
 [build]
   publish = "site"
   command = ""
+
+# Private pipeline API (see netlify/functions/pipeline.mjs). Bundled with esbuild so it can
+# import data/pipeline-feed.json, which lives outside site/ and is never published as a page.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

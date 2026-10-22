@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>Pipeline | Revenue &amp; Beyond</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#F5F4F0">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=e217d60ca4">
+<style>
+:root{--amber:#F2B544;--red:#E2574C}
+body.pp{font-size:15px;line-height:1.5}
+.pp .nav{max-width:1440px}
+.pp-wrap{max-width:1440px;margin:0 auto;padding:28px 24px 80px}
+.pp-hide{display:none!important}
+.pp h1{font-size:clamp(1.9rem,3.4vw,2.6rem);margin:0 0 6px}
+.pp .hl{background:var(--green);border-radius:10px;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.pp-sub{color:var(--muted);margin:0}
+.pp-hand{font-family:'Caveat Brush',cursive;color:var(--teal);font-size:1.25rem}
+.pp-top{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.pp-status{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.pp-dot{width:8px;height:8px;border-radius:99px;background:var(--green);display:inline-block}
+.pp-dot.busy{background:var(--amber)}.pp-dot.err{background:var(--red)}
+.pp-btn{font:inherit;font-weight:800;font-size:13px;color:var(--teal);background:#fff;border:2px solid var(--teal);border-radius:12px;padding:8px 14px;box-shadow:3px 3px 0 var(--teal);cursor:pointer;transition:transform .12s,box-shadow .12s;white-space:nowrap}
+.pp-btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--teal)}
+.pp-btn.primary{background:var(--green)}
+.pp-btn.ghost{box-shadow:none;border-color:var(--divider)}
+.pp-btn.danger{color:var(--red);border-color:var(--red);box-shadow:3px 3px 0 var(--red)}
+
+/* gate */
+.pp-gate{max-width:440px;margin:56px auto 0;background:#fff;border:2px solid var(--teal);border-radius:24px;box-shadow:8px 8px 0 var(--purple);padding:32px}
+.pp-gate h1{margin-bottom:10px}
+.pp-gate label{display:block;font-weight:800;margin:20px 0 6px}
+.pp-in,.pp-sel,.pp-ta{width:100%;font:inherit;font-size:16px;color:var(--black);background:#fff;border:2px solid var(--teal);border-radius:12px;padding:10px 12px}
+.pp-in:focus,.pp-sel:focus,.pp-ta:focus{outline:3px solid var(--sky);outline-offset:1px}
+.pp-check{display:flex;gap:8px;align-items:center;font-size:14px;margin:12px 0 20px;color:var(--muted)}
+.pp-err{color:var(--red);font-weight:700;font-size:14px;margin:10px 0 0;min-height:1.2em}
+
+/* KPIs */
+.pp-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 22px}
+.pp-kpi{background:#fff;border:2px solid var(--teal);border-radius:18px;padding:14px 16px;box-shadow:4px 4px 0 var(--k,var(--green))}
+.pp-kpi:nth-child(2){--k:var(--purple)}.pp-kpi:nth-child(3){--k:var(--sky)}.pp-kpi:nth-child(4){--k:var(--teal)}
+.pp-kpi b{display:block;font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:900;letter-spacing:var(--track);color:var(--teal);line-height:1.1;font-variant-numeric:tabular-nums}
+.pp-kpi span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.pp-kpi small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+
+/* toolbar */
+.pp-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+.pp-chip{font:inherit;font-size:13px;font-weight:800;color:var(--teal);background:#fff;border:2px solid var(--teal);border-radius:999px;padding:5px 12px;cursor:pointer}
+.pp-chip[aria-pressed="true"]{background:var(--teal);color:#fff}
+.pp-search{flex:1 1 200px;max-width:320px;font:inherit;font-size:14px;border:2px solid var(--divider);border-radius:999px;padding:7px 14px;background:#fff}
+.pp-search:focus{outline:none;border-color:var(--teal)}
+.pp-spacer{flex:1 1 auto}
+
+/* board */
+.pp-board{display:grid;grid-template-columns:repeat(5,minmax(240px,1fr));gap:14px;overflow-x:auto;padding:4px 6px 12px 2px;scroll-snap-type:x proximity}
+.pp-col{background:rgba(255,255,255,.55);border:2px solid var(--teal);border-radius:20px;display:flex;flex-direction:column;min-height:240px;scroll-snap-align:start}
+.pp-col.over{background:rgba(73,232,176,.18)}
+.pp-colh{padding:12px 14px 10px;border-bottom:2px solid var(--teal);border-radius:18px 18px 0 0;background:var(--c,var(--offwhite))}
+.pp-colh h2{font-size:1.05rem;letter-spacing:-.01em;margin:0;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.pp-colh h2 em{font-style:normal;font-size:12px;font-weight:800;background:#fff;border:2px solid var(--teal);border-radius:8px;padding:0 7px}
+.pp-colh p{margin:2px 0 0;font-size:12.5px;font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums}
+.pp-list{padding:10px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pp-empty{font-size:13px;color:var(--muted);text-align:center;padding:18px 6px}
+
+.pp-card{display:block;width:100%;text-align:left;font:inherit;color:var(--black);background:#fff;border:2px solid var(--teal);border-radius:14px;padding:11px 12px 10px;box-shadow:3px 3px 0 var(--teal);cursor:grab;transition:transform .12s,box-shadow .12s}
+.pp-card:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--teal)}
+.pp-card.dragging{opacity:.45}
+.pp-card h3{font-size:15px;font-weight:800;color:var(--teal);margin:0 0 1px;letter-spacing:-.01em;line-height:1.25}
+.pp-who{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.pp-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 6px}
+.pp-mrr{font-weight:900;color:var(--teal);font-variant-numeric:tabular-nums}
+.pp-mrr.none{font-weight:700;color:var(--muted);font-size:12.5px}
+.pp-tag{font-size:11px;font-weight:800;letter-spacing:.02em;border:1.5px solid var(--teal);border-radius:7px;padding:1px 6px;background:var(--t,#fff);color:var(--teal);white-space:nowrap}
+.pp-tag.rb{--t:rgba(73,232,176,.45)}.pp-tag.fl{--t:rgba(195,161,248,.5)}.pp-tag.am{--t:rgba(106,209,250,.45)}
+.pp-tag.risk{--t:#FDE7E5;border-color:var(--red);color:var(--red)}
+.pp-tag.sugg{--t:#FFF4DC;border-color:#B98516;color:#8A6110}
+.pp-age{font-size:12px;font-weight:700;color:var(--muted);margin-left:auto}
+.pp-age.warn{color:#B98516}.pp-age.bad{color:var(--red)}
+.pp-next{font-size:12.5px;line-height:1.4;margin:4px 0 0;color:var(--black);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pp-next::before{content:"Next: ";font-weight:800;color:var(--teal)}
+
+/* closed */
+.pp-closed{margin-top:28px}
+.pp-closed h2{font-size:1.3rem;margin:0 0 10px}
+.pp-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:2px solid var(--teal);border-radius:16px;overflow:hidden;font-size:13.5px}
+.pp-table th,.pp-table td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--divider);vertical-align:top}
+.pp-table th{background:var(--teal);color:#fff;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em}
+.pp-table tr:last-child td{border-bottom:0}
+.pp-table tbody tr{cursor:pointer}.pp-table tbody tr:hover{background:var(--offwhite)}
+.pp-tablewrap{overflow-x:auto}
+
+/* dialog */
+.pp-dlg{border:2px solid var(--teal);border-radius:22px;box-shadow:8px 8px 0 var(--purple);padding:0;width:min(640px,calc(100vw - 24px));max-height:calc(100vh - 24px);background:#fff;color:var(--black)}
+.pp-dlg::backdrop{background:rgba(11,54,59,.45)}
+.pp-dlg form{padding:22px 24px 20px}
+.pp-dlg h2{font-size:1.4rem;margin:0 0 14px}
+.pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.pp-grid .full{grid-column:1/-1}
+.pp-grid label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin:0 0 4px}
+.pp-grid .pp-in,.pp-grid .pp-sel,.pp-grid .pp-ta{font-size:15px;padding:8px 10px;border-width:1.5px;border-radius:10px}
+.pp-ta{min-height:76px;resize:vertical;line-height:1.45}
+.pp-ev{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.pp-sbox{background:#FFF4DC;border:2px solid #B98516;border-radius:14px;padding:10px 12px;margin:0 0 14px;font-size:13.5px}
+.pp-sbox ul{margin:6px 0 8px;padding-left:18px}
+.pp-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.pp-actions .pp-spacer{flex:1}
+
+@media (max-width:980px){.pp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){
+  .pp-wrap{padding:20px 16px 64px}
+  .pp-board{grid-template-columns:repeat(5,minmax(78vw,1fr))}
+  .pp-grid{grid-template-columns:1fr}
+  .pp-kpi{padding:12px}
+  .pp-gate{padding:24px 20px;margin-top:28px;box-shadow:5px 5px 0 var(--purple)}
+  .pp-table .hide-sm{display:none}
+}
+</style>
+</head>
+<body class="pp">
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="nav">
+    <a class="logo" href="/" aria-label="Revenue &amp; Beyond, home">Revenue<span class="amp">&amp;</span>Beyond.</a>
+    <div class="nav-right"><button class="pp-btn ghost pp-hide" id="lockBtn" type="button">Lock</button></div>
+  </div>
+</header>
+
+<main id="main" class="pp-wrap">
+
+  <section id="gate" class="pp-gate" aria-labelledby="gateH">
+    <p class="pp-hand">Private</p>
+    <h1 id="gateH">Deal <span class="hl">pipeline</span>.</h1>
+    <p class="pp-sub">Enter your passcode to open the board.</p>
+    <form id="gateForm" autocomplete="off">
+      <label for="pass">Passcode</label>
+      <input class="pp-in" id="pass" type="password" autocomplete="current-password" required>
+      <label class="pp-check"><input type="checkbox" id="remember"> Remember on this device</label>
+      <button class="pp-btn primary" type="submit">Open the board</button>
+      <p class="pp-err" id="gateErr" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="app" class="pp-hide" aria-labelledby="appH">
+    <div class="pp-top">
+      <div>
+        <h1 id="appH">Deal <span class="hl">pipeline</span>.</h1>
+        <p class="pp-sub" id="sweepNote">R&amp;B, Founder Line and 3am Thoughts. Values are monthly (MRR).</p>
+      </div>
+      <div class="pp-status" aria-live="polite"><span class="pp-dot" id="dot"></span><span id="statusTxt">Loaded</span></div>
+    </div>
+
+    <div class="pp-kpis" id="kpis"></div>
+
+    <div class="pp-bar" role="toolbar" aria-label="Filters">
+      <button class="pp-chip" type="button" data-line="all" aria-pressed="true">All</button>
+      <button class="pp-chip" type="button" data-line="R&amp;B" aria-pressed="false">R&amp;B</button>
+      <button class="pp-chip" type="button" data-line="Founder Line" aria-pressed="false">Founder Line</button>
+      <button class="pp-chip" type="button" data-line="3am Thoughts" aria-pressed="false">3am Thoughts</button>
+      <input class="pp-search" id="search" type="search" placeholder="Search company or contact" aria-label="Search deals">
+      <span class="pp-spacer"></span>
+      <button class="pp-chip" type="button" id="quietBtn" aria-pressed="false">Going quiet</button>
+      <button class="pp-btn primary" type="button" id="addBtn">Add deal</button>
+    </div>
+
+    <div class="pp-board" id="board"></div>
+
+    <section class="pp-closed" aria-labelledby="closedH">
+      <div class="pp-top" style="margin-bottom:10px">
+        <h2 id="closedH">Lost and ended</h2>
+        <button class="pp-btn ghost" type="button" id="closedBtn" aria-expanded="false">Show</button>
+      </div>
+      <div class="pp-tablewrap pp-hide" id="closedWrap"></div>
+    </section>
+  </section>
+</main>
+
+<dialog class="pp-dlg" id="dlg" aria-labelledby="dlgH">
+  <form method="dialog" id="dlgForm">
+    <h2 id="dlgH">Deal</h2>
+    <div id="sugg"></div>
+    <div class="pp-grid">
+      <div class="full"><label for="f-company">Company</label><input class="pp-in" id="f-company" required></div>
+      <div><label for="f-contact">Contact</label><input class="pp-in" id="f-contact"></div>
+      <div><label for="f-line">Business line</label><select class="pp-sel" id="f-line"><option>R&amp;B</option><option>Founder Line</option><option>3am Thoughts</option></select></div>
+      <div><label for="f-stage">Stage</label><select class="pp-sel" id="f-stage"></select></div>
+      <div><label for="f-mrr">MRR (£ per month)</label><input class="pp-in" id="f-mrr" type="number" inputmode="numeric" min="0" step="50" placeholder="Unknown"></div>
+      <div><label for="f-source">Source</label><input class="pp-in" id="f-source"></div>
+      <div><label for="f-last">Last touch</label><input class="pp-in" id="f-last" type="date"></div>
+      <div class="full"><label for="f-next">Next action</label><input class="pp-in" id="f-next"></div>
+      <div><label for="f-nextdate">Next action date</label><input class="pp-in" id="f-nextdate" type="date"></div>
+      <div><label for="f-risk">Flag</label><select class="pp-sel" id="f-risk"><option value="">None</option><option value="1">At risk</option></select></div>
+      <div class="full"><label for="f-notes">Notes</label><textarea class="pp-ta" id="f-notes"></textarea></div>
+    </div>
+    <p class="pp-ev" id="f-ev"></p>
+    <div class="pp-actions">
+      <button class="pp-btn danger" type="button" id="delBtn">Delete</button>
+      <span class="pp-spacer"></span>
+      <button class="pp-btn ghost" type="button" id="cancelBtn">Cancel</button>
+      <button class="pp-btn primary" type="submit" id="saveBtn">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(function(){
+  var API='/api/pipeline';
+  var STAGES=[['lead','Lead','#fff'],['discovery','Discovery','rgba(106,209,250,.35)'],['proposal','Proposal','rgba(195,161,248,.4)'],['negotiation','Negotiation','rgba(242,181,68,.35)'],['won','Won','rgba(73,232,176,.55)']];
+  var OPEN=['lead','discovery','proposal','negotiation'];
+  var QUIET_DAYS=14;
+  var key='', state=null, filterLine='all', query='', quietOnly=false, editingId=null, saveTimer=null;
+
+  var $=function(id){return document.getElementById(id)};
+  function store(kind){try{return window[kind]}catch(e){return null}}
+  function getSaved(){var s=null;['sessionStorage','localStorage'].forEach(function(k){var st=store(k);try{if(!s&&st)s=st.getItem('ppKey')}catch(e){}});return s}
+  function setSaved(v,remember){['sessionStorage','localStorage'].forEach(function(k){var st=store(k);try{if(st)st.removeItem('ppKey')}catch(e){}});if(!v)return;var st=store(remember?'localStorage':'sessionStorage');try{if(st)st.setItem('ppKey',v)}catch(e){}}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function gbp(n){return '£'+Math.round(n).toLocaleString('en-GB')}
+  function today(){var d=new Date();d.setHours(0,0,0,0);return d}
+  function daysSince(iso){if(!iso)return null;var d=new Date(iso+'T00:00:00');return Math.round((today()-d)/864e5)}
+  function fmtDate(iso){if(!iso)return '';var d=new Date(iso+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}
+  function lineCls(l){return l==='Founder Line'?'fl':(l==='3am Thoughts'?'am':'rb')}
+  function status(txt,kind){$('statusTxt').textContent=txt;$('dot').className='pp-dot'+(kind?' '+kind:'')}
+
+  function api(method,body){
+    return fetch(API,{method:method,headers:{'content-type':'application/json','x-pipeline-key':key},body:body?JSON.stringify(body):undefined,cache:'no-store'})
+      .then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{status:r.status,body:j}})});
+  }
+
+  function unlock(k,remember,silent){
+    key=k;$('gateErr').textContent='';
+    return api('GET').then(function(res){
+      if(res.status===200){setSaved(k,remember);state=res.body;showApp();return}
+      setSaved('');
+      if(!silent)$('gateErr').textContent=res.body.error||'Could not open the board.';
+    }).catch(function(){ if(!silent)$('gateErr').textContent='Network error. Try again.'});
+  }
+
+  function showApp(){$('gate').classList.add('pp-hide');$('app').classList.remove('pp-hide');$('lockBtn').classList.remove('pp-hide');
+    if(state.feedVersion){$('sweepNote').innerHTML='R&amp;B, Founder Line and 3am Thoughts. Values are monthly (MRR). Last sweep: '+esc(new Date(state.feedVersion).toLocaleDateString('en-GB',{day:'numeric',month:'short'}))+'.'}
+    render();status('Loaded')}
+
+  function visible(d){
+    if(filterLine!=='all'&&d.line!==filterLine)return false;
+    if(query){var q=query.toLowerCase();if(((d.company||'')+' '+(d.contact||'')).toLowerCase().indexOf(q)<0)return false}
+    if(quietOnly){var a=daysSince(d.lastTouch);if(OPEN.indexOf(d.stage)<0||a==null||a<=QUIET_DAYS)return false}
+    return true;
+  }
+
+  function render(){
+    var deals=state.deals.filter(visible);
+    // KPIs (respect the business-line filter, ignore search)
+    var scope=state.deals.filter(function(d){return filterLine==='all'||d.line===filterLine});
+    var won=scope.filter(function(d){return d.stage==='won'});
+    var open=scope.filter(function(d){return OPEN.indexOf(d.stage)>=0});
+    var late=scope.filter(function(d){return d.stage==='proposal'||d.stage==='negotiation'});
+    var quiet=open.filter(function(d){var a=daysSince(d.lastTouch);return a!=null&&a>QUIET_DAYS});
+    var sum=function(a){return a.reduce(function(t,d){return t+(+d.mrr||0)},0)};
+    var unk=function(a){return a.filter(function(d){return d.mrr==null||d.mrr===''}).length};
+    var risk=won.filter(function(d){return d.risk}).length;
+    $('kpis').innerHTML=
+      kpi('Won MRR',gbp(sum(won)),won.length+' active'+(unk(won)?', '+unk(won)+' without a value':'')+(risk?', '+risk+' at risk':''))+
+      kpi('Open pipeline',gbp(sum(open)),open.length+' deals'+(unk(open)?', '+unk(open)+' without a value':''))+
+      kpi('Proposal and negotiation',gbp(sum(late)),late.length+' deals in the late stages')+
+      kpi('Going quiet',String(quiet.length),'open deals with no touch in '+QUIET_DAYS+'+ days');
+    // Board
+    $('board').innerHTML=STAGES.map(function(s){
+      var list=deals.filter(function(d){return d.stage===s[0]}).sort(sortFn(s[0]));
+      return '<section class="pp-col" data-stage="'+s[0]+'" aria-label="'+s[1]+'">'+
+        '<div class="pp-colh" style="--c:'+s[2]+'"><h2>'+s[1]+' <em>'+list.length+'</em></h2><p>'+gbp(sum(list))+' / month</p></div>'+
+        '<div class="pp-list">'+(list.length?list.map(card).join(''):'<p class="pp-empty">Nothing here</p>')+'</div></section>';
+    }).join('');
+    // Closed
+    var closed=state.deals.filter(function(d){return d.stage==='lost'&&visible(d)}).sort(function(a,b){return (b.lastTouch||'').localeCompare(a.lastTouch||'')});
+    $('closedH').textContent='Lost and ended ('+closed.length+')';
+    $('closedWrap').innerHTML=closed.length?'<table class="pp-table"><thead><tr><th>Company</th><th>Outcome</th><th class="hide-sm">Line</th><th>MRR</th><th class="hide-sm">Last touch</th><th class="hide-sm">Notes</th></tr></thead><tbody>'+
+      closed.map(function(d){return '<tr data-id="'+esc(d.id)+'" tabindex="0"><td><b>'+esc(d.company)+'</b></td><td>'+esc(d.outcome||'Lost')+'</td><td class="hide-sm">'+esc(d.line)+'</td><td>'+(d.mrr?gbp(d.mrr):'')+'</td><td class="hide-sm">'+esc(fmtDate(d.lastTouch))+'</td><td class="hide-sm">'+esc(d.notes)+'</td></tr>'}).join('')+'</tbody></table>':'<p class="pp-empty">None</p>';
+    wire();
+  }
+  function kpi(l,v,s){return '<div class="pp-kpi"><span>'+l+'</span><b>'+v+'</b><small>'+esc(s)+'</small></div>'}
+  function sortFn(stage){return function(a,b){ if(stage==='won')return (+b.mrr||0)-(+a.mrr||0); return (a.lastTouch||'').localeCompare(b.lastTouch||'') }}
+  function card(d){
+    var a=daysSince(d.lastTouch), open=OPEN.indexOf(d.stage)>=0;
+    var ageCls=open&&a!=null?(a>30?' bad':(a>QUIET_DAYS?' warn':'')):'';
+    var ageTxt=a==null?'':(a<=0?'today':(a===1?'1 day ago':a+' days ago'));
+    return '<button type="button" class="pp-card" draggable="true" data-id="'+esc(d.id)+'">'+
+      '<h3>'+esc(d.company)+'</h3><p class="pp-who">'+esc(d.contact)+'</p>'+
+      '<div class="pp-row">'+(d.mrr!=null&&d.mrr!==''?'<span class="pp-mrr">'+gbp(d.mrr)+'/mo</span>':'<span class="pp-mrr none">Add value</span>')+
+      '<span class="pp-age'+ageCls+'" title="Last touch '+esc(fmtDate(d.lastTouch))+'">'+ageTxt+'</span></div>'+
+      '<div class="pp-row"><span class="pp-tag '+lineCls(d.line)+'">'+esc(d.line)+'</span>'+(d.risk?'<span class="pp-tag risk">At risk</span>':'')+(d.suggestion?'<span class="pp-tag sugg">Sweep update</span>':'')+'</div>'+
+      (d.nextAction?'<p class="pp-next">'+esc(d.nextAction)+'</p>':'')+'</button>';
+  }
+
+  function wire(){
+    Array.prototype.forEach.call(document.querySelectorAll('.pp-card'),function(c){
+      c.addEventListener('click',function(){openDlg(c.getAttribute('data-id'))});
+      c.addEventListener('dragstart',function(e){c.classList.add('dragging');e.dataTransfer.setData('text/plain',c.getAttribute('data-id'));e.dataTransfer.effectAllowed='move'});
+      c.addEventListener('dragend',function(){c.classList.remove('dragging')});
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.pp-col'),function(col){
+      col.addEventListener('dragover',function(e){e.preventDefault();col.classList.add('over')});
+      col.addEventListener('dragleave',function(){col.classList.remove('over')});
+      col.addEventListener('drop',function(e){e.preventDefault();col.classList.remove('over');var id=e.dataTransfer.getData('text/plain');var d=find(id);var st=col.getAttribute('data-stage');
+        if(d&&d.stage!==st){d.stage=st;d.edited=true;render();queueSave()}});
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.pp-table tbody tr'),function(r){
+      r.addEventListener('click',function(){openDlg(r.getAttribute('data-id'))});
+      r.addEventListener('keydown',function(e){if(e.key==='Enter')openDlg(r.getAttribute('data-id'))});
+    });
+  }
+  function find(id){for(var i=0;i<state.deals.length;i++)if(state.deals[i].id===id)return state.deals[i];return null}
+
+  // Dialog
+  $('f-stage').innerHTML=STAGES.map(function(s){return '<option value="'+s[0]+'">'+s[1]+'</option>'}).join('')+'<option value="lost">Lost / ended</option>';
+  function openDlg(id){
+    editingId=id;var d=id?find(id):{line:filterLine==='all'?'R&B':filterLine,stage:'lead',lastTouch:new Date().toISOString().slice(0,10)};
+    $('dlgH').textContent=id?d.company:'Add a deal';
+    $('f-company').value=d.company||'';$('f-contact').value=d.contact||'';$('f-line').value=d.line||'R&B';$('f-stage').value=d.stage||'lead';
+    $('f-mrr').value=(d.mrr==null?'':d.mrr);$('f-source').value=d.source||'';$('f-last').value=d.lastTouch||'';$('f-next').value=d.nextAction||'';
+    $('f-nextdate').value=d.nextDate||'';$('f-risk').value=d.risk?'1':'';$('f-notes').value=d.notes||'';
+    $('f-ev').textContent=d.evidence?'Source: '+d.evidence:'';
+    $('delBtn').style.display=id?'':'none';
+    var s=d.suggestion;
+    if(s){var names={stage:'Stage',mrr:'MRR',nextAction:'Next action',nextDate:'Next action date',notes:'Notes'};
+      var items=Object.keys(s).filter(function(k){return k!=='from'}).map(function(k){var v=s[k];if(k==='stage'){var m=STAGES.filter(function(x){return x[0]===v})[0];v=m?m[1]:'Lost / ended'}if(k==='mrr')v=v==null?'Unknown':gbp(v)+'/mo';return '<li><b>'+names[k]+':</b> '+esc(v)+'</li>'}).join('');
+      $('sugg').innerHTML='<div class="pp-sbox"><b>The weekly sweep found newer information.</b><ul>'+items+'</ul><button class="pp-btn" type="button" id="accS">Apply</button> <button class="pp-btn ghost" type="button" id="disS">Dismiss</button></div>';
+      $('accS').onclick=function(){Object.keys(s).forEach(function(k){if(k!=='from')d[k]=s[k]});delete d.suggestion;d.edited=true;openDlg(id);render();queueSave()};
+      $('disS').onclick=function(){delete d.suggestion;$('sugg').innerHTML='';render();queueSave()};
+    } else $('sugg').innerHTML='';
+    $('dlg').showModal();
+  }
+  $('cancelBtn').onclick=function(){$('dlg').close()};
+  $('dlgForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var company=$('f-company').value.trim();if(!company){$('f-company').focus();return}
+    var d=editingId?find(editingId):null;
+    if(!d){d={id:company.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+Date.now().toString(36),addedBy:'you'};state.deals.push(d)}
+    var mrr=$('f-mrr').value.trim();
+    d.company=company;d.contact=$('f-contact').value.trim();d.line=$('f-line').value;d.stage=$('f-stage').value;
+    d.mrr=mrr===''?null:Math.max(0,+mrr);d.source=$('f-source').value.trim();d.lastTouch=$('f-last').value;d.nextAction=$('f-next').value.trim();
+    d.nextDate=$('f-nextdate').value;d.risk=$('f-risk').value==='1';d.notes=$('f-notes').value.trim();
+    if(d.stage==='lost'&&!d.outcome)d.outcome='Lost';
+    d.edited=true;$('dlg').close();render();queueSave();
+  });
+  $('delBtn').onclick=function(){
+    if(!editingId)return;var d=find(editingId);if(!d)return;
+    if(!window.confirm('Delete '+d.company+'? The weekly sweep will not add it back.'))return;
+    state.deals=state.deals.filter(function(x){return x.id!==editingId});state.deleted=(state.deleted||[]).concat([editingId]);
+    $('dlg').close();render();queueSave();
+  };
+
+  // Saving
+  function queueSave(){status('Saving','busy');clearTimeout(saveTimer);saveTimer=setTimeout(save,600)}
+  function save(){
+    api('PUT',{deals:state.deals,deleted:state.deleted||[],baseUpdatedAt:state.updatedAt}).then(function(res){
+      if(res.status===200){state=res.body;status('Saved '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));render();return}
+      if(res.status===409&&res.body.state){state=res.body.state;render();status(res.body.error,'err');return}
+      if(res.status===401){lock();$('gateErr').textContent='Session expired. Enter your passcode again.';return}
+      status((res.body&&res.body.error)||'Could not save. Your change is still on screen; try again.','err');
+    }).catch(function(){status('Offline. Could not save. Try again.','err')});
+  }
+
+  function lock(){key='';state=null;setSaved('');$('app').classList.add('pp-hide');$('lockBtn').classList.add('pp-hide');$('gate').classList.remove('pp-hide');$('pass').value='';}
+
+  // Controls
+  $('gateForm').addEventListener('submit',function(e){e.preventDefault();unlock($('pass').value,$('remember').checked)});
+  $('lockBtn').onclick=lock;
+  $('addBtn').onclick=function(){openDlg(null)};
+  $('search').addEventListener('input',function(){query=this.value.trim();render()});
+  $('quietBtn').onclick=function(){quietOnly=!quietOnly;this.setAttribute('aria-pressed',String(quietOnly));render()};
+  $('closedBtn').onclick=function(){var w=$('closedWrap');var hidden=w.classList.toggle('pp-hide');this.textContent=hidden?'Show':'Hide';this.setAttribute('aria-expanded',String(!hidden))};
+  Array.prototype.forEach.call(document.querySelectorAll('[data-line]'),function(b){b.addEventListener('click',function(){
+    filterLine=b.getAttribute('data-line');Array.prototype.forEach.call(document.querySelectorAll('[data-line]'),function(x){x.setAttribute('aria-pressed',String(x===b))});render()})});
+
+  var saved=getSaved();if(saved)unlock(saved,!!(store('localStorage')&&(function(){try{return store('localStorage').getItem('ppKey')}catch(e){return null}})()),true);
+})();
+</script>
+</body>
+</html>
