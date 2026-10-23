@@ -10,7 +10,7 @@
    - Advertising signals are always denied; this site does not run ads.
    - Any element with data-cookie-settings reopens the banner. */
 (function () {
-  var GA_ID = '';
+  var GA_ID = 'G-SVSFC2VLL9';
   if (!GA_ID) return;
   document.documentElement.classList.add('rb-ga');
 
