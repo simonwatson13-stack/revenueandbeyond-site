@@ -557,3 +557,5 @@ footer::before{content:""; display:block; height:4px; background:linear-gradient
 .prose .nr-card p{margin:0 0 .9em}
 .prose img.nr-img{border:0; box-shadow:none; border-radius:0}
 .prose figure.nr-sign{max-width:340px}
+
+html:not(.rb-ga) [data-cookie-settings]{display:none}
