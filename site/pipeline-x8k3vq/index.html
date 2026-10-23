@@ -106,6 +106,7 @@ body.pp{font-size:15px;line-height:1.5}
 .pp-grid label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin:0 0 4px}
 .pp-grid .pp-in,.pp-grid .pp-sel,.pp-grid .pp-ta{font-size:15px;padding:8px 10px;border-width:1.5px;border-radius:10px}
 .pp-ta{min-height:76px;resize:vertical;line-height:1.45}
+.pp-newsst{margin:-4px 0 0;font-size:12.5px;color:var(--muted)}.pp-newsst:empty{display:none}
 .pp-ev{font-size:12.5px;color:var(--muted);margin:10px 0 0}
 .pp-sbox{background:#FFF4DC;border:2px solid #B98516;border-radius:14px;padding:10px 12px;margin:0 0 14px;font-size:13.5px}
 .pp-sbox ul{margin:6px 0 8px;padding-left:18px}
@@ -188,6 +189,9 @@ body.pp{font-size:15px;line-height:1.5}
     <div class="pp-grid">
       <div class="full"><label for="f-company">Company</label><input class="pp-in" id="f-company" required></div>
       <div><label for="f-contact">Contact</label><input class="pp-in" id="f-contact"></div>
+      <div><label for="f-email">Email</label><input class="pp-in" id="f-email" type="text" inputmode="email" autocomplete="off" placeholder="name@company.com"></div>
+      <div><label for="f-news">The Founder Read</label><select class="pp-sel" id="f-news"><option value="">Add automatically</option><option value="1">Don't add</option></select></div>
+      <p class="full pp-newsst" id="f-newsst"></p>
       <div><label for="f-line">Business line</label><select class="pp-sel" id="f-line"><option>R&amp;B</option><option>Founder Line</option><option>3am Thoughts</option></select></div>
       <div><label for="f-stage">Stage</label><select class="pp-sel" id="f-stage"></select></div>
       <div><label for="f-mrr">MRR (£ per month)</label><input class="pp-in" id="f-mrr" type="number" inputmode="numeric" min="0" step="50" placeholder="Unknown"></div>
@@ -322,7 +326,8 @@ body.pp{font-size:15px;line-height:1.5}
   function openDlg(id){
     editingId=id;var d=id?find(id):{line:filterLine==='all'?'R&B':filterLine,stage:'lead',lastTouch:new Date().toISOString().slice(0,10)};
     $('dlgH').textContent=id?d.company:'Add a deal';
-    $('f-company').value=d.company||'';$('f-contact').value=d.contact||'';$('f-line').value=d.line||'R&B';$('f-stage').value=ukey(d)||'lead';
+    $('f-company').value=d.company||'';$('f-contact').value=d.contact||'';$('f-email').value=d.email||'';$('f-news').value=d.noNewsletter?'1':'';
+    $('f-newsst').textContent=newsStatus(d);$('f-line').value=d.line||'R&B';$('f-stage').value=ukey(d)||'lead';
     $('f-mrr').value=(d.mrr==null?'':d.mrr);$('f-source').value=d.source||'';$('f-last').value=d.lastTouch||'';$('f-next').value=d.nextAction||'';
     $('f-nextdate').value=d.nextDate||'';$('f-risk').value=d.risk?'1':'';$('f-notes').value=d.notes||'';
     $('f-ev').textContent=d.evidence?'Source: '+d.evidence:'';
@@ -336,6 +341,17 @@ body.pp{font-size:15px;line-height:1.5}
     } else $('sugg').innerHTML='';
     $('dlg').showModal();
   }
+  function newsStatus(d){
+    var list=String(d.email||'').split(/[;,\s]+/).map(function(e){return e.trim().toLowerCase()}).filter(function(e){return /@/.test(e)});
+    if(!list.length)return '';
+    if(d.noNewsletter)return 'Not added to The Founder Read.';
+    var nl=state.newsletter||{};
+    return list.map(function(e){var r=nl[e];
+      if(r&&r.status==='added')return e+': added '+new Date(r.at).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+      if(r&&r.status==='error')return e+': beehiiv refused it ('+(r.code||'error')+'); will retry tomorrow';
+      return e+': '+(state.newsletterConfigured?'will be added on next save':'waiting for the beehiiv key in Netlify');
+    }).join(' · ');
+  }
   $('cancelBtn').onclick=function(){$('dlg').close()};
   $('dlgForm').addEventListener('submit',function(e){
     e.preventDefault();
@@ -344,7 +360,7 @@ body.pp{font-size:15px;line-height:1.5}
     if(!d){d={id:company.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+Date.now().toString(36),addedBy:'you'};state.deals.push(d)}
     var mrr=$('f-mrr').value.trim();
     var sv=$('f-stage').value;
-    d.company=company;d.contact=$('f-contact').value.trim();d.line=$('f-line').value;
+    d.company=company;d.contact=$('f-contact').value.trim();d.email=$('f-email').value.trim();d.noNewsletter=$('f-news').value==='1';d.line=$('f-line').value;
     if(sv==='ended'){d.stage='lost';d.outcome='Ended'}else if(sv==='lost'){d.stage='lost';d.outcome='Lost'}else{d.stage=sv;delete d.outcome}
     d.mrr=mrr===''?null:Math.max(0,+mrr);d.source=$('f-source').value.trim();d.lastTouch=$('f-last').value;d.nextAction=$('f-next').value.trim();
     d.nextDate=$('f-nextdate').value;d.risk=$('f-risk').value==='1';d.notes=$('f-notes').value.trim();
