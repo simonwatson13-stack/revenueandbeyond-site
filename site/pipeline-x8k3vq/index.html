@@ -58,8 +58,9 @@ body.pp{font-size:15px;line-height:1.5}
 .pp-spacer{flex:1 1 auto}
 
 /* board */
-.pp-board{display:grid;grid-template-columns:repeat(5,minmax(240px,1fr));gap:14px;overflow-x:auto;padding:4px 6px 12px 2px;scroll-snap-type:x proximity}
+.pp-board{display:grid;grid-template-columns:repeat(6,minmax(230px,1fr));gap:14px;overflow-x:auto;padding:4px 6px 12px 2px;scroll-snap-type:x proximity}
 .pp-col{background:rgba(255,255,255,.55);border:2px solid var(--teal);border-radius:20px;display:flex;flex-direction:column;min-height:240px;scroll-snap-align:start}
+.pp-col.lostcol{border-color:rgba(28,28,28,.35);background:rgba(232,230,224,.45)}.pp-col.lostcol .pp-colh{border-bottom-color:rgba(28,28,28,.35)}.pp-col.lostcol .pp-card{border-color:rgba(11,54,59,.5);box-shadow:3px 3px 0 rgba(11,54,59,.35)}
 .pp-col.over{background:rgba(73,232,176,.18)}
 .pp-colh{padding:12px 14px 10px;border-bottom:2px solid var(--teal);border-radius:18px 18px 0 0;background:var(--c,var(--offwhite))}
 .pp-colh h2{font-size:1.05rem;letter-spacing:-.01em;margin:0;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
@@ -114,7 +115,7 @@ body.pp{font-size:15px;line-height:1.5}
 @media (max-width:980px){.pp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){
   .pp-wrap{padding:20px 16px 64px}
-  .pp-board{grid-template-columns:repeat(5,minmax(78vw,1fr))}
+  .pp-board{grid-template-columns:repeat(6,minmax(78vw,1fr))}
   .pp-grid{grid-template-columns:1fr}
   .pp-kpi{padding:12px}
   .pp-gate{padding:24px 20px;margin-top:28px;box-shadow:5px 5px 0 var(--purple)}
@@ -172,7 +173,7 @@ body.pp{font-size:15px;line-height:1.5}
 
     <section class="pp-closed" aria-labelledby="closedH">
       <div class="pp-top" style="margin-bottom:10px">
-        <h2 id="closedH">Lost and ended</h2>
+        <h2 id="closedH">Former clients</h2>
         <button class="pp-btn ghost" type="button" id="closedBtn" aria-expanded="false">Show</button>
       </div>
       <div class="pp-tablewrap pp-hide" id="closedWrap"></div>
@@ -210,7 +211,8 @@ body.pp{font-size:15px;line-height:1.5}
 <script>
 (function(){
   var API='/api/pipeline';
-  var STAGES=[['lead','Lead','#fff'],['discovery','Discovery','rgba(106,209,250,.35)'],['proposal','Proposal','rgba(195,161,248,.4)'],['negotiation','Negotiation','rgba(242,181,68,.35)'],['won','Won','rgba(73,232,176,.55)']];
+  var STAGES=[['lead','Lead','#fff'],['discovery','Discovery','rgba(106,209,250,.35)'],['proposal','Proposal','rgba(195,161,248,.4)'],['negotiation','Negotiation','rgba(242,181,68,.35)'],['won','Won','rgba(73,232,176,.55)'],['lost','Closed lost','#E8E6E0']];
+  function ukey(d){return d.stage==='lost'?(d.outcome==='Ended'?'ended':'lost'):d.stage}
   var OPEN=['lead','discovery','proposal','negotiation'];
   var QUIET_DAYS=14;
   var key='', state=null, filterLine='all', query='', quietOnly=false, editingId=null, saveTimer=null;
@@ -270,20 +272,20 @@ body.pp{font-size:15px;line-height:1.5}
       kpi('Going quiet',String(quiet.length),'open deals with no touch in '+QUIET_DAYS+'+ days');
     // Board
     $('board').innerHTML=STAGES.map(function(s){
-      var list=deals.filter(function(d){return d.stage===s[0]}).sort(sortFn(s[0]));
-      return '<section class="pp-col" data-stage="'+s[0]+'" aria-label="'+s[1]+'">'+
-        '<div class="pp-colh" style="--c:'+s[2]+'"><h2>'+s[1]+' <em>'+list.length+'</em></h2><p>'+gbp(sum(list))+' / month</p></div>'+
+      var list=deals.filter(function(d){return ukey(d)===s[0]}).sort(sortFn(s[0]));
+      return '<section class="pp-col'+(s[0]==='lost'?' lostcol':'')+'" data-stage="'+s[0]+'" aria-label="'+s[1]+'">'+
+        '<div class="pp-colh" style="--c:'+s[2]+'"><h2>'+s[1]+' <em>'+list.length+'</em></h2><p>'+gbp(sum(list))+' / month'+(s[0]==='lost'?' lost':'')+'</p></div>'+
         '<div class="pp-list">'+(list.length?list.map(card).join(''):'<p class="pp-empty">Nothing here</p>')+'</div></section>';
     }).join('');
     // Closed
-    var closed=state.deals.filter(function(d){return d.stage==='lost'&&visible(d)}).sort(function(a,b){return (b.lastTouch||'').localeCompare(a.lastTouch||'')});
-    $('closedH').textContent='Lost and ended ('+closed.length+')';
-    $('closedWrap').innerHTML=closed.length?'<table class="pp-table"><thead><tr><th>Company</th><th>Outcome</th><th class="hide-sm">Line</th><th>MRR</th><th class="hide-sm">Last touch</th><th class="hide-sm">Notes</th></tr></thead><tbody>'+
-      closed.map(function(d){return '<tr data-id="'+esc(d.id)+'" tabindex="0"><td><b>'+esc(d.company)+'</b></td><td>'+esc(d.outcome||'Lost')+'</td><td class="hide-sm">'+esc(d.line)+'</td><td>'+(d.mrr?gbp(d.mrr):'')+'</td><td class="hide-sm">'+esc(fmtDate(d.lastTouch))+'</td><td class="hide-sm">'+esc(d.notes)+'</td></tr>'}).join('')+'</tbody></table>':'<p class="pp-empty">None</p>';
+    var closed=state.deals.filter(function(d){return ukey(d)==='ended'&&visible(d)}).sort(function(a,b){return (b.lastTouch||'').localeCompare(a.lastTouch||'')});
+    $('closedH').textContent='Former clients ('+closed.length+')';
+    $('closedWrap').innerHTML=closed.length?'<table class="pp-table"><thead><tr><th>Company</th><th class="hide-sm">Line</th><th>MRR</th><th class="hide-sm">Last touch</th><th class="hide-sm">Notes</th></tr></thead><tbody>'+
+      closed.map(function(d){return '<tr data-id="'+esc(d.id)+'" tabindex="0"><td><b>'+esc(d.company)+'</b></td><td class="hide-sm">'+esc(d.line)+'</td><td>'+(d.mrr?gbp(d.mrr):'')+'</td><td class="hide-sm">'+esc(fmtDate(d.lastTouch))+'</td><td class="hide-sm">'+esc(d.notes)+'</td></tr>'}).join('')+'</tbody></table>':'<p class="pp-empty">None</p>';
     wire();
   }
   function kpi(l,v,s){return '<div class="pp-kpi"><span>'+l+'</span><b>'+v+'</b><small>'+esc(s)+'</small></div>'}
-  function sortFn(stage){return function(a,b){ if(stage==='won')return (+b.mrr||0)-(+a.mrr||0); return (a.lastTouch||'').localeCompare(b.lastTouch||'') }}
+  function sortFn(stage){return function(a,b){ if(stage==='won')return (+b.mrr||0)-(+a.mrr||0); if(stage==='lost')return (b.lastTouch||'').localeCompare(a.lastTouch||''); return (a.lastTouch||'').localeCompare(b.lastTouch||'') }}
   function card(d){
     var a=daysSince(d.lastTouch), open=OPEN.indexOf(d.stage)>=0;
     var ageCls=open&&a!=null?(a>30?' bad':(a>QUIET_DAYS?' warn':'')):'';
@@ -306,7 +308,7 @@ body.pp{font-size:15px;line-height:1.5}
       col.addEventListener('dragover',function(e){e.preventDefault();col.classList.add('over')});
       col.addEventListener('dragleave',function(){col.classList.remove('over')});
       col.addEventListener('drop',function(e){e.preventDefault();col.classList.remove('over');var id=e.dataTransfer.getData('text/plain');var d=find(id);var st=col.getAttribute('data-stage');
-        if(d&&d.stage!==st){d.stage=st;d.edited=true;render();queueSave()}});
+        if(d&&ukey(d)!==st){d.stage=st;if(st==='lost')d.outcome='Lost';else delete d.outcome;d.edited=true;render();queueSave()}});
     });
     Array.prototype.forEach.call(document.querySelectorAll('.pp-table tbody tr'),function(r){
       r.addEventListener('click',function(){openDlg(r.getAttribute('data-id'))});
@@ -316,18 +318,18 @@ body.pp{font-size:15px;line-height:1.5}
   function find(id){for(var i=0;i<state.deals.length;i++)if(state.deals[i].id===id)return state.deals[i];return null}
 
   // Dialog
-  $('f-stage').innerHTML=STAGES.map(function(s){return '<option value="'+s[0]+'">'+s[1]+'</option>'}).join('')+'<option value="lost">Lost / ended</option>';
+  $('f-stage').innerHTML=STAGES.map(function(s){return '<option value="'+s[0]+'">'+s[1]+'</option>'}).join('')+'<option value="ended">Ended (former client)</option>';
   function openDlg(id){
     editingId=id;var d=id?find(id):{line:filterLine==='all'?'R&B':filterLine,stage:'lead',lastTouch:new Date().toISOString().slice(0,10)};
     $('dlgH').textContent=id?d.company:'Add a deal';
-    $('f-company').value=d.company||'';$('f-contact').value=d.contact||'';$('f-line').value=d.line||'R&B';$('f-stage').value=d.stage||'lead';
+    $('f-company').value=d.company||'';$('f-contact').value=d.contact||'';$('f-line').value=d.line||'R&B';$('f-stage').value=ukey(d)||'lead';
     $('f-mrr').value=(d.mrr==null?'':d.mrr);$('f-source').value=d.source||'';$('f-last').value=d.lastTouch||'';$('f-next').value=d.nextAction||'';
     $('f-nextdate').value=d.nextDate||'';$('f-risk').value=d.risk?'1':'';$('f-notes').value=d.notes||'';
     $('f-ev').textContent=d.evidence?'Source: '+d.evidence:'';
     $('delBtn').style.display=id?'':'none';
     var s=d.suggestion;
     if(s){var names={stage:'Stage',mrr:'MRR',nextAction:'Next action',nextDate:'Next action date',notes:'Notes'};
-      var items=Object.keys(s).filter(function(k){return k!=='from'}).map(function(k){var v=s[k];if(k==='stage'){var m=STAGES.filter(function(x){return x[0]===v})[0];v=m?m[1]:'Lost / ended'}if(k==='mrr')v=v==null?'Unknown':gbp(v)+'/mo';return '<li><b>'+names[k]+':</b> '+esc(v)+'</li>'}).join('');
+      var items=Object.keys(s).filter(function(k){return k!=='from'}).map(function(k){var v=s[k];if(k==='stage'){var m=STAGES.filter(function(x){return x[0]===v})[0];v=m?m[1]:v}if(k==='mrr')v=v==null?'Unknown':gbp(v)+'/mo';return '<li><b>'+names[k]+':</b> '+esc(v)+'</li>'}).join('');
       $('sugg').innerHTML='<div class="pp-sbox"><b>The weekly sweep found newer information.</b><ul>'+items+'</ul><button class="pp-btn" type="button" id="accS">Apply</button> <button class="pp-btn ghost" type="button" id="disS">Dismiss</button></div>';
       $('accS').onclick=function(){Object.keys(s).forEach(function(k){if(k!=='from')d[k]=s[k]});delete d.suggestion;d.edited=true;openDlg(id);render();queueSave()};
       $('disS').onclick=function(){delete d.suggestion;$('sugg').innerHTML='';render();queueSave()};
@@ -341,10 +343,11 @@ body.pp{font-size:15px;line-height:1.5}
     var d=editingId?find(editingId):null;
     if(!d){d={id:company.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+Date.now().toString(36),addedBy:'you'};state.deals.push(d)}
     var mrr=$('f-mrr').value.trim();
-    d.company=company;d.contact=$('f-contact').value.trim();d.line=$('f-line').value;d.stage=$('f-stage').value;
+    var sv=$('f-stage').value;
+    d.company=company;d.contact=$('f-contact').value.trim();d.line=$('f-line').value;
+    if(sv==='ended'){d.stage='lost';d.outcome='Ended'}else if(sv==='lost'){d.stage='lost';d.outcome='Lost'}else{d.stage=sv;delete d.outcome}
     d.mrr=mrr===''?null:Math.max(0,+mrr);d.source=$('f-source').value.trim();d.lastTouch=$('f-last').value;d.nextAction=$('f-next').value.trim();
     d.nextDate=$('f-nextdate').value;d.risk=$('f-risk').value==='1';d.notes=$('f-notes').value.trim();
-    if(d.stage==='lost'&&!d.outcome)d.outcome='Lost';
     d.edited=true;$('dlg').close();render();queueSave();
   });
   $('delBtn').onclick=function(){
