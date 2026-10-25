@@ -33,6 +33,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://revenueandbeyond.com/#organization","name":"Revenue & Beyond","url":"https://revenueandbeyond.com/","logo":"https://revenueandbeyond.com/assets/img/favicon-180.png","image":"https://revenueandbeyond.com/assets/img/blueprint-og.png","description":"Build, scale and sell your B2B business. Add an extra £1m in profit (EBITDA) without the business depending on you. For founders of B2B tech, digital and service businesses.","email":"simon@revenueandbeyond.com","founder":{"@id":"https://revenueandbeyond.com/#simon"},"address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"areaServed":{"@type":"Country","name":"United Kingdom"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://revenueandbeyond.com/"},{"@type":"ListItem","position":2,"name":"The founder-led sales blueprint","item":"https://revenueandbeyond.com/blueprint/"}]}]}</script>
 <!-- Beehiiv attribution tracker: tags signups (wherever they complete) with their traffic source. Not the subscribe form itself. -->
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+<script src="/assets/js/analytics.js" defer></script>
 
 <style>
 .bp-hero{padding:56px 0 40px}
@@ -86,7 +87,6 @@
   .bp-by{flex-direction:column;text-align:center}
 }
 </style>
-<script src="/assets/js/analytics.js" defer></script>
 </head>
 <body class="pg-blueprint">
 <a class="skip" href="#main">Skip to content</a>
@@ -131,7 +131,7 @@
         <div class="bp-done" id="bpDone" hidden tabindex="-1">
           <h2>It's <span class="hl">yours</span>.</h2>
           <p>Read it once end to end, then do the scorecard in part 07 and start with your lowest score.</p>
-          <a class="btn" href="/assets/downloads/founder-led-sales-blueprint.pdf" target="_blank" rel="noopener" download>Download the blueprint (PDF) &darr;</a>
+          <a class="btn" href="/assets/downloads/founder-led-sales-blueprint.pdf" target="_blank" rel="noopener" download data-bp-dl="gated">Download the blueprint (PDF) &darr;</a>
           <p class="bp-fine">The Founder Read lands on Sunday evening. If it isn't there, check your promotions tab.</p>
         </div>
       </div>
@@ -234,6 +234,17 @@
 </script>
 
 <script>
+/* Google Analytics events for the blueprint pages. Consent is handled by /assets/js/analytics.js:
+   events queue in the dataLayer and are sent under whatever consent the visitor chose. */
+window.rbTrack=function(name,params){try{(window.gtag||function(){(window.dataLayer=window.dataLayer||[]).push(arguments);})('event',name,params||{});}catch(e){}};
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('[data-bp-dl],[data-bp-share]'); if(!a) return;
+  if(a.hasAttribute('data-bp-dl')) rbTrack('blueprint_download',{route:a.getAttribute('data-bp-dl'),file_name:'founder-led-sales-blueprint.pdf',transport_type:'beacon'});
+  else rbTrack('share',{method:a.getAttribute('data-bp-share'),content_type:'guide',item_id:'founder-led-sales-blueprint',transport_type:'beacon'});
+});
+</script>
+
+<script>
 (function(){
   var KEY='rb_blueprint', ask=document.getElementById('bpAsk'), done=document.getElementById('bpDone'),
       form=document.getElementById('bpForm'), btn=document.getElementById('bpBtn'), err=document.getElementById('bpErr'),
@@ -249,11 +260,11 @@
       body:JSON.stringify({email:email,first_name:document.getElementById('bpName').value.trim(),website:document.getElementById('bpWeb').value,ref:document.referrer})})
       .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,j:j};});})
       .then(function(res){
-        if(res.ok){try{localStorage.setItem(KEY,String(Date.now()));}catch(x){} show(true); return;}
+        if(res.ok){try{localStorage.setItem(KEY,String(Date.now()));}catch(x){} rbTrack('generate_lead',{form_name:'blueprint',route:'gated'}); show(true); return;}
         if(res.status===400){btn.disabled=false;btn.textContent='Send me the blueprint \u2192';err.textContent=(res.j&&res.j.error)||'Please check your email address.';err.hidden=false;return;}
         throw new Error(res.status);
       })
-      .catch(function(){ show(true); }); // never block a real person because of a server hiccup
+      .catch(function(){ rbTrack('blueprint_signup_error',{form_name:'blueprint'}); show(true); }); // never block a real person because of a server hiccup
   });
 })();
 </script>

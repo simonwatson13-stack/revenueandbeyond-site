@@ -127,7 +127,7 @@ GATED_MAIN = f"""
         <div class="bp-done" id="bpDone" hidden tabindex="-1">
           <h2>It's <span class="hl">yours</span>.</h2>
           <p>Read it once end to end, then do the scorecard in part 07 and start with your lowest score.</p>
-          <a class="btn" href="{PDF}" target="_blank" rel="noopener" download>Download the blueprint (PDF) &darr;</a>
+          <a class="btn" href="{PDF}" target="_blank" rel="noopener" download data-bp-dl="gated">Download the blueprint (PDF) &darr;</a>
           <p class="bp-fine">The Founder Read lands on Sunday evening. If it isn't there, check your promotions tab.</p>
         </div>
       </div>
@@ -149,12 +149,12 @@ OPEN_MAIN = f"""
       <div class="bp-card">
         <h2>Your copy is <span class="hl">ready</span></h2>
         <p>No sign-up needed. Read it once end to end, then do the scorecard in part 07.</p>
-        <a class="btn" href="{PDF}" target="_blank" rel="noopener" download style="width:100%">Download the blueprint (PDF) &darr;</a>
+        <a class="btn" href="{PDF}" target="_blank" rel="noopener" download data-bp-dl="open" style="width:100%">Download the blueprint (PDF) &darr;</a>
         <p class="bp-fine" style="margin-top:18px!important"><b>Know a founder who'd find it useful?</b> Pass it on.</p>
         <div class="bp-share">
           <button class="btn" type="button" id="bpCopy">Copy link</button>
-          <a class="btn" id="bpLi" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frevenueandbeyond.com%2Fblueprint%2Fdownload%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
-          <a class="btn" href="mailto:?subject=The%20founder-led%20sales%20blueprint&amp;body=Thought%20you'd%20find%20this%20useful%3A%20https%3A%2F%2Frevenueandbeyond.com%2Fblueprint%2Fdownload%2F">Email it</a>
+          <a class="btn" id="bpLi" data-bp-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frevenueandbeyond.com%2Fblueprint%2Fdownload%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a class="btn" data-bp-share="email" href="mailto:?subject=The%20founder-led%20sales%20blueprint&amp;body=Thought%20you'd%20find%20this%20useful%3A%20https%3A%2F%2Frevenueandbeyond.com%2Fblueprint%2Fdownload%2F">Email it</a>
         </div>
         <p class="bp-fine" id="bpCopied" role="status" hidden>Link copied.</p>
         <p class="bp-fine">Not getting The Founder Read yet? <a href="/newsletter/">It's free, every Sunday evening</a>.</p>
@@ -166,7 +166,20 @@ OPEN_MAIN = f"""
 {inside_section("Seven parts and a scorecard. Every part ends with the actions to take this month.")}
 """
 
-GATED_JS = """
+TRACK_JS = """
+<script>
+/* Google Analytics events for the blueprint pages. Consent is handled by /assets/js/analytics.js:
+   events queue in the dataLayer and are sent under whatever consent the visitor chose. */
+window.rbTrack=function(name,params){try{(window.gtag||function(){(window.dataLayer=window.dataLayer||[]).push(arguments);})('event',name,params||{});}catch(e){}};
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('[data-bp-dl],[data-bp-share]'); if(!a) return;
+  if(a.hasAttribute('data-bp-dl')) rbTrack('blueprint_download',{route:a.getAttribute('data-bp-dl'),file_name:'founder-led-sales-blueprint.pdf',transport_type:'beacon'});
+  else rbTrack('share',{method:a.getAttribute('data-bp-share'),content_type:'guide',item_id:'founder-led-sales-blueprint',transport_type:'beacon'});
+});
+</script>
+"""
+
+GATED_JS = TRACK_JS + """
 <script>
 (function(){
   var KEY='rb_blueprint', ask=document.getElementById('bpAsk'), done=document.getElementById('bpDone'),
@@ -183,23 +196,23 @@ GATED_JS = """
       body:JSON.stringify({email:email,first_name:document.getElementById('bpName').value.trim(),website:document.getElementById('bpWeb').value,ref:document.referrer})})
       .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,j:j};});})
       .then(function(res){
-        if(res.ok){try{localStorage.setItem(KEY,String(Date.now()));}catch(x){} show(true); return;}
+        if(res.ok){try{localStorage.setItem(KEY,String(Date.now()));}catch(x){} rbTrack('generate_lead',{form_name:'blueprint',route:'gated'}); show(true); return;}
         if(res.status===400){btn.disabled=false;btn.textContent='Send me the blueprint \\u2192';err.textContent=(res.j&&res.j.error)||'Please check your email address.';err.hidden=false;return;}
         throw new Error(res.status);
       })
-      .catch(function(){ show(true); }); // never block a real person because of a server hiccup
+      .catch(function(){ rbTrack('blueprint_signup_error',{form_name:'blueprint'}); show(true); }); // never block a real person because of a server hiccup
   });
 })();
 </script>
 """
 
-OPEN_JS = """
+OPEN_JS = TRACK_JS + """
 <script>
 (function(){
   var b=document.getElementById('bpCopy'), m=document.getElementById('bpCopied'), url='https://revenueandbeyond.com/blueprint/download/';
   if(!b) return;
   b.addEventListener('click',function(){
-    function ok(){m.hidden=false;b.textContent='Copied';setTimeout(function(){b.textContent='Copy link';},2200);}
+    function ok(){rbTrack('share',{method:'copy_link',content_type:'guide',item_id:'founder-led-sales-blueprint'});m.hidden=false;b.textContent='Copied';setTimeout(function(){b.textContent='Copy link';},2200);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,function(){prompt('Copy this link',url);});}
     else{prompt('Copy this link',url);}
   });
