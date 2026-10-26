@@ -1,5 +1,5 @@
 {
- "version": "2026-10-23T08:40:00Z",
+ "version": "2026-10-26T07:40:00Z",
  "note": "Written by the weekly sweep. The board merges this in: new deals are added, and changes to deals you have edited show as suggestions rather than overwriting your edits.",
  "deals": [
   {
@@ -40,11 +40,11 @@
    "stage": "won",
    "mrr": 3000,
    "source": "Outbound",
-   "lastTouch": "2026-10-19",
-   "nextAction": "Deliver LinkedIn rewrites and mobile enrichment; first 90-day plan",
-   "nextDate": "",
+   "lastTouch": "2026-10-23",
+   "nextAction": "Weekly session Mon 16:00; LinkedIn rewrites sent 23 Oct",
+   "nextDate": "2026-10-26",
    "notes": "£3,000 + VAT/month rolling plus 10% of net new revenue for 12 months. Paid 8 Oct; Nov onwards monthly in advance.",
-   "evidence": "Gmail 'Re: Proposal' 8 Oct (Chris: 'Paid')",
+   "evidence": "Gmail 'Your LinkedIn Profile Rewrites' 23 Oct; Calendar JobSafe weekly",
    "email": "chris@jobmate.cloud; wendy@jobmate.cloud"
   },
   {
@@ -72,8 +72,8 @@
    "mrr": null,
    "source": "Network",
    "lastTouch": "2026-10-20",
-   "nextAction": "Weekly 1:1 (Aldi, Tesco pursuits)",
-   "nextDate": "",
+   "nextAction": "Weekly 1:1 Thu 29 Oct (Aldi, Tesco pursuits)",
+   "nextDate": "2026-10-29",
    "notes": "Long-running client with weekly 1:1s. No monthly fee recorded in any source, so add it here.",
    "evidence": "Fathom Si x Matt 20 Oct",
    "email": "matt@worksavi.com"
@@ -127,15 +127,16 @@
    "company": "Optimise Outsourcing",
    "contact": "Robert Fernandez",
    "line": "R&B",
-   "stage": "negotiation",
+   "stage": "proposal",
    "mrr": 2000,
    "source": "Network",
-   "lastTouch": "2026-10-20",
-   "nextAction": "Get written go-ahead on ongoing terms after the sessions",
-   "nextDate": "2026-10-26",
-   "notes": "Offered £2,000/month + 7% of new business. Robert asked to keep the 13 Oct taster standalone until cash allows, but sessions continued (19 Oct) and an MNDA is in place.",
-   "evidence": "Gmail 'Working together' 8 Oct; 'Yesterday's session and Monday' 20 Oct",
-   "email": "robert.fernandez@optimiseoutsourcing.co.uk"
+   "lastTouch": "2026-10-26",
+   "nextAction": "Session today 14:00 to set a plan to Feb; reconnect first week of Feb",
+   "nextDate": "2027-02-01",
+   "notes": "Robert wants to work together but not yet: can't commit to £2,000/month + 7% until about 45 live roles. Asked to reconnect early Feb with a view to starting Feb/Mar; Simon agreed (26 Oct) and suggested 45 roles or ~£23k MRR as the start trigger.",
+   "evidence": "Gmail 'RE: Yesterday's session and Monday' 23 and 26 Oct; Calendar 1-2-1 26 Oct",
+   "email": "robert.fernandez@optimiseoutsourcing.co.uk",
+   "risk": true
   },
   {
    "id": "formly",
@@ -160,12 +161,13 @@
    "stage": "proposal",
    "mrr": 3500,
    "source": "Network",
-   "lastTouch": "2026-10-16",
-   "nextAction": "Chase the founders' decision (meeting was Thu 15 Oct)",
-   "nextDate": "2026-10-23",
-   "notes": "Proposal + MSA/SOW sent 12 Oct: £3,500/month rolling, Seller billed separately at £300 to £350/day.",
-   "evidence": "Gmail 'Ripple - proposal and agreement' 12 Oct",
-   "email": "adrian@useripple.io"
+   "lastTouch": "2026-10-22",
+   "nextAction": "Await build timeline; Simon offered to start pre-launch work in parallel",
+   "nextDate": "",
+   "notes": "Proposal + MSA/SOW sent 12 Oct: £3,500/month rolling, Seller billed separately at £300 to £350/day. Founding board interested (22 Oct) but product build is delayed and the team is focused on it.",
+   "evidence": "Gmail 'Re: Jebel Ali' 22 Oct",
+   "email": "adrian@useripple.io",
+   "risk": true
   },
   {
    "id": "unmistakables",
@@ -176,10 +178,10 @@
    "mrr": null,
    "source": "Newsletter",
    "lastTouch": "2026-10-21",
-   "nextAction": "Await reply on fixed 4-session package",
-   "nextDate": "2026-10-28",
+   "nextAction": "Call with Asad Fri 30 Oct 10:00 on the 4-session package",
+   "nextDate": "2026-10-30",
    "notes": "Repackaged as a one-off, 4-session engagement on getting the next sales hire right (no 6-month commitment). Partner Nick is part of the decision. Add the fee.",
-   "evidence": "Gmail 'Getting your next sales hire right' 21 Oct",
+   "evidence": "Gmail 'Getting your next sales hire right' 21 Oct; Calendar 'Simon - Asad' 30 Oct",
    "email": "asad@theunmistakables.com"
   },
   {
@@ -191,10 +193,10 @@
    "mrr": null,
    "source": "Dubai network",
    "lastTouch": "2026-10-22",
-   "nextAction": "Follow up recap and terms from 22 Oct call",
+   "nextAction": "Daniel to confirm kick-off date with Alex; agree revenue/seat target",
    "nextDate": "",
-   "notes": "Dubai-based. NDA signed 21 Oct, terms shared, call 22 Oct 09:30.",
-   "evidence": "Gmail 'Looking forward to tomorrow' thread",
+   "notes": "Dubai-based; two AI products (Gene Essentials, Gene Sovereign). NDA signed 21 Oct, terms shared; 22 Oct call agreed to set objectives and a plan once Alex can commit to a start date. No fee in sources yet.",
+   "evidence": "Granola R&B - MetisJean 22 Oct; Gmail 'Looking forward to tomorrow' 22 Oct",
    "email": "daniel@metisjean.com"
   },
   {
@@ -206,10 +208,10 @@
    "mrr": null,
    "source": "LinkedIn",
    "lastTouch": "2026-09-28",
-   "nextAction": "Re-book the proposal call; Sarah back in office from 19 Oct",
-   "nextDate": "2026-10-26",
+   "nextAction": "Proposal call booked Tue 3 Nov 11:00",
+   "nextDate": "2026-11-03",
    "notes": "Proposal sent 28 Sep. ~£200k turnover, enterprise/retail growth focus.",
-   "evidence": "Gmail 'Your proposal ahead of tomorrow's call' 28 Sep",
+   "evidence": "Gmail 'Your proposal ahead of tomorrow's call' 28 Sep; Calendar 3 Nov",
    "email": "sarah@discsimple.com"
   },
   {
@@ -236,11 +238,11 @@
    "stage": "proposal",
    "mrr": 600,
    "source": "Referral (Turkish VC)",
-   "lastTouch": "2026-10-22",
-   "nextAction": "Await reply to 22 Oct check-in",
+   "lastTouch": "2026-10-23",
+   "nextAction": "Keep warm; Özgen hopes to work together in coming months",
    "nextDate": "",
-   "notes": "Leaning towards Founder Line plus a referral bonus. Proposal 16 Sep, call 24 Sep, then quiet. Planning a raise.",
-   "evidence": "Gmail thread 11 Sep to 22 Oct; Fathom 24 Sep",
+   "notes": "Leaning towards Founder Line plus a referral bonus. Now meeting potential lead investors (UK and Türkiye); US round postponed. Özgen (23 Oct) hopes to work together 'in the coming months'.",
+   "evidence": "Gmail 'Re: Great speaking today — next step' 23 Oct",
    "email": "ozgen.yildiz@enlighty.ai; erdem.yoruk@enlighty.ai"
   },
   {
@@ -340,11 +342,11 @@
    "stage": "discovery",
    "mrr": 3500,
    "source": "Inbound",
-   "lastTouch": "2026-10-21",
-   "nextAction": "Call with Christian and CTO Chris, Fri 23 Oct 12:00; decide on 29 Oct London roundtable",
-   "nextDate": "2026-10-23",
-   "notes": "~£15k MRR sales agency. Discussed £3,500/month retainer or retainer + performance/equity.",
-   "evidence": "Fathom Christian Hodges 21 Oct"
+   "lastTouch": "2026-10-23",
+   "nextAction": "Intro Erica (Wynn RAK); confirm London dinner; follow-up call ~30 Nov on a January start",
+   "nextDate": "2026-11-30",
+   "notes": "~£15k MRR agency (3 clients on £5k/month, 4th at legal). Discussed £3,500/month retainer or retainer + performance/equity. Christian and Chris target a January start, subject to reaching 4 to 6 clients by Nov and budget.",
+   "evidence": "Fathom Christian Hodges: R&B 30min Meeting 23 Oct"
   },
   {
    "id": "maiself",
@@ -355,10 +357,10 @@
    "mrr": 600,
    "source": "Calendly",
    "lastTouch": "2026-10-22",
-   "nextAction": "Send assessment + recap; Charlie to align with co-founder Matthew",
-   "nextDate": "2026-10-29",
+   "nextAction": "Charlie aligning with co-founder Matthew; expects to reply this week",
+   "nextDate": "2026-10-30",
    "notes": "Pre-raise (SEIS/EIS). Options: Founder Line £600, Retained £3,500, or advisory board. Set at Founder Line as the likely start.",
-   "evidence": "Fathom Charlie Wheeler 22 Oct",
+   "evidence": "Fathom Charlie Wheeler 22 Oct; Gmail 'Great to chat today' 22 Oct (Charlie reply)",
    "email": "charlie@maiself.io"
   },
   {
@@ -373,7 +375,7 @@
    "nextAction": "Philip to pick a model (Founder Line, retainer or 1-month sprint)",
    "nextDate": "2026-10-29",
    "notes": "Pre-revenue, bootstrapped. Set at Founder Line as the likely start.",
-   "evidence": "Fathom Philip Reynolds 22 Oct; Gmail follow-up 22 Oct"
+   "evidence": "Fathom Philip Reynolds 22 Oct; Gmail 'Good to meet you today' 22 Oct (Philip replied same day)"
   },
   {
    "id": "agencfo",
@@ -747,6 +749,66 @@
    "notes": "UAE automation business. Wants help learning to sell. Asked about Founder Line on the booking form. Simon chased on the morning of the call.",
    "evidence": "3am lead feed: 'Book your Business Diagnosis Call… Habib' 13 Oct",
    "email": "habib@alqalamai.ae"
+  },
+  {
+   "id": "inference-clinical",
+   "company": "Inference Clinical",
+   "contact": "Julian Bradder",
+   "line": "R&B",
+   "stage": "lead",
+   "mrr": null,
+   "source": "Calendly",
+   "lastTouch": "2026-10-26",
+   "nextAction": "15-min intro call Wed 28 Oct 14:00 (moved from 26 Oct)",
+   "nextDate": "2026-10-28",
+   "notes": "Booked an R&B 15-min meeting via Calendly; rescheduled by Julian to 28 Oct. No other context on file.",
+   "evidence": "Gmail Calendly 'Updated: Julian Bradder' 25 and 26 Oct",
+   "email": "julian.bradder@inferenceclinical.com"
+  },
+  {
+   "id": "incursion-security",
+   "company": "Incursion Security",
+   "contact": "Lewis Lockwood",
+   "line": "R&B",
+   "stage": "lead",
+   "mrr": null,
+   "source": "Calendly",
+   "lastTouch": "2026-10-21",
+   "nextAction": "Revenue Diagnosis call Wed 4 Nov 11:00",
+   "nextDate": "2026-11-04",
+   "notes": "Offensive cyber security consultancy, ~$500k turnover. Booking form says timeline 'immediate' but 'not in a position to invest anything right now'.",
+   "evidence": "Gmail Calendly 'New Event: Lewis Lockwood' 21 Oct",
+   "email": "lewis.lockwood@incursion-security.co.uk"
+  },
+  {
+   "id": "succeed-from-the-start",
+   "company": "Succeed From The Start",
+   "contact": "Angela Roth",
+   "line": "R&B",
+   "stage": "lead",
+   "mrr": null,
+   "source": "Calendly",
+   "lastTouch": "2026-10-21",
+   "nextAction": "Revenue Diagnosis call Mon 9 Nov 14:00",
+   "nextDate": "2026-11-09",
+   "notes": "Helps heart-led coaches and solopreneurs build their business backend and write a first book. Wants to decide how to scale within 60 days; says she is ready to invest.",
+   "evidence": "Gmail Calendly 'New Event: Angela Roth' 21 Oct",
+   "email": "succeedfromthestart@gmail.com"
+  },
+  {
+   "id": "roome-uni",
+   "company": "Roome Uni",
+   "contact": "James Buck",
+   "line": "R&B",
+   "stage": "lead",
+   "mrr": null,
+   "source": "Calendly",
+   "lastTouch": "2026-10-19",
+   "nextAction": "R&B 30-min meeting today 13:00 (rescheduled from 19 Oct)",
+   "nextDate": "2026-10-26",
+   "notes": "Booked an R&B 30-min meeting; moved from 19 Oct. No other context on file.",
+   "evidence": "Gmail 'New Time Proposed: James Buck' 19 Oct; Calendar 26 Oct",
+   "email": "james@roome-uni.co.uk"
   }
  ]
 }
