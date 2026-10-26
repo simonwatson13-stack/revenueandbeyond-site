@@ -53,6 +53,20 @@ def fmt_date(iso):
     return f'{d.day} {d.strftime("%b %Y")}', d.isoformat()
 
 
+TITLE = ''
+
+
+def local_asset(src):
+    """Use the site's own copy of a newsletter image (site/assets/newsletter/<NN>/<file>) when there is one."""
+    name = os.path.basename((src or '').split('?')[0])
+    base = os.path.join(SITE, 'assets', 'newsletter')
+    if name and os.path.isdir(base):
+        for d in sorted(os.listdir(base), reverse=True):
+            if os.path.isfile(os.path.join(base, d, name)):
+                return f'/assets/newsletter/{d}/{name}'
+    return None
+
+
 def is_section(t):
     return getattr(t, 'name', None) == 'div' and (t.get('data-type') == 'section' or 'node-section' in (t.get('class') or []))
 
@@ -66,8 +80,14 @@ def clean(body):
     for p in soup.find_all('p'):
         t = p.get_text(' ', strip=True)
         if ('{{current_date' in t or re.match(r'^(Evening|Morning|Afternoon|Hi|Hello)\s*\{\{', t)
+                or re.match(r'^\{\{\s*first_name[^}]*\}\}\s*,?$', t)
                 or t.startswith('Forward this email') or re.match(r'^Simon Watson\s+Founder, Revenue', t)):
             p.decompose()
+    # letter format: the body repeats the title as an H1; the page hero already shows it
+    norm = lambda x: re.sub(r'[^a-z0-9]+', ' ', x.lower()).strip()
+    h1 = soup.find('h1')
+    if h1 and TITLE and norm(h1.get_text(' ', strip=True)) == norm(TITLE):
+        h1.decompose()
     for el in soup.select('div.node-genericEmbed, [data-type="genericEmbed"], span[data-type="emoji"]'):
         el.decompose()
     # cards: outer section = shadow colour, inner section = fill
@@ -98,12 +118,17 @@ def clean(body):
     # images
     for fig in soup.select('figure[data-type="imageBlock"]'):
         src = fig.get('data-src'); alt = fig.get('data-alt') or ''
-        f = soup.new_tag('figure'); im = soup.new_tag('img', src=src, alt=alt, loading='lazy')
-        if 'beehiiv' in (src or '') and re.search(r'/neo-[^/]*\.png', src or ''):
+        local = local_asset(src)
+        f = soup.new_tag('figure'); im = soup.new_tag('img', src=local or src, alt=alt, loading='lazy')
+        if re.search(r'/(neo|founder-read)-[^/]*\.png', src or ''):
             im['class'] = ['nr-img']
-        if 'signoff' in (src or ''):
+        if 'signoff' in (src or '') or 'signature' in (src or ''):
             f['class'] = ['nr-sign']
-        f.append(im)
+        link = fig.get('data-url')
+        if link:
+            a = soup.new_tag('a', href=link); a.append(im); f.append(a)
+        else:
+            f.append(im)
         cap = fig.find('figcaption')
         if cap and cap.get_text(strip=True):
             c = soup.new_tag('figcaption'); c.string = cap.get_text(strip=True); f.append(c)
@@ -171,6 +196,7 @@ def main():
     if dry:
         tmp = tempfile.mkdtemp(); shutil.copytree(SITE, os.path.join(tmp, 'site')); site = os.path.join(tmp, 'site')
     disp, iso = fmt_date(date)
+    global TITLE; TITLE = title
     prose = clean(body)
 
     # ---- 1. the page
