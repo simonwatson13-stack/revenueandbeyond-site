@@ -870,6 +870,21 @@
    "notes": "Signal-based lead gen for professional services, $1M-$2M turnover, Germany-based. Booking form says 'not in a position to invest anything right now'.",
    "evidence": "Calendly 'New Event: Georg' 29 Oct",
    "email": "georg@lnkstr.co"
+  },
+  {
+   "id": "harmona",
+   "company": "Harmona",
+   "contact": "Baris Yilmaz",
+   "line": "R&B",
+   "stage": "discovery",
+   "mrr": null,
+   "source": "Calendly (R&B 30-min, then Founder Line discovery call)",
+   "lastTouch": "2026-10-15",
+   "nextAction": "Await business plan and deck for a sanity check; agree advisory role and fee once the pre-seed round closes (target early Dec)",
+   "nextDate": "",
+   "notes": "Turkish AI coworker/adoption platform, ~$65k ARR, piloting with manufacturing SMBs and planning UK expansion. On 15 Oct Baris offered a board seat and stock options; Simon is open to equity but needs a retained monthly fee alongside, to be negotiated after the round closes. No fee agreed yet.",
+   "evidence": "Granola 'Baris yilmaz and Simon Watson' 15 Oct; Gmail 'Our chat today, and a few things to do before the round closes' 15 Oct",
+   "email": "baris@harmona.ai"
   }
  ]
 }
