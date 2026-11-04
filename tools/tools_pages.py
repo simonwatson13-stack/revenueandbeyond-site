@@ -13,6 +13,9 @@ import html, json, os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 DOMAIN = "https://revenueandbeyond.com"
+# Soft launch: page is live but unlinked and noindex. Set to False at launch, then add the
+# sitemap entry and the nav/footer links.
+HIDDEN = True
 DATA = json.load(open(os.path.join(ROOT, "data", "products.json"), encoding="utf-8"))
 P = DATA["products"]
 shell = open(os.path.join(SITE, "newsletter", "index.html"), encoding="utf-8").read()
@@ -303,5 +306,5 @@ def build(path, title, desc, main, js, indexable):
 
 build("/tools/", "Tools and kits for founder-led businesses | Revenue & Beyond",
       "The AI tools I built with Claude to run my own business: free tools, kits you set up yourself, and done-with-you systems for founder-led B2B businesses.",
-      MAIN, JS, True)
+      MAIN, JS, not HIDDEN)
 build("/tools/thanks/", "Your order | Revenue & Beyond", "Download your kit.", THANKS_MAIN, THANKS_JS, False)
