@@ -8,3 +8,7 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+# Kits for /tools/ live in kits/ (never published). Bundled with the tools function only.
+[functions.tools]
+  included_files = ["kits/**"]
