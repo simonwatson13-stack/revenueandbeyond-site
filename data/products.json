@@ -10,7 +10,11 @@
       "price": "Free",
       "summary": "Seven parts and a scorecard on getting sales out of your head and into a system that grows, holds and sells without you.",
       "for": "B2B founders who still close every deal themselves.",
-      "points": ["Seven parts, each with actions for this month", "A scorecard to show where sales still depends on you", "20 minutes to read end to end"],
+      "points": [
+        "Seven parts, each with actions for this month",
+        "A scorecard to show where sales still depends on you",
+        "20 minutes to read end to end"
+      ],
       "href": "/blueprint/"
     },
     {
@@ -22,7 +26,11 @@
       "price": "Free",
       "summary": "The parts of the Budget that matter to a founder-led business, in plain English, with worked examples.",
       "for": "UK founders planning a raise, a sale or their next hire.",
-      "points": ["Founders' Relief and BADR changes", "British Business Bank funding lines", "EMI, CSOP and wage changes"],
+      "points": [
+        "Founders' Relief and BADR changes",
+        "British Business Bank funding lines",
+        "EMI, CSOP and wage changes"
+      ],
       "href": "/budget-2026/"
     },
     {
@@ -34,19 +42,11 @@
       "price": "Free",
       "summary": "Pulls the transcript from your call recorder, writes a clear recap and drafts the follow-up email in your own tone.",
       "for": "Founders who record their sales and client calls.",
-      "points": ["Works with Fathom, Granola or a pasted transcript", "Recap document plus a ready-to-send draft", "One-page set-up guide"],
-      "file": ""
-    },
-    {
-      "id": "linkedin-profile",
-      "kind": "free",
-      "status": "soon",
-      "name": "LinkedIn profile rewrite pack",
-      "format": "Prompt pack",
-      "price": "Free",
-      "summary": "The formula I used to rewrite my own headline and About section: credential, what the client gets, the outcome.",
-      "for": "Founders whose profile does not yet do the selling.",
-      "points": ["Three headline styles", "Two About section structures", "Checks against LinkedIn's character limits"],
+      "points": [
+        "Works with Fathom, Granola or a pasted transcript",
+        "Recap document plus a ready-to-send draft",
+        "One-page set-up guide"
+      ],
       "file": ""
     },
     {
@@ -58,7 +58,11 @@
       "price": "Free",
       "summary": "A structural edit for a finished newsletter draft, built on five story principles. It fixes the shape and leaves your voice alone.",
       "for": "Founders writing a regular newsletter or long post.",
-      "points": ["Scene opening, method after results", "Room for the hard part of the story", "A quiet close instead of a hard sell"],
+      "points": [
+        "Scene opening, method after results",
+        "Room for the hard part of the story",
+        "A quiet close instead of a hard sell"
+      ],
       "file": ""
     },
     {
@@ -70,7 +74,11 @@
       "price": "Free",
       "summary": "Sorts a messy receipts inbox into what goes to your accounting software, what your bookkeeper needs to fetch and what needs your call.",
       "for": "Founders running more than one company or a cluttered finance inbox.",
-      "points": ["Routes by entity", "Flags duplicates and missing PDFs", "Nothing is forwarded without you"],
+      "points": [
+        "Routes by entity",
+        "Flags duplicates and missing PDFs",
+        "Nothing is forwarded without you"
+      ],
       "file": ""
     },
     {
@@ -83,10 +91,33 @@
       "priceNote": "+VAT, one-off",
       "summary": "Researches the prospect before the call: company, founder, competitors, reviews and filings. Then a brief with a fit read, the questions to ask and a pre-call message.",
       "for": "Founders running their own discovery calls.",
-      "points": ["Prospect and competitor research in minutes", "Questions that diagnose before you prescribe", "Set up once with your ICP and offer"],
+      "points": [
+        "Prospect and competitor research in minutes",
+        "Questions that diagnose before you prescribe",
+        "Set up once with your ICP and offer"
+      ],
       "stripeLink": "",
       "stripePaymentLinkId": "",
       "file": "discovery-call-prep-kit.zip"
+    },
+    {
+      "id": "linkedin-profile",
+      "kind": "kit",
+      "status": "soon",
+      "name": "LinkedIn Profile Rewrite kit",
+      "format": "Claude skill + formula guide",
+      "price": "£99",
+      "summary": "The formula I used to rewrite my own headline and About section: credential, what the client gets, the outcome. Claude does the rewrite from your real proof, inside LinkedIn's limits.",
+      "for": "Founders whose profile does not yet do the selling.",
+      "points": [
+        "Three headline options to choose from",
+        "Two About sections: structured and story-led",
+        "Only claims you can back up, within LinkedIn's limits"
+      ],
+      "file": "linkedin-profile-rewrite-kit.zip",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": ""
     },
     {
       "id": "proposal-pack",
@@ -98,7 +129,11 @@
       "priceNote": "+VAT, one-off",
       "summary": "Turns a call transcript into a branded proposal, as a Word agreement or a slide deck, with phasing and firm commercials.",
       "for": "Founders and consultants who write proposals by hand.",
-      "points": ["Word agreement and slide deck versions", "Your brand, your clauses, your prices", "A short guide to anchoring price"],
+      "points": [
+        "Word agreement and slide deck versions",
+        "Your brand, your clauses, your prices",
+        "A short guide to anchoring price"
+      ],
       "stripeLink": "",
       "stripePaymentLinkId": "",
       "file": "proposal-pack.zip"
@@ -113,7 +148,11 @@
       "priceNote": "+VAT, one-off",
       "summary": "Most first sales hires are set up to fail. This gives them a system to inherit and you a 30/60/90 plan both of you sign.",
       "for": "Founders about to hire their first salesperson.",
-      "points": ["30/60/90 plan with ramped targets", "A business plan the new hire writes", "Matching slide deck for the kick-off"],
+      "points": [
+        "30/60/90 plan with ramped targets",
+        "A business plan the new hire writes",
+        "Matching slide deck for the kick-off"
+      ],
       "stripeLink": "",
       "stripePaymentLinkId": "",
       "file": "first-commercial-hire-kit.zip"
@@ -128,7 +167,11 @@
       "priceNote": "+VAT, one-off",
       "summary": "Dictate a voice note, get a newsletter or LinkedIn post that sounds like you wrote it. Starts by learning your voice from your own posts.",
       "for": "Founders who have plenty to say and no time to write it.",
-      "points": ["Builds your voice file from 5 to 10 posts", "Newsletter and LinkedIn formats", "Keeps your rhythm, not AI filler"],
+      "points": [
+        "Builds your voice file from 5 to 10 posts",
+        "Newsletter and LinkedIn formats",
+        "Keeps your rhythm, not AI filler"
+      ],
       "stripeLink": "",
       "stripePaymentLinkId": "",
       "file": "voice-writer-kit.zip"
@@ -143,7 +186,11 @@
       "priceNote": "+VAT, fixed fee",
       "summary": "A brief waiting on your phone every morning: today's meetings, replies you owe, deals at risk, leads to chase, and a prep doc for every sales call.",
       "for": "Founder-led businesses of 10 to 50 people.",
-      "points": ["Reads your calendar, email, Slack and call notes", "Prep doc for every new business meeting", "Read-only by default, set up with you"],
+      "points": [
+        "Reads your calendar, email, Slack and call notes",
+        "Prep doc for every new business meeting",
+        "Read-only by default, set up with you"
+      ],
       "bookRef": "chief-of-staff"
     },
     {
@@ -156,7 +203,11 @@
       "priceNote": "+VAT, fixed fee",
       "summary": "A simple deal board that updates itself each week from your email, calendar, calls and LinkedIn. It replaced HubSpot in my own business.",
       "for": "Founders who gave up on their CRM.",
-      "points": ["Kanban board on your own website", "Weekly sweep with evidence for every change", "Your edits always win"],
+      "points": [
+        "Kanban board on your own website",
+        "Weekly sweep with evidence for every change",
+        "Your edits always win"
+      ],
       "bookRef": "crm"
     },
     {
@@ -169,7 +220,11 @@
       "priceNote": "+VAT, fixed fee",
       "summary": "Dictate the story, approve one draft, and the letter goes out on email, LinkedIn, Substack and your website without you touching it again.",
       "for": "Founders who want one weekly letter on every channel.",
-      "points": ["Your voice, your format, your brand", "Nothing sends until you say go", "Four channels from one approval"],
+      "points": [
+        "Your voice, your format, your brand",
+        "Nothing sends until you say go",
+        "Four channels from one approval"
+      ],
       "bookRef": "newsletter-engine"
     },
     {
@@ -181,7 +236,11 @@
       "price": "Dates soon",
       "summary": "A live session where I show the whole set-up running in my own business, and how to start on yours.",
       "for": "Founders who want to see it working before they build it.",
-      "points": ["Live demos, not slides", "What to build first and what to skip", "The guardrails that keep it safe"]
+      "points": [
+        "Live demos, not slides",
+        "What to build first and what to skip",
+        "The guardrails that keep it safe"
+      ]
     }
   ]
 }
