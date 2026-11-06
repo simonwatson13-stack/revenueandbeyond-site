@@ -82,18 +82,34 @@
       "file": ""
     },
     {
+      "id": "kill-criteria",
+      "kind": "free",
+      "status": "soon",
+      "name": "Channel kill-criteria scorecard",
+      "format": "Scorecard + sheet",
+      "price": "Free",
+      "summary": "Decide before you start when a channel has had a fair test and when to stop paying for it. Built from an outbound programme I paused after three months of dials and no meetings.",
+      "for": "Founders spending money on outbound that isn't booking meetings.",
+      "points": [
+        "Set the stop point before you spend",
+        "Separate the list, the message and the caller",
+        "One page, scored weekly"
+      ],
+      "file": ""
+    },
+    {
       "id": "discovery-prep",
       "kind": "kit",
       "status": "soon",
       "name": "Discovery Call Prep kit",
-      "format": "Claude skill + call guide",
+      "format": "Claude skill + discovery guide",
       "price": "£99",
       "priceNote": "+VAT, one-off",
       "summary": "Researches the prospect before the call: company, founder, competitors, reviews and filings. Then a brief with a fit read, the questions to ask and a pre-call message.",
       "for": "Founders running their own discovery calls.",
       "points": [
         "Prospect and competitor research in minutes",
-        "Questions that diagnose before you prescribe",
+        "7-step discovery call guide and follow-up ladder",
         "Set up once with your ICP and offer"
       ],
       "stripeLink": "",
@@ -131,8 +147,8 @@
       "for": "Founders and consultants who write proposals by hand.",
       "points": [
         "Word agreement and slide deck versions",
-        "Your brand, your clauses, your prices",
-        "A short guide to anchoring price"
+        "Three-option template and value-based pricing guide",
+        "Your brand, your clauses, your prices"
       ],
       "stripeLink": "",
       "stripePaymentLinkId": "",
@@ -150,8 +166,8 @@
       "for": "Founders about to hire their first salesperson.",
       "points": [
         "30/60/90 plan with ramped targets",
-        "A business plan the new hire writes",
-        "Matching slide deck for the kick-off"
+        "Proof-based interview rubric",
+        "Commission model with windfall caps"
       ],
       "stripeLink": "",
       "stripePaymentLinkId": "",
@@ -175,6 +191,44 @@
       "stripeLink": "",
       "stripePaymentLinkId": "",
       "file": "voice-writer-kit.zip"
+    },
+    {
+      "id": "sdr-vendor",
+      "kind": "kit",
+      "status": "soon",
+      "name": "SDR Vendor kit",
+      "format": "Brief + benchmarks + handover SOP",
+      "price": "£99",
+      "priceNote": "+VAT, one-off",
+      "summary": "Most outsourced SDR deals fail on the brief, not the caller. A written brief, the numbers to hold them to and a clean handover to whoever closes.",
+      "for": "Founders about to hire, or already paying, an outsourced SDR or calling agency.",
+      "points": [
+        "RFP brief to send vendors",
+        "Weekly benchmarks: dials, hours, paper trail",
+        "SDR-to-closer handover SOP"
+      ],
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "file": "sdr-vendor-kit.zip"
+    },
+    {
+      "id": "qualification-rules",
+      "kind": "kit",
+      "status": "soon",
+      "name": "Qualification and commit rules",
+      "format": "HubSpot stage map + scoring sheet",
+      "price": "£49",
+      "priceNote": "+VAT, one-off",
+      "summary": "Clear rules for what counts as qualified and what counts as commit, built into your CRM stages, so the Monday pipeline review shows only real deals.",
+      "for": "Founder-led teams whose forecast is mostly hope.",
+      "points": [
+        "Commit definition you can enforce",
+        "Stage gates mapped to HubSpot fields",
+        "Deal scoring sheet, 0 to 3 per element"
+      ],
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "file": "qualification-rules-kit.zip"
     },
     {
       "id": "chief-of-staff",
@@ -226,6 +280,23 @@
         "Four channels from one approval"
       ],
       "bookRef": "newsletter-engine"
+    },
+    {
+      "id": "fractional-outbound",
+      "kind": "install",
+      "status": "live",
+      "name": "Fractional outbound team",
+      "format": "Done with you",
+      "price": "From £3,000",
+      "priceNote": "+VAT, fixed fee",
+      "summary": "An outbound team without the hires: target data, scripts, tools and fractional reps paid on results, with a weekly review run by me.",
+      "for": "Founders who need meetings now and can't yet justify a full-time SDR.",
+      "points": [
+        "Data build and segmented target list",
+        "Scripts, stack and send limits set up",
+        "Reps on commission or per meeting, reviewed weekly"
+      ],
+      "bookRef": "fractional-outbound"
     },
     {
       "id": "workshop",
