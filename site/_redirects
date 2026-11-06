@@ -2,6 +2,12 @@
 /who-i-work-with      /                      301
 /who-am-i             /about/                301
 /about-me             /about/                301
+/work-with-me/founder-line/*            /tools/founder-line/                301
+/work-with-me/founder-line              /tools/founder-line/                301
+/work-with-me/commercial-audit/*        /work-with-me/retained-partner/     301
+/work-with-me/commercial-audit          /work-with-me/retained-partner/     301
+/work-with-me/revenue-roadmap-sprint/*  /work-with-me/retained-partner/     301
+/work-with-me/revenue-roadmap-sprint    /work-with-me/retained-partner/     301
 /services             /work-with-me/         301
 /work                 /work-with-me/         301
 /the-work             /work-with-me/         301

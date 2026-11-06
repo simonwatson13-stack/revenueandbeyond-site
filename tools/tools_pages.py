@@ -25,6 +25,7 @@ GROUPS = [
     ("free", "Free", "Free tools", "Take them, use them, pass them on.", "c-green"),
     ("kit", "Kits", "Kits you set up yourself", "A Claude skill, the files it needs and a one-page set-up guide. Buy, download, running in about ten minutes.", "c-purple"),
     ("install", "Done with you", "Done with you", "The bigger systems. I build them into your business with you, on your tools, with your rules.", "c-sky"),
+    ("advisory", "Advisory", "Monthly advisory", "A direct line to someone who has already made the decisions you are making now, before there's budget for a retained partner.", "c-green"),
     ("event", "Workshop", "Workshop", "See it all running before you build anything.", "c-green"),
 ]
 
@@ -83,6 +84,8 @@ def button(p):
         return f'<button class="btn btn-ghost btn-sm" type="button" data-tl-form="{h(p["id"])}" data-mode="download">Get it free</button>'
     if k == "kit" and p.get("stripeLink"):
         return f'<a class="btn btn-sm btn-solid" href="{h(p["stripeLink"])}" data-tl-buy="{h(p["id"])}" rel="noopener">Buy now &rarr;</a>'
+    if k == "advisory" and p.get("href"):
+        return f'<a class="btn btn-ghost btn-sm" href="{h(p["href"])}" data-tl-go="{h(p["id"])}">See what\'s included</a>'
     if k == "install":
         return f'<a class="btn btn-ghost btn-sm" href="/book/?ref=tools-{h(p.get("bookRef", p["id"]))}" data-tl-go="{h(p["id"])}">Book a scoping call</a>'
     return f'<button class="btn btn-ghost btn-sm" type="button" data-tl-form="{h(p["id"])}" data-mode="waitlist">Join the waitlist</button>'

@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | event. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written.",
+  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | advisory | event. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written.",
   "products": [
     {
       "id": "blueprint",
@@ -240,6 +240,23 @@
         "Live demos, not slides",
         "What to build first and what to skip",
         "The guardrails that keep it safe"
+      ]
+    },
+    {
+      "id": "founder-line",
+      "kind": "advisory",
+      "status": "live",
+      "format": "Monthly advisory",
+      "name": "Founder Line",
+      "price": "£600",
+      "priceNote": "+VAT / month",
+      "href": "/tools/founder-line/",
+      "summary": "A monthly call with me or Jordan Adams on whatever's live in the business, with message access between calls.",
+      "for": "Founders building the commercial foundations before there's budget for a retained partner.",
+      "points": [
+        "One 60-minute call a month",
+        "Message access between calls",
+        "Three-month rhythm, then rolling"
       ]
     }
   ]

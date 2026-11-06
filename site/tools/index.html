@@ -104,7 +104,7 @@
     <p class="eyebrow" style="justify-content:center">Tools</p>
     <h1>The tools I built to run <span class="hl">my own business</span>.</h1>
     <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Some are free. Some are kits you set up yourself. The bigger ones I build with you.</p>
-    <div class="chips tl-chips" role="group" aria-label="Filter tools"><button class="chip on" type="button" data-f="all">All</button><button class="chip" type="button" data-f="free">Free</button><button class="chip" type="button" data-f="kit">Kits</button><button class="chip" type="button" data-f="install">Done with you</button><button class="chip" type="button" data-f="event">Workshop</button></div>
+    <div class="chips tl-chips" role="group" aria-label="Filter tools"><button class="chip on" type="button" data-f="all">All</button><button class="chip" type="button" data-f="free">Free</button><button class="chip" type="button" data-f="kit">Kits</button><button class="chip" type="button" data-f="install">Done with you</button><button class="chip" type="button" data-f="advisory">Advisory</button><button class="chip" type="button" data-f="event">Workshop</button></div>
   </div>
 </section>
 
@@ -240,6 +240,20 @@
 </article>
   </div></div>
 </section>
+<section class="tl-group" data-group="advisory">
+  <div class="tl-head"><h2>Monthly advisory</h2><p>A direct line to someone who has already made the decisions you are making now, before there&#x27;s budget for a retained partner.</p></div>
+  <div class="ocards-wrap"><div class="ocards">
+<article class="ocard c-green" id="founder-line">
+  <p class="og">Monthly advisory</p>
+  <h2>Founder Line</h2>
+  <p class="op">£600<small>+VAT / month</small></p>
+  <p class="os">A monthly call with me or Jordan Adams on whatever&#x27;s live in the business, with message access between calls.</p>
+  <p class="ob"><b>Best for:</b> Founders building the commercial foundations before there&#x27;s budget for a retained partner.</p>
+  <ul class="oh"><li>One 60-minute call a month</li><li>Message access between calls</li><li>Three-month rhythm, then rolling</li></ul>
+  <a class="btn btn-ghost btn-sm" href="/tools/founder-line/" data-tl-go="founder-line">See what's included</a>
+</article>
+  </div></div>
+</section>
 <section class="tl-group" data-group="event">
   <div class="tl-head"><h2>Workshop</h2><p>See it all running before you build anything.</p></div>
   <div class="ocards-wrap"><div class="ocards">
@@ -305,7 +319,6 @@
     <div>
       <b>Follow</b>
       <a href="https://www.linkedin.com/in/simonwatson13" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://thefounderline.com" target="_blank" rel="noopener">Founder Line</a>
     </div>
     <div>
       <b>Legal</b>
@@ -371,7 +384,7 @@
 <script>
 window.rbTrack=function(n,p){try{(window.gtag||function(){(window.dataLayer=window.dataLayer||[]).push(arguments);})('event',n,p||{});}catch(e){}};
 (function(){
-  var NAMES={"blueprint": "The founder-led sales blueprint", "budget-2026": "Budget 2026: The Founder's Digest", "call-followup": "Call-to-follow-up skill", "story-architect": "Newsletter story architect", "bookkeeping-triage": "Bookkeeping inbox triage", "discovery-prep": "Discovery Call Prep kit", "linkedin-profile": "LinkedIn Profile Rewrite kit", "proposal-pack": "Proposal Pack", "first-hire": "First Commercial Hire kit", "voice-writer": "Voice Writer kit", "chief-of-staff": "AI Chief of Staff", "crm": "The CRM you never update", "newsletter-engine": "Newsletter Engine", "workshop": "Run your business on Claude"}, chips=document.querySelectorAll('.tl-chips .chip'), groups=document.querySelectorAll('.tl-group');
+  var NAMES={"blueprint": "The founder-led sales blueprint", "budget-2026": "Budget 2026: The Founder's Digest", "call-followup": "Call-to-follow-up skill", "story-architect": "Newsletter story architect", "bookkeeping-triage": "Bookkeeping inbox triage", "discovery-prep": "Discovery Call Prep kit", "linkedin-profile": "LinkedIn Profile Rewrite kit", "proposal-pack": "Proposal Pack", "first-hire": "First Commercial Hire kit", "voice-writer": "Voice Writer kit", "chief-of-staff": "AI Chief of Staff", "crm": "The CRM you never update", "newsletter-engine": "Newsletter Engine", "workshop": "Run your business on Claude", "founder-line": "Founder Line"}, chips=document.querySelectorAll('.tl-chips .chip'), groups=document.querySelectorAll('.tl-group');
   chips.forEach(function(c){c.addEventListener('click',function(){
     var f=c.getAttribute('data-f'); chips.forEach(function(x){x.classList.toggle('on',x===c);});
     groups.forEach(function(g){g.hidden=!(f==='all'||g.getAttribute('data-group')===f);});
