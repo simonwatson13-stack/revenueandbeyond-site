@@ -34,6 +34,22 @@
       "href": "/budget-2026/"
     },
     {
+      "id": "objection-coach",
+      "kind": "free",
+      "status": "live",
+      "format": "PDF + AI prompt",
+      "name": "Objection Coach",
+      "price": "Free",
+      "href": "/objection-coach/",
+      "summary": "Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can use today.",
+      "for": "Founders whose deals stall at \"let's push to Q1\" or \"send me something\".",
+      "points": [
+        "Set up in five minutes in Claude or ChatGPT",
+        "The eight objections you'll hear most, decoded",
+        "Three replies every time, for email or a call"
+      ]
+    },
+    {
       "id": "call-followup",
       "kind": "free",
       "status": "soon",
