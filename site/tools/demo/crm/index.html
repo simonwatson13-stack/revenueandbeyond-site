@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>Demo: The CRM you never update | Revenue &amp; Beyond</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A working demo, with made-up data, of the self-updating deal board Simon Watson builds for founder-led businesses.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#F5F4F0">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/tools/demo/demo.css">
+<style>
+.pp-wrap{max-width:1440px;margin:0 auto;padding:18px 24px 40px}
+.pp-hide{display:none!important}
+.pp-wrap h1{font-size:clamp(1.9rem,3.4vw,2.6rem);margin:0 0 6px}
+.pp-wrap .hl{background:var(--green);border-radius:10px;padding:0 .18em}
+.pp-sub{color:var(--muted);margin:0}
+.pp-top{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.pp-status{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.pp-dot{width:8px;height:8px;border-radius:99px;background:var(--green);display:inline-block}
+.pp-dot.busy{background:var(--amber);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.pp-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 22px}
+.pp-kpi{background:#fff;border:2px solid var(--teal);border-radius:18px;padding:14px 16px;box-shadow:4px 4px 0 var(--k,var(--green))}
+.pp-kpi:nth-child(2){--k:var(--purple)}.pp-kpi:nth-child(3){--k:var(--sky)}.pp-kpi:nth-child(4){--k:var(--teal)}
+.pp-kpi b{display:block;font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:900;color:var(--teal);line-height:1.1;font-variant-numeric:tabular-nums}
+.pp-kpi span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.pp-kpi small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.pp-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+.pp-chip{font:inherit;font-size:13px;font-weight:800;color:var(--teal);background:#fff;border:2px solid var(--teal);border-radius:999px;padding:5px 12px;cursor:pointer}
+.pp-chip[aria-pressed="true"]{background:var(--teal);color:#fff}
+.pp-search{flex:1 1 200px;max-width:320px;font:inherit;font-size:14px;border:2px solid var(--divider);border-radius:999px;padding:7px 14px;background:#fff}
+.pp-search:focus{outline:none;border-color:var(--teal)}
+.pp-spacer{flex:1 1 auto}
+.pp-board{display:grid;grid-template-columns:repeat(6,minmax(220px,1fr));gap:14px;overflow-x:auto;padding:4px 6px 12px 2px}
+.pp-col{background:rgba(255,255,255,.55);border:2px solid var(--teal);border-radius:20px;display:flex;flex-direction:column;min-height:260px}
+.pp-col.lostcol{border-color:rgba(28,28,28,.35);background:rgba(232,230,224,.45)}
+.pp-col.over{background:rgba(73,232,176,.22)}
+.pp-colh{padding:12px 14px 10px;border-bottom:2px solid var(--teal);border-radius:18px 18px 0 0;background:var(--c,#fff)}
+.pp-colh h2{font-size:1.05rem;margin:0;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.pp-colh h2 em{font-style:normal;font-size:12px;font-weight:800;background:#fff;border:2px solid var(--teal);border-radius:8px;padding:0 7px}
+.pp-colh p{margin:2px 0 0;font-size:12.5px;font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums}
+.pp-list{padding:10px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pp-empty{font-size:13px;color:var(--muted);text-align:center;padding:18px 6px}
+.pp-card{display:block;width:100%;text-align:left;font:inherit;color:var(--black);background:#fff;border:2px solid var(--teal);border-radius:14px;padding:11px 12px 10px;box-shadow:3px 3px 0 var(--teal);cursor:grab;transition:transform .12s,box-shadow .12s;touch-action:manipulation}
+.pp-card:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--teal)}
+.pp-card.dragging{opacity:.45}
+.pp-card.flash{animation:flash 1.6s}
+@keyframes flash{0%,60%{box-shadow:0 0 0 4px var(--amber)}}
+.pp-card h3{font-size:15px;font-weight:800;color:var(--teal);margin:0 0 1px;line-height:1.25}
+.pp-who{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.pp-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 6px}
+.pp-mrr{font-weight:900;color:var(--teal);font-variant-numeric:tabular-nums}
+.pp-mrr.none{font-weight:700;color:var(--muted);font-size:12.5px}
+.pp-tag{font-size:11px;font-weight:800;border:1.5px solid var(--teal);border-radius:7px;padding:1px 6px;background:var(--t,#fff);color:var(--teal);white-space:nowrap}
+.pp-tag.risk{--t:#FDE7E5;border-color:var(--red);color:var(--red)}
+.pp-tag.sugg{--t:#FFF4DC;border-color:#B98516;color:#8A6110}
+.pp-tag.prep{--t:rgba(195,161,248,.45)}
+.pp-age{font-size:12px;font-weight:700;color:var(--muted);margin-left:auto}
+.pp-age.warn{color:#B98516}.pp-age.bad{color:var(--red)}
+.pp-next{font-size:12.5px;line-height:1.4;margin:4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pp-next::before{content:"Next: ";font-weight:800;color:var(--teal)}
+.pp-how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0 0}
+.pp-how div{background:#fff;border:2px solid var(--teal);border-radius:16px;padding:16px 18px}
+.pp-how b{display:block;color:var(--teal);margin-bottom:4px}
+.pp-how span{font-size:14px;color:var(--muted)}
+.pp-dlg{border:2px solid var(--teal);border-radius:22px;box-shadow:8px 8px 0 var(--purple);padding:0;width:min(680px,calc(100vw - 24px));max-height:calc(100vh - 24px);background:#fff;color:var(--black)}
+.pp-dlg::backdrop{background:rgba(11,54,59,.45)}
+.pp-dlg form{padding:22px 24px 20px}
+.pp-dlg h2{font-size:1.4rem;margin:0 0 2px}
+.pp-dlg .pp-sub{margin-bottom:14px}
+.pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.pp-grid .full{grid-column:1/-1}
+.pp-grid label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin:0 0 4px}
+.pp-in,.pp-sel,.pp-ta{width:100%;font:inherit;font-size:15px;color:var(--black);background:#fff;border:1.5px solid var(--teal);border-radius:10px;padding:8px 10px}
+.pp-ta{min-height:76px;resize:vertical;line-height:1.45}
+.pp-links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.pp-ev{margin:16px 0 0;border-top:1px solid var(--divider);padding-top:12px}
+.pp-ev h3{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin:0 0 8px}
+.pp-ev ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.pp-ev li{font-size:13.5px;display:grid;grid-template-columns:78px 1fr;gap:8px}
+.pp-ev li span:first-child{font-weight:800;color:var(--muted);font-size:12px}
+.pp-sbox{background:#FFF4DC;border:2px solid #B98516;border-radius:14px;padding:10px 12px;margin:0 0 14px;font-size:13.5px}
+.pp-sbox p{margin:0 0 8px}
+.pp-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.pp-actions .pp-spacer{flex:1}
+.pp-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:26px;line-height:1;color:var(--teal);cursor:pointer}
+.pp-sweep{position:fixed;inset:0;background:rgba(11,54,59,.5);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.pp-sweep>div{background:#fff;border:2px solid var(--teal);border-radius:22px;box-shadow:8px 8px 0 var(--green);padding:24px;width:min(520px,100%)}
+.pp-sweep h2{font-size:1.3rem;margin:0 0 12px}
+.pp-sweep ol{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.pp-sweep li{font-size:14px;display:flex;gap:10px;align-items:center;opacity:.35;transition:opacity .3s}
+.pp-sweep li.on{opacity:1}
+.pp-sweep li i{width:18px;height:18px;border-radius:99px;border:2px solid var(--teal);flex:none}
+.pp-sweep li.done i{background:var(--green)}
+@media (max-width:980px){.pp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.pp-how{grid-template-columns:1fr}}
+@media (max-width:620px){.pp-wrap{padding:16px 16px 40px}.pp-board{grid-template-columns:repeat(6,minmax(78vw,1fr))}.pp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="dm">
+<div class="dm-ribbon"><b>Demo.</b> Every company, person and number here is made up. Drag cards, open them, run the weekly sweep. <a href="/tools/#crm">Back to tools</a></div>
+<div class="dm-head">
+  <a class="logo" href="/">Revenue<span class="amp">&amp;</span>Beyond.</a>
+  <nav class="dm-switch" aria-label="Switch demo"><a href="/tools/demo/chief-of-staff/">Morning brief</a><a href="/tools/demo/crm/" aria-current="page">Deal board</a></nav>
+  <button class="dm-btn ghost sm" type="button" id="resetBtn">Reset demo</button>
+</div>
+
+<main id="main" class="pp-wrap">
+  <div class="pp-top">
+    <div>
+      <h1>Deal <span class="hl">pipeline</span>.</h1>
+      <p class="pp-sub">Harbour Digital (a made-up business). Values are monthly (MRR). It updates itself every Monday from email, calendar, calls and LinkedIn.</p>
+    </div>
+    <div class="pp-status" aria-live="polite"><span class="pp-dot" id="dot"></span><span id="statusTxt"></span></div>
+  </div>
+
+  <div class="pp-kpis" id="kpis"></div>
+
+  <div class="pp-bar" role="toolbar" aria-label="Filters">
+    <button class="pp-chip" type="button" id="allBtn" aria-pressed="true">All deals</button>
+    <button class="pp-chip" type="button" id="quietBtn" aria-pressed="false">Going quiet</button>
+    <input class="pp-search" id="search" type="search" placeholder="Search company or contact" aria-label="Search deals">
+    <span class="pp-spacer"></span>
+    <button class="dm-btn" type="button" id="sweepBtn">Run the weekly sweep</button>
+    <button class="dm-btn primary" type="button" id="addBtn">Add deal</button>
+  </div>
+
+  <div class="pp-board" id="board"></div>
+
+  <div class="pp-how">
+    <div><b>It updates itself</b><span>Every Monday it reads your email, calendar, call notes and LinkedIn, then moves deals and updates next steps. Try "Run the weekly sweep".</span></div>
+    <div><b>Evidence for every change</b><span>Each suggested change shows where it came from. You accept it or ignore it, and your own edits always win.</span></div>
+    <div><b>Joined to your morning brief</b><span>Deals at risk and calls that need prep show up in the brief on your phone. Open a discovery deal to see its prep doc.</span></div>
+  </div>
+
+  <div class="dm-cta">
+    <div><h2>Want this running on your own deals?</h2><p>I build it with you on your own tools, from £2,000 + VAT. Included free for Retained Partner clients.</p></div>
+    <a class="dm-btn primary" href="/book/?ref=demo-crm">Book a scoping call &rarr;</a>
+  </div>
+</main>
+<p class="dm-foot">Demo only. Links to Gmail open your own Gmail with a made-up address filled in, and nothing is sent unless you send it. <a href="/privacy-policy.html">Privacy policy</a></p>
+
+<dialog class="pp-dlg" id="dlg" aria-labelledby="dlgH">
+  <form method="dialog" id="dlgForm">
+    <button class="pp-close" type="submit" value="cancel" aria-label="Close">&times;</button>
+    <h2 id="dlgH">Deal</h2>
+    <p class="pp-sub" id="dlgSub"></p>
+    <div id="sugg"></div>
+    <div class="pp-grid">
+      <div class="full"><label for="f-company">Company</label><input class="pp-in" id="f-company" required></div>
+      <div><label for="f-contact">Contact</label><input class="pp-in" id="f-contact"></div>
+      <div><label for="f-email">Email</label><input class="pp-in" id="f-email"></div>
+      <div><label for="f-stage">Stage</label><select class="pp-sel" id="f-stage"></select></div>
+      <div><label for="f-mrr">MRR (£ per month)</label><input class="pp-in" id="f-mrr" type="number" min="0" step="50" placeholder="Unknown"></div>
+      <div class="full"><label for="f-next">Next action</label><input class="pp-in" id="f-next"></div>
+      <div class="full"><label for="f-notes">Notes</label><textarea class="pp-ta" id="f-notes"></textarea></div>
+    </div>
+    <div class="pp-links" id="links"></div>
+    <div class="pp-ev" id="ev"></div>
+    <div class="pp-actions">
+      <button class="dm-btn primary" type="submit" value="save">Save</button>
+      <button class="dm-btn ghost" type="submit" value="cancel">Cancel</button>
+    </div>
+  </form>
+</dialog>
+<div class="dm-toast" id="toast" role="status"></div>
+
+<script src="/tools/demo/demo-data.js"></script>
+<script>
+(function(){
+  var D=RBDemo, board=document.getElementById('board'), q='', quiet=false, cur=null, pending=D.load('pending',{});
+  var dlg=document.getElementById('dlg');
+  function $(id){return document.getElementById(id)}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function toast(t){var x=$('toast');x.textContent=t;x.classList.add('on');clearTimeout(x._t);x._t=setTimeout(function(){x.classList.remove('on')},2600)}
+  function status(t,busy){$('statusTxt').textContent=t;$('dot').className='pp-dot'+(busy?' busy':'')}
+  var lastSweep=D.load('swept',false);
+  status(lastSweep?'Swept just now: changes waiting for you':'Last sweep: Monday 07:42, 9 deals checked',false);
+
+  function ageClass(d){return d.last>=10?'bad':d.last>=6?'warn':''}
+  function isQuiet(d){return d.stage!=='won'&&d.stage!=='lost'&&d.last>=6}
+
+  function kpis(){
+    var open=D.deals.filter(function(d){return ['lead','discovery','proposal','negotiation'].indexOf(d.stage)>-1});
+    var w={lead:.1,discovery:.25,proposal:.5,negotiation:.75};
+    var tot=0,wt=0;open.forEach(function(d){tot+=d.mrr||0;wt+=(d.mrr||0)*w[d.stage]});
+    var won=D.deals.filter(function(d){return d.stage==='won'}).reduce(function(a,d){return a+(d.mrr||0)},0);
+    var q=D.deals.filter(isQuiet).length;
+    $('kpis').innerHTML='<div class="pp-kpi"><span>Open pipeline</span><b>'+D.money(tot)+'</b><small>'+open.length+' open deals, monthly</small></div>'+
+      '<div class="pp-kpi"><span>Weighted</span><b>'+D.money(Math.round(wt))+'</b><small>by stage probability</small></div>'+
+      '<div class="pp-kpi"><span>Going quiet</span><b>'+q+'</b><small>no touch in 6+ days</small></div>'+
+      '<div class="pp-kpi"><span>Won, live clients</span><b>'+D.money(won)+'</b><small>monthly recurring</small></div>';
+  }
+
+  function render(){
+    kpis(); board.innerHTML='';
+    D.stages.forEach(function(s){
+      var list=D.deals.filter(function(d){return d.stage===s[0]&&(!q||(d.company+' '+d.contact).toLowerCase().indexOf(q)>-1)&&(!quiet||isQuiet(d))});
+      var sum=list.reduce(function(a,d){return a+(d.mrr||0)},0);
+      var col=document.createElement('section');col.className='pp-col'+(s[0]==='lost'?' lostcol':'');col.dataset.stage=s[0];
+      col.innerHTML='<div class="pp-colh" style="--c:'+s[2]+'"><h2>'+s[1]+' <em>'+list.length+'</em></h2><p>'+(sum?D.money(sum)+' / month':'&nbsp;')+'</p></div><div class="pp-list"></div>';
+      var ul=col.querySelector('.pp-list');
+      if(!list.length) ul.innerHTML='<p class="pp-empty">Drop a deal here</p>';
+      list.forEach(function(d){
+        var b=document.createElement('button');b.type='button';b.className='pp-card';b.draggable=true;b.dataset.id=d.id;b.id='deal-'+d.id;
+        var tags='';
+        if(d.risk) tags+='<span class="pp-tag risk">At risk</span>';
+        if(pending[d.id]) tags+='<span class="pp-tag sugg">Suggested change</span>';
+        if(d.prep&&d.stage==='discovery') tags+='<span class="pp-tag prep">Prep ready</span>';
+        b.innerHTML='<h3>'+esc(d.company)+'</h3><p class="pp-who">'+esc(d.contact)+(d.role?', '+esc(d.role):'')+'</p>'+
+          '<div class="pp-row">'+(d.mrr?'<span class="pp-mrr">'+D.money(d.mrr)+'</span>':'<span class="pp-mrr none">Value unknown</span>')+tags+
+          '<span class="pp-age '+ageClass(d)+'">'+(d.last===0?'Today':d.last+'d ago')+'</span></div>'+
+          (d.nextAction?'<p class="pp-next">'+esc(d.nextAction)+'</p>':'');
+        b.addEventListener('click',function(){open(d.id)});
+        b.addEventListener('dragstart',function(e){e.dataTransfer.setData('text/plain',d.id);b.classList.add('dragging')});
+        b.addEventListener('dragend',function(){b.classList.remove('dragging')});
+        ul.appendChild(b);
+      });
+      col.addEventListener('dragover',function(e){e.preventDefault();col.classList.add('over')});
+      col.addEventListener('dragleave',function(){col.classList.remove('over')});
+      col.addEventListener('drop',function(e){e.preventDefault();col.classList.remove('over');move(e.dataTransfer.getData('text/plain'),s[0])});
+      board.appendChild(col);
+    });
+  }
+  function stageName(k){for(var i=0;i<D.stages.length;i++) if(D.stages[i][0]===k) return D.stages[i][1];return k}
+  function move(id,stage){
+    var d=D.deal(id); if(!d||d.stage===stage) return;
+    D.persist(d,{stage:stage,last:0});
+    render(); toast(d.company+' moved to '+stageName(stage)+'. Your edit wins over the next sweep.');
+    var el=$('deal-'+id); if(el) el.classList.add('flash');
+  }
+
+  // dialog
+  var sel=$('f-stage'); D.stages.forEach(function(s){var o=document.createElement('option');o.value=s[0];o.textContent=s[1];sel.appendChild(o)});
+  function open(id){
+    var d=id?D.deal(id):null; cur=d;
+    $('dlgH').textContent=d?d.company:'New deal';
+    $('dlgSub').textContent=d?(d.source?'Source: '+d.source+'. ':'')+(d.last===0?'Touched today.':'Last touch '+d.last+' days ago.'):'Add a deal by hand. The sweep will keep it up to date from here.';
+    $('f-company').value=d?d.company:''; $('f-contact').value=d?d.contact:''; $('f-email').value=d?d.email||'':'';
+    sel.value=d?d.stage:'lead'; $('f-mrr').value=d&&d.mrr?d.mrr:''; $('f-next').value=d?d.nextAction||'':''; $('f-notes').value=d?d.notes||'':'';
+    var s=d&&pending[d.id];
+    $('sugg').innerHTML=s?'<div class="pp-sbox"><p><b>Suggested by the weekly sweep ('+esc(s.src)+'):</b> '+(s.field==='stage'?'move to <b>'+stageName(s.to)+'</b>':'add a note')+'.<br>'+esc(s.why)+'</p><button class="dm-btn sm primary" type="button" id="acc">Accept</button> <button class="dm-btn sm ghost" type="button" id="ign">Ignore</button></div>':'';
+    if(s){$('acc').onclick=function(){accept(d.id)};$('ign').onclick=function(){delete pending[d.id];D.save('pending',pending);$('sugg').innerHTML='';render();toast('Ignored. The board stays as you left it.')}}
+    var L='';
+    if(d){
+      if(d.email){
+        L+='<a class="dm-btn sm dm-ext" target="_blank" rel="noopener" href="'+D.gmailSearch(d.email)+'">Email thread in Gmail</a>';
+        L+='<a class="dm-btn sm dm-ext" target="_blank" rel="noopener" href="'+D.gmailCompose(d.email,'Following up','Hi '+d.contact.split(' ')[0]+',\n\n')+'">Draft follow-up in Gmail</a>';
+      }
+      if(d.prep&&d.stage==='discovery') L+='<a class="dm-btn sm primary" href="/tools/demo/chief-of-staff/#prep-'+d.id+'">Open discovery prep</a>';
+      L+='<a class="dm-btn sm" href="/tools/demo/chief-of-staff/#brief">See it in the morning brief</a>';
+    }
+    $('links').innerHTML=L;
+    $('ev').innerHTML=d?'<h3>Evidence trail</h3><ul>'+evidence(d).map(function(e){return '<li><span>'+e[0]+'</span><span>'+esc(e[1])+'</span></li>'}).join('')+'</ul>':'';
+    dlg.showModal?dlg.showModal():dlg.setAttribute('open','');
+  }
+  function evidence(d){
+    var e=[];
+    e.push([d.last===0?'Today':D.fmt(D.dateFrom(-d.last)),'Last touch found in '+(d.stage==='discovery'?'Calendar':'Gmail')+' with '+d.contact]);
+    if(d.risk) e.push(['Sweep','Flagged at risk: no reply for '+d.last+' days after a '+stageName(d.stage).toLowerCase()]);
+    e.push([D.fmt(D.dateFrom(-d.last-6)),'Stage set to '+stageName(d.stage)+' (from '+(d.source||'manual')+')']);
+    e.push(['Created',d.source?'Added from '+d.source:'Added by hand']);
+    return e;
+  }
+  function accept(id){
+    var s=pending[id],d=D.deal(id); if(!s||!d) return;
+    if(s.field==='stage') D.persist(d,{stage:s.to,last:0,risk:false,nextAction:s.to==='negotiation'?'Terms call Friday':'Discovery call Monday 10:00'});
+    else D.persist(d,{notes:(d.notes?d.notes+'\n\n':'')+s.to,nextAction:s.to});
+    delete pending[id]; D.save('pending',pending);
+    if(dlg.open) dlg.close();
+    render(); toast('Accepted: '+d.company+' updated.'); var el=$('deal-'+id); if(el) el.classList.add('flash');
+  }
+  $('dlgForm').addEventListener('submit',function(e){
+    var v=e.submitter&&e.submitter.value; if(v!=='save') return;
+    var patch={company:$('f-company').value.trim()||'Untitled',contact:$('f-contact').value.trim(),email:$('f-email').value.trim(),stage:sel.value,mrr:$('f-mrr').value?+$('f-mrr').value:null,nextAction:$('f-next').value.trim(),notes:$('f-notes').value.trim(),last:0};
+    if(cur){D.persist(cur,patch);toast('Saved. Your edit wins over the next sweep.')}
+    else{var n=Object.assign({id:'n'+Date.now(),source:'Added by hand'},patch);D.deals.push(n);var a=D.load('added',[]);a.push(n);D.save('added',a);toast('Deal added.')}
+    render();
+  });
+  $('addBtn').onclick=function(){open(null)};
+  $('search').oninput=function(){q=this.value.trim().toLowerCase();render()};
+  $('quietBtn').onclick=function(){quiet=!quiet;this.setAttribute('aria-pressed',quiet);$('allBtn').setAttribute('aria-pressed',!quiet);render()};
+  $('allBtn').onclick=function(){quiet=false;$('quietBtn').setAttribute('aria-pressed','false');this.setAttribute('aria-pressed','true');render()};
+  $('resetBtn').onclick=function(){D.reset();location.hash='';location.reload()};
+
+  // the weekly sweep, acted out
+  $('sweepBtn').onclick=function(){
+    var steps=['Reading Gmail: 214 emails since last Monday','Reading Calendar: 11 meetings, 2 new bookings','Reading call notes from Granola and Fathom','Checking LinkedIn messages and newsletter replies','Matching everything to deals'];
+    var ov=document.createElement('div');ov.className='pp-sweep';
+    ov.innerHTML='<div role="dialog" aria-label="Weekly sweep"><h2>Running the weekly sweep</h2><ol>'+steps.map(function(s){return '<li><i></i>'+s+'</li>'}).join('')+'</ol></div>';
+    document.body.appendChild(ov); status('Sweeping...',true);
+    var li=ov.querySelectorAll('li'),i=0;
+    (function step(){
+      if(i>0) li[i-1].classList.add('done');
+      if(i<li.length){li[i].classList.add('on');i++;setTimeout(step,650);return}
+      setTimeout(function(){
+        ov.remove(); var found=D.sweep.filter(function(s){var d=D.deal(s.id);return d&&!(s.field==='stage'&&d.stage===s.to)});
+        found.forEach(function(s){pending[s.id]=s}); D.save('pending',pending); D.save('swept',true);
+        render(); status('Swept just now: '+found.length+' changes waiting for you',false);
+        toast(found.length?found.length+' suggested changes. Open the yellow-tagged cards to accept or ignore.':'Nothing new: the board already matches what it found.');
+        found.forEach(function(s){var el=$('deal-'+s.id);if(el) el.classList.add('flash')});
+      },400);
+    })();
+  };
+
+  render();
+  var m=location.hash.match(/^#deal-(.+)$/); if(m&&D.deal(m[1])) setTimeout(function(){var el=$('deal-'+m[1]);if(el){el.scrollIntoView({block:'center',inline:'center'});el.classList.add('flash')}open(m[1])},250);
+})();
+</script>
+</body>
+</html>

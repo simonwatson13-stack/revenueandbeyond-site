@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | advisory | event. Optional: sections (list of [title, text]) for a detailed card; noPartner true hides the Retained Partner note. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written.",
+  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | advisory | event. Optional: sections (list of [title, text]) for a detailed card; noPartner true hides the Retained Partner note. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written. Optional: demo (path to a live demo page) adds a 'See the live demo' button.",
   "products": [
     {
       "id": "blueprint",
@@ -239,7 +239,8 @@
         "Prep doc for every new business meeting",
         "Read-only by default, set up with you"
       ],
-      "bookRef": "chief-of-staff"
+      "bookRef": "chief-of-staff",
+      "demo": "/tools/demo/chief-of-staff/"
     },
     {
       "id": "crm",
@@ -256,7 +257,8 @@
         "Weekly sweep with evidence for every change",
         "Your edits always win"
       ],
-      "bookRef": "crm"
+      "bookRef": "crm",
+      "demo": "/tools/demo/crm/"
     },
     {
       "id": "newsletter-engine",

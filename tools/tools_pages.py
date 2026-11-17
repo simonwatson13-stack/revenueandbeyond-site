@@ -51,6 +51,7 @@ CSS = """
 .ocard .op small.tl-rpn{color:var(--teal);font-weight:700;margin-top:4px}
 .tl-foot{display:flex;flex-direction:column;margin-top:auto;align-self:end}
 .tl-foot .btn{margin-top:0!important;align-self:stretch}
+.tl-foot .tl-demo{margin-bottom:10px!important}
 .tl-rp{font-size:.8rem;font-weight:700;margin:0 0 12px!important}
 .tl-rp a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--green)}
 .tl-rpband{max-width:1132px;margin:6px auto 0;padding:0 24px}
@@ -115,7 +116,7 @@ def card(p, colour):
         note += '<small class="tl-rpn">Included free for Retained Partner clients</small>'
     secs = "".join(f'<div class="tl-sec"><b>{h(t)}</b><span>{h(x)}</span></div>' for t, x in p.get("sections", []))
     secs = f'<div class="tl-secs">{secs}</div>' if secs else ""
-    partner = ""
+    partner = f'<a class="btn btn-sm btn-solid tl-demo" href="{h(p["demo"])}" data-tl-go="{h(p["id"])}-demo">See the live demo &rarr;</a>' if p.get("demo") else ""
     return f"""<article class="ocard {colour}{' is-soon' if tag else ''}" id="{h(p['id'])}">{tag}
   <p class="og">{h(p['format'])}</p>
   <h2>{h(p['name'])}</h2>

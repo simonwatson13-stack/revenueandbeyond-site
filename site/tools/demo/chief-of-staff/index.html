@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>Demo: AI Chief of Staff | Revenue &amp; Beyond</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A working demo, with made-up data, of the AI Chief of Staff: a morning brief on your phone and a prep doc for every discovery call.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#F5F4F0">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/tools/demo/demo.css">
+<style>
+:root{--hot:#C2410C;--hot-bg:#FFE7D6;--warm:#8A5A00;--warm-bg:#FFF1C9;--cool-bg:#E6F2F0}
+.cs-wrap{max-width:1180px;margin:0 auto;padding:18px 24px 40px}
+.cs-hide{display:none!important}
+.cs-layout{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:40px;align-items:start}
+.cs-side h1{font-size:clamp(1.9rem,3.4vw,2.6rem);margin:0 0 10px}
+.cs-side .hl{background:var(--green);border-radius:10px;padding:0 .18em}
+.cs-side>p{color:var(--muted);margin:0 0 18px}
+.cs-try{background:#fff;border:2px solid var(--teal);border-radius:18px;padding:18px 20px;box-shadow:5px 5px 0 var(--purple)}
+.cs-try h2{font-size:1.1rem;margin:0 0 10px}
+.cs-try ol{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14.5px}
+.cs-try a{color:var(--teal);font-weight:700}
+.cs-feeds{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.cs-feeds span{font-size:12px;font-weight:800;border:1.5px solid var(--teal);border-radius:8px;padding:3px 9px;background:#fff;color:var(--teal)}
+/* phone */
+.phone{background:#0B363B;border-radius:38px;padding:12px;box-shadow:8px 8px 0 var(--green)}
+.screen{background:var(--offwhite,#F5F4F0);border-radius:28px;overflow:hidden;max-height:880px;overflow-y:auto;scrollbar-width:thin}
+.bw{padding:12px;display:grid;gap:14px}
+.bh{background:#0B363B;color:#fff;border-radius:18px;padding:14px 14px 12px;position:relative;overflow:hidden}
+.bh::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#49E8B0,#C3A1F8,#6AD1FA)}
+.bh .wm{font-weight:900;letter-spacing:-.03em;font-size:15px}.bh .wm b{color:#49E8B0}
+.bh .date{font-size:25px;font-weight:900;letter-spacing:-.04em;margin-top:8px;line-height:1.05}
+.bh .meta{font-size:12px;color:rgba(255,255,255,.72);margin-top:5px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:11px}
+.tile{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:7px 9px;text-decoration:none;color:#fff}
+.tile b{display:block;font-size:22px;font-weight:900;color:#49E8B0;line-height:1}
+.tile span{font-size:9.5px;font-weight:800;letter-spacing:.03em;line-height:1.2;display:block;margin-top:4px;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.sec{background:#fff;border:2px solid var(--teal);border-radius:14px;padding:12px 12px 6px;box-shadow:4px 4px 0 var(--green)}
+.sec.p{box-shadow:4px 4px 0 var(--purple)}.sec.s{box-shadow:4px 4px 0 var(--sky)}
+.sec h2{font-size:16px;font-weight:900;margin:0;color:var(--teal)}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.sh .n{font-size:12px;font-weight:800;color:var(--muted)}
+.headline{font-size:17px;font-weight:900;letter-spacing:-.02em;line-height:1.3;margin:0 0 8px}
+.ev{display:grid;grid-template-columns:46px 1fr;gap:9px;border:2px solid var(--teal);border-left-width:6px;border-radius:11px;padding:8px 10px;margin-bottom:8px;background:#fff}
+.ev.client{border-left-color:var(--green)}.ev.team{border-left-color:var(--sky)}
+.ev .tm{font-weight:900;color:var(--teal);font-size:13.5px}.ev .tm small{display:block;font-weight:600;color:var(--muted);font-size:11px}
+.ev .tt{font-weight:800;font-size:14px}.ev .dd{font-size:12px;color:var(--muted)}
+.chiplink{display:inline-block;margin:6px 6px 0 0;font-size:11.5px;font-weight:800;background:rgba(195,161,248,.3);border:1.5px solid var(--teal);border-radius:8px;padding:3px 8px;text-decoration:none;color:var(--teal);cursor:pointer}
+.chiplink.g{background:rgba(73,232,176,.35)}
+.row{border-top:1.5px solid var(--divider);padding:10px 0;display:grid;gap:6px}
+.row:first-of-type{border-top:0}
+.row.done{opacity:.45}.row.done .t{text-decoration:line-through}
+.row .t{font-weight:800;font-size:14.5px;line-height:1.3}
+.row .who{font-size:12px;color:var(--muted)}
+.row p{margin:0;font-size:13.5px}
+.row q{font-style:italic;color:var(--teal)}
+.pri{font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:2px 6px;justify-self:start}
+.pri.high{background:var(--hot-bg);color:var(--hot)}.pri.med{background:var(--warm-bg);color:var(--warm)}
+.acts{display:flex;gap:7px;flex-wrap:wrap}
+.go{flex:1 1 auto;display:inline-flex;justify-content:center;align-items:center;min-height:36px;padding:0 10px;border-radius:10px;background:var(--green);color:#0B363B;border:2px solid var(--teal);font-weight:800;font-size:13px;text-decoration:none;cursor:pointer;font-family:inherit}
+.go.w{background:#fff}
+/* prep doc */
+.pd-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin:0 0 20px}
+.pd-top h1{font-size:clamp(1.8rem,3.4vw,2.5rem);margin:4px 0 4px}
+.pd-top .hl{background:var(--green);border-radius:10px;padding:0 .18em}
+.pd-top p{margin:0;color:var(--muted)}
+.pd-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.pd-card{background:#fff;border:2px solid var(--teal);border-radius:18px;padding:18px 20px;box-shadow:4px 4px 0 var(--k,var(--green))}
+.pd-card.p{--k:var(--purple)}.pd-card.s{--k:var(--sky)}.pd-card.full{grid-column:1/-1}
+.pd-card h2{font-size:1.1rem;margin:0 0 10px;color:var(--teal)}
+.pd-card ul,.pd-card ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14.5px}
+.pd-facts{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:14.5px;margin:0}
+.pd-facts dt{font-weight:800;color:var(--teal)}.pd-facts dd{margin:0}
+.pd-fit{display:flex;align-items:center;gap:14px;margin:0 0 10px}
+.pd-fit b{font-size:2.2rem;font-weight:900;color:var(--teal);line-height:1}
+.pd-bar{flex:1;height:12px;border:2px solid var(--teal);border-radius:99px;overflow:hidden;background:#fff}
+.pd-bar i{display:block;height:100%;background:var(--green)}
+.pd-q li{list-style:none;margin-left:-20px;display:flex;gap:10px;align-items:flex-start}
+.pd-q input{margin-top:4px;accent-color:#0B363B;width:16px;height:16px;flex:none}
+.pd-q li.ticked span{text-decoration:line-through;color:var(--muted)}
+.pd-msg{white-space:pre-wrap;background:var(--offwhite,#F5F4F0);border:1.5px dashed var(--teal);border-radius:12px;padding:12px 14px;font-size:14px;margin:0 0 12px;font-family:inherit}
+.pd-prompt{white-space:pre-wrap;background:#0B363B;color:#E6F2F0;border-radius:14px;padding:16px 18px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-height:420px;overflow:auto;margin:0 0 12px}
+.pd-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px}
+.pd-steps div{border:2px solid var(--teal);border-radius:14px;padding:12px 14px;font-size:13.5px}
+.pd-steps b{display:block;color:var(--teal);font-size:1.4rem;font-family:'Caveat Brush',cursive;line-height:1}
+.pd-acts{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:980px){.cs-layout{grid-template-columns:1fr}.cs-side{order:-1}.phone{max-width:460px;margin:0 auto}.pd-grid{grid-template-columns:1fr}.pd-steps{grid-template-columns:1fr}}
+@media (max-width:620px){.cs-wrap{padding:16px 16px 40px}.phone{padding:8px;border-radius:30px}.screen{border-radius:24px}}
+</style>
+</head>
+<body class="dm">
+<div class="dm-ribbon"><b>Demo.</b> Every company, person and number here is made up. Tap anything. <a href="/tools/#chief-of-staff">Back to tools</a></div>
+<div class="dm-head">
+  <a class="logo" href="/">Revenue<span class="amp">&amp;</span>Beyond.</a>
+  <nav class="dm-switch" aria-label="Switch demo"><a href="/tools/demo/chief-of-staff/" aria-current="page">Morning brief</a><a href="/tools/demo/crm/">Deal board</a></nav>
+  <button class="dm-btn ghost sm" type="button" id="resetBtn">Reset demo</button>
+</div>
+
+<main id="main" class="cs-wrap">
+  <!-- BRIEF VIEW -->
+  <section id="brief" class="cs-layout">
+    <div class="phone"><div class="screen"><div class="bw" id="bw"></div></div></div>
+    <aside class="cs-side">
+      <h1>Your morning, <span class="hl">already sorted</span>.</h1>
+      <p>At 06:30 every day it reads your calendar, email, Slack, call notes and deal board, then puts one brief on your phone: today's meetings, the replies you owe, deals going quiet and leads to chase. Every discovery call gets its own prep doc.</p>
+      <div class="cs-try">
+        <h2>Try this</h2>
+        <ol>
+          <li>Tap <b>Prep doc</b> on the 11:00 Kelso Labs call to see the research, questions and the Claude project prompt it writes.</li>
+          <li>Tap <b>Draft reply</b> on Hannah's email. It opens Gmail with the reply written, ready for you to edit and send.</li>
+          <li>Tap <b>On the board</b> to jump to that deal in the <a href="/tools/demo/crm/">self-updating deal board</a>.</li>
+          <li>Tick things off with <b>Done</b>. Tomorrow's brief drops them.</li>
+        </ol>
+      </div>
+      <div class="cs-feeds" aria-label="Sources it reads"><span>Google Calendar</span><span>Gmail</span><span>Slack</span><span>Granola</span><span>Fathom</span><span>LinkedIn</span><span>Deal board</span></div>
+      <div class="dm-cta" style="margin-top:26px">
+        <div><h2>Want this on your phone?</h2><p>I set it up with you on your own accounts, from £1,500 + VAT. Read-only by default. Included free for Retained Partner clients.</p></div>
+        <a class="dm-btn primary" href="/book/?ref=demo-chief-of-staff">Book a scoping call &rarr;</a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- PREP VIEW -->
+  <section id="prep" class="cs-hide" aria-live="polite"></section>
+</main>
+<p class="dm-foot">Demo only. Gmail links open your own Gmail with a made-up address filled in. Nothing is sent unless you send it. <a href="/privacy-policy.html">Privacy policy</a></p>
+<div class="dm-toast" id="toast" role="status"></div>
+
+<script src="/tools/demo/demo-data.js"></script>
+<script>
+(function(){
+  var D=RBDemo, done=D.load('done',{});
+  function $(id){return document.getElementById(id)}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function toast(t){var x=$('toast');x.textContent=t;x.classList.add('on');clearTimeout(x._t);x._t=setTimeout(function(){x.classList.remove('on')},2600)}
+  function copy(text,msg){
+    function ok(){toast(msg||'Copied.')}
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok,function(){fallback(text);ok()});
+    else{fallback(text);ok()}
+  }
+  function fallback(t){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}
+
+  function brief(){
+    var today=new Date(), risk=D.deals.filter(function(d){return d.risk&&d.stage!=='won'&&d.stage!=='lost'});
+    var owed=D.replies.filter(function(r){return !done['r-'+r.from]}).length;
+    var h='';
+    h+='<header class="bh"><div class="wm">Morning <b>brief</b></div><div class="date">'+D.fmt(today,{weekday:'long',day:'numeric',month:'long'})+'</div>'+
+       '<div class="meta">Built 06:30 for '+D.me.name+' from 6 sources</div>'+
+       '<div class="tiles"><a class="tile" href="#today"><b>'+D.meetings.length+'</b><span>Meetings today</span></a><a class="tile" href="#replies"><b>'+owed+'</b><span>Replies you owe</span></a><a class="tile" href="#risk"><b>'+risk.length+'</b><span>Deals at risk</span></a></div></header>';
+    h+='<section class="sec"><p class="headline">Prep Kelso Labs before 11:00, and reply to Hannah: Ortelius is ready to talk terms.</p></section>';
+    // calendar
+    h+='<section class="sec s" id="today"><div class="sh"><h2>Today</h2><span class="n">'+D.meetings.length+' meetings</span></div>';
+    D.meetings.forEach(function(m){
+      h+='<div class="ev '+m.kind+'"><div class="tm">'+m.t+'<small>'+m.end+'</small></div><div><div class="tt">'+esc(m.title)+'</div><div class="dd">'+esc(m.who)+'</div>'+
+        (m.prep?'<a class="chiplink g" href="#prep-'+m.deal+'">Prep doc</a>':'')+
+        (m.deal?'<a class="chiplink" href="/tools/demo/crm/#deal-'+m.deal+'">On the board</a>':'')+'</div></div>';
+    });
+    h+='</section>';
+    // replies
+    h+='<section class="sec p" id="replies"><div class="sh"><h2>Replies you owe</h2><span class="n">'+owed+' waiting</span></div>';
+    D.replies.forEach(function(r){
+      var k='r-'+r.from, isDone=!!done[k];
+      h+='<div class="row'+(isDone?' done':'')+'" data-k="'+k+'"><span class="pri '+r.pri+'">'+(r.pri==='high'?'Reply today':'This week')+'</span>'+
+        '<div class="t">'+esc(r.from)+', '+esc(r.co)+'</div><div class="who">'+esc(r.subj)+' &middot; '+r.age+'</div><p><q>'+esc(r.snippet)+'</q></p>'+
+        '<div class="acts"><a class="go" target="_blank" rel="noopener" href="'+D.gmailCompose(r.email,'Re: '+r.subj.replace(/^Re: /,''),r.draft)+'">Draft reply</a>'+
+        '<a class="go w" target="_blank" rel="noopener" href="'+D.gmailSearch(r.email)+'">Open in Gmail</a>'+
+        '<a class="go w" href="/tools/demo/crm/#deal-'+r.deal+'">On the board</a>'+
+        '<button class="go w" type="button" data-done="'+k+'">'+(isDone?'Undo':'Done')+'</button></div></div>';
+    });
+    h+='</section>';
+    // deals at risk
+    h+='<section class="sec" id="risk"><div class="sh"><h2>Deals going quiet</h2><span class="n">from your deal board</span></div>';
+    risk.forEach(function(d){
+      h+='<div class="row"><div class="t">'+esc(d.company)+' <span class="who">'+D.money(d.mrr)+(d.mrr?' / month':'')+'</span></div><div class="who">'+esc(d.contact)+' &middot; no reply for '+d.last+' days</div><p>'+esc(d.nextAction)+'</p>'+
+        '<div class="acts"><a class="go" target="_blank" rel="noopener" href="'+D.gmailCompose(d.email,'Quick question',"Hi "+d.contact.split(' ')[0]+",\n\nI don't want to chase you if the timing isn't right. Is this still a priority for this quarter, or should we pick it up in the new year?\n\nBest,\nAlex")+'">Draft a nudge</a>'+
+        '<a class="go w" href="/tools/demo/crm/#deal-'+d.id+'">On the board</a></div></div>';
+    });
+    h+='</section>';
+    // coming up
+    h+='<section class="sec s"><div class="sh"><h2>Coming up</h2><span class="n">tomorrow</span></div>'+
+      '<div class="ev client"><div class="tm">15:30<small>16:15</small></div><div><div class="tt">Discovery call: Brightpath Logistics</div><div class="dd">Tom Ellery, Founder</div><a class="chiplink g" href="#prep-brightpath">Prep doc</a><a class="chiplink" href="/tools/demo/crm/#deal-brightpath">On the board</a></div></div></section>';
+    // leads
+    h+='<section class="sec p"><div class="sh"><h2>Leads to chase</h2><span class="n">'+D.leads.length+'</span></div>';
+    D.leads.forEach(function(l){h+='<div class="row"><div class="t">'+esc(l.name)+', '+esc(l.co)+'</div><p>'+esc(l.signal)+'</p><div class="who"><b>Suggested:</b> '+esc(l.action)+'</div></div>'});
+    h+='</section>';
+    $('bw').innerHTML=h;
+    $('bw').querySelectorAll('[data-done]').forEach(function(b){b.onclick=function(){var k=b.getAttribute('data-done');if(done[k])delete done[k];else done[k]=1;D.save('done',done);brief();toast(done[k]?'Done. It drops off tomorrow\'s brief.':'Back on the list.')}});
+  }
+
+  function prep(id){
+    var p=D.prep[id], d=D.deal(id); if(!p) return;
+    var ticks=D.load('ticks-'+id,{}), prompt=D.projectPrompt(id);
+    var h='<div class="pd-top"><div><a class="dm-btn sm ghost" href="#brief">&larr; Back to the brief</a><h1>Discovery prep: <span class="hl">'+esc(p.company)+'</span></h1><p>'+esc(p.when)+' &middot; with '+esc(p.person.name)+', '+esc(p.person.role)+'. Built automatically when the call landed in your calendar.</p></div>'+
+      '<div class="pd-acts"><a class="dm-btn" href="/tools/demo/crm/#deal-'+id+'">Open on the deal board</a><a class="dm-btn primary" href="#claude-'+id+'">Claude project prompt</a></div></div>';
+    h+='<div class="pd-grid">';
+    h+='<div class="pd-card"><h2>The company</h2><p style="margin:0 0 10px">'+esc(p.oneLiner)+'</p><dl class="pd-facts">'+p.facts.map(function(f){return '<dt>'+esc(f[0])+'</dt><dd>'+esc(f[1])+'</dd>'}).join('')+'</dl></div>';
+    h+='<div class="pd-card p"><h2>The person</h2><p style="margin:0 0 8px"><b>'+esc(p.person.name)+'</b>, '+esc(p.person.role)+'</p><p style="margin:0 0 8px">'+esc(p.person.bio)+'</p><p style="margin:0;color:var(--teal)"><b>Recent:</b> '+esc(p.person.recent)+'</p></div>';
+    h+='<div class="pd-card s"><h2>Signals worth knowing</h2><ul>'+p.signals.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul><h2 style="margin-top:14px">Competitors</h2><ul>'+p.competitors.map(function(c){return '<li><b>'+esc(c[0])+':</b> '+esc(c[1])+'</li>'}).join('')+'</ul></div>';
+    h+='<div class="pd-card"><h2>Fit read</h2><div class="pd-fit"><b>'+p.fit.score+'/'+p.fit.of+'</b><div class="pd-bar"><i style="width:'+(p.fit.score/p.fit.of*100)+'%"></i></div></div><p style="margin:0 0 12px">'+esc(p.fit.why)+'</p><h2>Watch out for</h2><ul>'+p.watch.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul></div>';
+    h+='<div class="pd-card p full"><h2>Questions to ask</h2><ol class="pd-q">'+p.questions.map(function(q,i){return '<li class="'+(ticks[i]?'ticked':'')+'"><input type="checkbox" data-q="'+i+'"'+(ticks[i]?' checked':'')+' aria-label="Asked"><span>'+esc(q)+'</span></li>'}).join('')+'</ol></div>';
+    h+='<div class="pd-card s full"><h2>Pre-call message</h2><pre class="pd-msg">'+esc(p.message)+'</pre><div class="pd-acts"><a class="dm-btn primary dm-ext" target="_blank" rel="noopener" href="'+D.gmailCompose(d.email,'Ahead of our call',p.message)+'">Send from Gmail</a><button class="dm-btn" type="button" id="cpMsg">Copy message</button></div></div>';
+    h+='<div class="pd-card full" id="claude-'+id+'"><h2>Claude project prompt</h2><p style="margin:0 0 14px">One click turns the prep into a Claude Project for this deal, so every call note, follow-up and the proposal live in one place and Claude already knows the account.</p>'+
+      '<div class="pd-steps"><div><b>1</b>Copy the prompt below.</div><div><b>2</b>In Claude, create a new Project with the name at the top and paste the rest into its instructions.</div><div><b>3</b>Add the files listed at the bottom. Then paste each call transcript into the Project as it happens.</div></div>'+
+      '<pre class="pd-prompt" id="promptTxt">'+esc(prompt)+'</pre><div class="pd-acts"><button class="dm-btn primary" type="button" id="cpPrompt">Copy the prompt</button><a class="dm-btn dm-ext" target="_blank" rel="noopener" href="https://claude.ai/projects">Open Claude Projects</a></div></div>';
+    h+='</div>';
+    h+='<div class="dm-cta"><div><h2>A prep doc like this for every call</h2><p>Part of the AI Chief of Staff, from £1,500 + VAT. Included free for Retained Partner clients.</p></div><a class="dm-btn primary" href="/book/?ref=demo-prep">Book a scoping call &rarr;</a></div>';
+    $('prep').innerHTML=h;
+    $('cpMsg').onclick=function(){copy(p.message,'Message copied.')};
+    $('cpPrompt').onclick=function(){copy(prompt,'Prompt copied. Paste it into a new Claude Project.')};
+    $('prep').querySelectorAll('[data-q]').forEach(function(c){c.onchange=function(){ticks[c.getAttribute('data-q')]=c.checked?1:0;D.save('ticks-'+id,ticks);c.parentNode.classList.toggle('ticked',c.checked)}});
+  }
+
+  function route(){
+    var h=location.hash, m=h.match(/^#(prep|claude)-(\w+)/);
+    if(m&&D.prep[m[2]]){
+      $('brief').classList.add('cs-hide'); $('prep').classList.remove('cs-hide'); prep(m[2]);
+      if(m[1]==='claude'){var el=$('claude-'+m[2]);if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth'})},50)}
+      else window.scrollTo(0,0);
+    } else {
+      $('prep').classList.add('cs-hide'); $('brief').classList.remove('cs-hide'); brief();
+      var t=h&&h.length>1&&document.getElementById(h.slice(1)); if(t&&t.closest('.screen')) setTimeout(function(){t.scrollIntoView({behavior:'smooth',block:'start'})},50);
+    }
+  }
+  window.addEventListener('hashchange',route);
+  $('resetBtn').onclick=function(){D.reset();location.hash='';location.reload()};
+  route();
+})();
+</script>
+</body>
+</html>
