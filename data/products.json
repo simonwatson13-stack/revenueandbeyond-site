@@ -309,6 +309,37 @@
       "bookRef": "first-hire"
     },
     {
+      "id": "outbound-engine",
+      "kind": "install",
+      "status": "live",
+      "format": "Done with you",
+      "name": "Outbound Engine",
+      "price": "From £3,000",
+      "priceNote": "+VAT, fixed set-up fee",
+      "bookRef": "outbound-engine",
+      "summary": "Highly personalised AI and human outreach across LinkedIn, email and phone, aimed only at accounts that match your ideal customer. 70% connection rates and 65% reply rates on LinkedIn.",
+      "for": "Founders who want a steady flow of conversations with the right buyers, without building an outbound team.",
+      "points": [],
+      "sections": [
+        [
+          "Dedicated ICP match",
+          "Technology that scores every prospect against your ideal customer, so you only reach the accounts most likely to buy."
+        ],
+        [
+          "AI plus human personalisation",
+          "Messages written from each prospect's own signals, then checked by a person, so they read like you wrote them."
+        ],
+        [
+          "Three channels, one sequence",
+          "Best-in-breed tools and my own methods across LinkedIn, email and phone, working together."
+        ],
+        [
+          "Installed, optimised and run with you",
+          "I set it up on your accounts, tune it weekly on the numbers, and run it alongside you."
+        ]
+      ]
+    },
+    {
       "id": "fractional-outbound",
       "kind": "install",
       "status": "live",
