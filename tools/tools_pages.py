@@ -6,7 +6,7 @@
                                  order with /api/tools/order and offers the download
 
 To change a product, edit data/products.json, run python3 tools/tools_pages.py, push.
-A kit switches from "Join the waitlist" to "Buy now" as soon as its stripeLink is filled in.
+A kit switches from "Request this kit" to "Buy now" as soon as its stripeLink is filled in.
 """
 import html, json, os, re
 
@@ -48,6 +48,7 @@ CSS = """
 .tl-sec{border-left:3px solid var(--green);padding:2px 0 2px 12px}
 .tl-sec b{display:block;color:var(--teal);font-size:.95rem}
 .tl-sec span{font-size:.88rem;color:var(--muted);line-height:1.45}
+.ocard .op small.tl-rpn{color:var(--teal);font-weight:700;margin-top:4px}
 .tl-foot{display:flex;flex-direction:column;margin-top:auto;align-self:end}
 .tl-foot .btn{margin-top:0!important;align-self:stretch}
 .tl-rp{font-size:.8rem;font-weight:700;margin:0 0 12px!important}
@@ -101,16 +102,20 @@ def button(p):
         return f'<a class="btn btn-ghost btn-sm" href="{h(p["href"])}" data-tl-go="{h(p["id"])}">See what\'s included</a>'
     if k == "install":
         return f'<a class="btn btn-ghost btn-sm" href="/book/?ref=tools-{h(p.get("bookRef", p["id"]))}" data-tl-go="{h(p["id"])}">Book a scoping call</a>'
-    return f'<button class="btn btn-ghost btn-sm" type="button" data-tl-form="{h(p["id"])}" data-mode="waitlist">Join the waitlist</button>'
+    if k == "event":
+        return f'<button class="btn btn-ghost btn-sm" type="button" data-tl-form="{h(p["id"])}" data-mode="event">Save my seat</button>'
+    return f'<button class="btn btn-ghost btn-sm" type="button" data-tl-form="{h(p["id"])}" data-mode="waitlist">Request this kit</button>'
 
 def card(p, colour):
     soon = p["status"] != "live" and not (p["kind"] == "kit" and p.get("stripeLink"))
-    tag = '<span class="tl-soon">Coming soon</span>' if soon and p["kind"] != "event" else ""
+    tag = ""
     pts = "".join(f"<li>{h(x)}</li>" for x in p.get("points", []))
     note = f'<small>{h(p["priceNote"])}</small>' if p.get("priceNote") else ""
+    if p["kind"] != "free" and p.get("price") != "Free" and not p.get("noPartner"):
+        note += '<small class="tl-rpn">Included free for Retained Partner clients</small>'
     secs = "".join(f'<div class="tl-sec"><b>{h(t)}</b><span>{h(x)}</span></div>' for t, x in p.get("sections", []))
     secs = f'<div class="tl-secs">{secs}</div>' if secs else ""
-    partner = "" if p["kind"] == "free" or p.get("noPartner") else '<p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p>' 
+    partner = ""
     return f"""<article class="ocard {colour}{' is-soon' if tag else ''}" id="{h(p['id'])}">{tag}
   <p class="og">{h(p['format'])}</p>
   <h2>{h(p['name'])}</h2>
@@ -176,8 +181,8 @@ MAIN = f"""
 <dialog class="tl-dlg" id="tlDlg" aria-labelledby="tlDlgH">
   <button class="tl-x" type="button" id="tlX" aria-label="Close">&times;</button>
   <div id="tlAsk">
-    <h2 id="tlDlgH">Join the waitlist</h2>
-    <p id="tlDlgP">I'll email you the day it's ready.</p>
+    <h2 id="tlDlgH">Request this kit</h2>
+    <p id="tlDlgP">Leave your email and I'll be in touch to get you set up.</p>
     <form id="tlForm" novalidate>
       <label for="tlName">First name</label><input id="tlName" type="text" autocomplete="given-name" maxlength="80">
       <label for="tlEmail">Work email</label><input id="tlEmail" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com">
@@ -188,8 +193,8 @@ MAIN = f"""
     <p class="tl-fine">You'll also get The Founder Read, my free email for founders, every Sunday evening. Unsubscribe any time. <a href="/privacy-policy.html">Privacy policy</a>.</p>
   </div>
   <div id="tlDone" hidden tabindex="-1">
-    <h2>You're <span class="hl">on the list</span>.</h2>
-    <p id="tlDoneP">I'll email you the day it's ready.</p>
+    <h2>Thanks, <span class="hl">got it</span>.</h2>
+    <p id="tlDoneP">I'll be in touch shortly.</p>
     <a class="btn" id="tlDl" href="#" hidden download>Download &darr;</a>
   </div>
 </dialog>
@@ -213,11 +218,12 @@ window.rbTrack=function(n,p){try{(window.gtag||function(){(window.dataLayer=wind
   var dlg=document.getElementById('tlDlg'), form=document.getElementById('tlForm'), ask=document.getElementById('tlAsk'), done=document.getElementById('tlDone'),
       err=document.getElementById('tlErr'), btn=document.getElementById('tlBtn'), dl=document.getElementById('tlDl'), cur=null, mode='waitlist',
       RE=/^[^\\s@<>()[\\]\\\\,;:"]+@[^\\s@<>()[\\]\\\\,;:"]+\\.[a-z]{2,}$/i;
-  function label(){return mode==='download'?'Send it to me \\u2192':'Keep me posted \\u2192';}
+  function label(){return mode==='download'?'Send it to me \\u2192':mode==='event'?'Save my seat \\u2192':'Send my request \\u2192';}
   document.querySelectorAll('[data-tl-form]').forEach(function(b){b.addEventListener('click',function(){
     cur=b.getAttribute('data-tl-form'); mode=b.getAttribute('data-mode')||'waitlist';
-    document.getElementById('tlDlgH').textContent=(mode==='download'?'Get ':'Waitlist: ')+(NAMES[cur]||'');
-    document.getElementById('tlDlgP').textContent=mode==='download'?'Tell me where to send it and it is yours straight away.':"I'll email you the day it's ready.";
+    document.getElementById('tlDlgH').textContent=(mode==='download'?'Get ':mode==='event'?'Free session: ':'Request: ')+(NAMES[cur]||'');
+    document.getElementById('tlDlgP').textContent=mode==='download'?'Tell me where to send it and it is yours straight away.':mode==='event'?"I'll email you the date and the joining link.":"Leave your email and I'll be in touch to get you set up.";
+    document.getElementById('tlDoneP').textContent=mode==='event'?"I'll email you the date and the joining link.":"I'll be in touch shortly.";
     ask.hidden=false; done.hidden=true; err.hidden=true; btn.disabled=false; btn.textContent=label(); dl.hidden=true;
     if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
     document.getElementById('tlEmail').focus();

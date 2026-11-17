@@ -225,39 +225,6 @@
       "file": "sdr-vendor-kit.zip"
     },
     {
-      "id": "first-hire",
-      "kind": "kit",
-      "status": "soon",
-      "name": "First Commercial Hire kit",
-      "format": "Hiring programme + Claude skills",
-      "price": "£2,000",
-      "priceNote": "+VAT, one-off",
-      "summary": "Everything you need to hire, onboard and ramp your first salesperson, built around your offer. Most first sales hires are set up to fail. This gives them a system to inherit.",
-      "for": "Founders about to hire their first salesperson.",
-      "points": [],
-      "stripeLink": "",
-      "stripePaymentLinkId": "",
-      "file": "first-commercial-hire-kit.zip",
-      "sections": [
-        [
-          "The offer",
-          "The two or three products your new hire will sell, and the target customer profile."
-        ],
-        [
-          "Design the role",
-          "Scorecard, KPIs, reporting line, base and commission, and a job spec ready to publish."
-        ],
-        [
-          "Build the hiring process",
-          "Sourcing plan, interview stages, a live sales exercise and a culture-fit assessment."
-        ],
-        [
-          "Build the ramp",
-          "A 30/60/90 plan and onboarding pack, plus a playbook you keep for every future hire."
-        ]
-      ]
-    },
-    {
       "id": "chief-of-staff",
       "kind": "install",
       "status": "live",
@@ -309,6 +276,37 @@
       "bookRef": "newsletter-engine"
     },
     {
+      "id": "first-hire",
+      "kind": "install",
+      "status": "live",
+      "name": "First Commercial Hire kit",
+      "format": "Done with you",
+      "price": "£2,000",
+      "priceNote": "+VAT, fixed fee",
+      "summary": "Everything you need to hire, onboard and ramp your first salesperson, built around your offer. Most first sales hires are set up to fail. This gives them a system to inherit.",
+      "for": "Founders about to hire their first salesperson.",
+      "points": [],
+      "sections": [
+        [
+          "The offer",
+          "The two or three products your new hire will sell, and the target customer profile."
+        ],
+        [
+          "Design the role",
+          "Scorecard, KPIs, reporting line, base and commission, and a job spec ready to publish."
+        ],
+        [
+          "Build the hiring process",
+          "Sourcing plan, interview stages, a live sales exercise and a culture-fit assessment."
+        ],
+        [
+          "Build the ramp",
+          "A 30/60/90 plan and onboarding pack, plus a playbook you keep for every future hire."
+        ]
+      ],
+      "bookRef": "first-hire"
+    },
+    {
       "id": "fractional-outbound",
       "kind": "install",
       "status": "live",
@@ -331,16 +329,15 @@
       "kind": "event",
       "status": "soon",
       "name": "Run your business on Claude",
-      "format": "Revenue Room workshop",
-      "price": "£99",
-      "summary": "A live session where I show the whole set-up running in my own business, and how to start on yours.",
+      "format": "Free live session",
+      "price": "Free",
+      "summary": "A free live session where I show the whole set-up running in my own business, and how to start on yours.",
       "for": "Founders who want to see it working before they build it.",
       "points": [
         "Live demos, not slides",
         "What to build first and what to skip",
         "The guardrails that keep it safe"
-      ],
-      "priceNote": "+VAT per seat"
+      ]
     }
   ]
 }
