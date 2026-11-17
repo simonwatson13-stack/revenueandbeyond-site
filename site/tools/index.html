@@ -48,6 +48,19 @@
 .ocard .tl-soon{position:absolute;top:18px;right:16px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--tint-purple);color:var(--teal);border-radius:999px;padding:4px 10px}
 .ocard.is-soon .og{padding-right:100px}
 .ocard .btn-solid{background:var(--green);color:var(--teal);border-color:var(--teal)}
+.tl-secs{display:grid;gap:10px;margin:0 0 22px;padding-top:14px;border-top:1px solid var(--divider)}
+.tl-sec{border-left:3px solid var(--green);padding:2px 0 2px 12px}
+.tl-sec b{display:block;color:var(--teal);font-size:.95rem}
+.tl-sec span{font-size:.88rem;color:var(--muted);line-height:1.45}
+.tl-foot{display:flex;flex-direction:column;margin-top:auto;align-self:end}
+.tl-foot .btn{margin-top:0!important;align-self:stretch}
+.tl-rp{font-size:.8rem;font-weight:700;margin:0 0 12px!important}
+.tl-rp a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--green)}
+.tl-rpband{max-width:1132px;margin:6px auto 0;padding:0 24px}
+.tl-rpband div{background:var(--teal);color:#fff;border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.tl-rpband p{margin:0;font-size:1rem;line-height:1.5}
+.tl-rpband b{color:var(--green)}
+.tl-rpband a{color:var(--teal);background:var(--green);border-radius:10px;padding:9px 16px;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap}
 .tl-how{padding:70px 0 20px}
 .tl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1132px;margin:26px auto 0;padding:0 24px;list-style:none}
 .tl-steps li{background:#fff;border:2px solid var(--teal);border-radius:16px;padding:20px;box-shadow:4px 4px 0 var(--green)}
@@ -103,10 +116,11 @@
   <div class="col">
     <p class="eyebrow" style="justify-content:center">Tools</p>
     <h1>The tools I built to run <span class="hl">my own business</span>.</h1>
-    <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Some are free. Some are kits you set up yourself. The bigger ones I build with you.</p>
-    <div class="chips tl-chips" role="group" aria-label="Filter tools"><button class="chip on" type="button" data-f="all">All</button><button class="chip" type="button" data-f="free">Free</button><button class="chip" type="button" data-f="kit">Kits</button><button class="chip" type="button" data-f="install">Done with you</button><button class="chip" type="button" data-f="advisory">Advisory</button><button class="chip" type="button" data-f="event">Workshop</button></div>
+    <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Two are free. The rest are kits you set up yourself, or bigger systems I build with you.</p>
+    <div class="chips tl-chips" role="group" aria-label="Filter tools"><button class="chip on" type="button" data-f="all">All</button><button class="chip" type="button" data-f="free">Free</button><button class="chip" type="button" data-f="kit">Kits</button><button class="chip" type="button" data-f="install">Done with you</button><button class="chip" type="button" data-f="event">Workshop</button></div>
   </div>
 </section>
+<section class="tl-rpband"><div><p><b>Working with me as a Retained Partner?</b> Every kit and done-with-you system on this page is included free.</p><a href="/work-with-me/retained-partner/">See Retained Partner &rarr;</a></div></section>
 
 <section class="tl-group" data-group="free">
   <div class="tl-head"><h2>Free tools</h2><p>Take them, use them, pass them on.</p></div>
@@ -118,7 +132,7 @@
   <p class="os">Seven parts and a scorecard on getting sales out of your head and into a system that grows, holds and sells without you.</p>
   <p class="ob"><b>Best for:</b> B2B founders who still close every deal themselves.</p>
   <ul class="oh"><li>Seven parts, each with actions for this month</li><li>A scorecard to show where sales still depends on you</li><li>20 minutes to read end to end</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/blueprint/" data-tl-go="blueprint">Get it free</a>
+  <div class="tl-foot"><a class="btn btn-ghost btn-sm" href="/blueprint/" data-tl-go="blueprint">Get it free</a></div>
 </article>
 <article class="ocard c-green" id="budget-2026">
   <p class="og">PDF digest</p>
@@ -127,58 +141,22 @@
   <p class="os">The parts of the Budget that matter to a founder-led business, in plain English, with worked examples.</p>
   <p class="ob"><b>Best for:</b> UK founders planning a raise, a sale or their next hire.</p>
   <ul class="oh"><li>Founders&#x27; Relief and BADR changes</li><li>British Business Bank funding lines</li><li>EMI, CSOP and wage changes</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/budget-2026/" data-tl-go="budget-2026">Get it free</a>
-</article>
-<article class="ocard c-green" id="objection-coach">
-  <p class="og">PDF + AI prompt</p>
-  <h2>Objection Coach</h2>
-  <p class="op">Free</p>
-  <p class="os">Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can use today.</p>
-  <p class="ob"><b>Best for:</b> Founders whose deals stall at &quot;let&#x27;s push to Q1&quot; or &quot;send me something&quot;.</p>
-  <ul class="oh"><li>Set up in five minutes in Claude or ChatGPT</li><li>The eight objections you&#x27;ll hear most, decoded</li><li>Three replies every time, for email or a call</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/objection-coach/" data-tl-go="objection-coach">Get it free</a>
-</article>
-<article class="ocard c-green is-soon" id="call-followup"><span class="tl-soon">Coming soon</span>
-  <p class="og">Claude skill</p>
-  <h2>Call-to-follow-up skill</h2>
-  <p class="op">Free</p>
-  <p class="os">Pulls the transcript from your call recorder, writes a clear recap and drafts the follow-up email in your own tone.</p>
-  <p class="ob"><b>Best for:</b> Founders who record their sales and client calls.</p>
-  <ul class="oh"><li>Works with Fathom, Granola or a pasted transcript</li><li>Recap document plus a ready-to-send draft</li><li>One-page set-up guide</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="call-followup" data-mode="waitlist">Join the waitlist</button>
-</article>
-<article class="ocard c-green is-soon" id="story-architect"><span class="tl-soon">Coming soon</span>
-  <p class="og">Claude skill</p>
-  <h2>Newsletter story architect</h2>
-  <p class="op">Free</p>
-  <p class="os">A structural edit for a finished newsletter draft, built on five story principles. It fixes the shape and leaves your voice alone.</p>
-  <p class="ob"><b>Best for:</b> Founders writing a regular newsletter or long post.</p>
-  <ul class="oh"><li>Scene opening, method after results</li><li>Room for the hard part of the story</li><li>A quiet close instead of a hard sell</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="story-architect" data-mode="waitlist">Join the waitlist</button>
-</article>
-<article class="ocard c-green is-soon" id="bookkeeping-triage"><span class="tl-soon">Coming soon</span>
-  <p class="og">Prompt and example</p>
-  <h2>Bookkeeping inbox triage</h2>
-  <p class="op">Free</p>
-  <p class="os">Sorts a messy receipts inbox into what goes to your accounting software, what your bookkeeper needs to fetch and what needs your call.</p>
-  <p class="ob"><b>Best for:</b> Founders running more than one company or a cluttered finance inbox.</p>
-  <ul class="oh"><li>Routes by entity</li><li>Flags duplicates and missing PDFs</li><li>Nothing is forwarded without you</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="bookkeeping-triage" data-mode="waitlist">Join the waitlist</button>
-</article>
-<article class="ocard c-green is-soon" id="kill-criteria"><span class="tl-soon">Coming soon</span>
-  <p class="og">Scorecard + sheet</p>
-  <h2>Channel kill-criteria scorecard</h2>
-  <p class="op">Free</p>
-  <p class="os">Decide before you start when a channel has had a fair test and when to stop paying for it. Built from an outbound programme I paused after three months of dials and no meetings.</p>
-  <p class="ob"><b>Best for:</b> Founders spending money on outbound that isn&#x27;t booking meetings.</p>
-  <ul class="oh"><li>Set the stop point before you spend</li><li>Separate the list, the message and the caller</li><li>One page, scored weekly</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="kill-criteria" data-mode="waitlist">Join the waitlist</button>
+  <div class="tl-foot"><a class="btn btn-ghost btn-sm" href="/budget-2026/" data-tl-go="budget-2026">Get it free</a></div>
 </article>
   </div></div>
 </section>
 <section class="tl-group" data-group="kit">
-  <div class="tl-head"><h2>Kits you set up yourself</h2><p>A Claude skill, the files it needs and a one-page set-up guide. Buy, download, running in about ten minutes.</p></div>
+  <div class="tl-head"><h2>Kits you set up yourself</h2><p>Claude skills, templates and guides with a one-page set-up guide. Buy, download and run them in your own business.</p></div>
   <div class="ocards-wrap"><div class="ocards">
+<article class="ocard c-purple is-soon" id="objection-coach"><span class="tl-soon">Coming soon</span>
+  <p class="og">PDF + AI prompt</p>
+  <h2>Objection Coach</h2>
+  <p class="op">£99<small>+VAT, one-off</small></p>
+  <p class="os">Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can use today.</p>
+  <p class="ob"><b>Best for:</b> Founders whose deals stall at &quot;let&#x27;s push to Q1&quot; or &quot;send me something&quot;.</p>
+  <ul class="oh"><li>Set up in five minutes in Claude or ChatGPT</li><li>The eight objections you&#x27;ll hear most, decoded</li><li>Three replies every time, for email or a call</li></ul>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="objection-coach" data-mode="waitlist">Join the waitlist</button></div>
+</article>
 <article class="ocard c-purple is-soon" id="discovery-prep"><span class="tl-soon">Coming soon</span>
   <p class="og">Claude skill + discovery guide</p>
   <h2>Discovery Call Prep kit</h2>
@@ -186,7 +164,16 @@
   <p class="os">Researches the prospect before the call: company, founder, competitors, reviews and filings. Then a brief with a fit read, the questions to ask and a pre-call message.</p>
   <p class="ob"><b>Best for:</b> Founders running their own discovery calls.</p>
   <ul class="oh"><li>Prospect and competitor research in minutes</li><li>7-step discovery call guide and follow-up ladder</li><li>Set up once with your ICP and offer</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="discovery-prep" data-mode="waitlist">Join the waitlist</button>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="discovery-prep" data-mode="waitlist">Join the waitlist</button></div>
+</article>
+<article class="ocard c-purple is-soon" id="call-followup"><span class="tl-soon">Coming soon</span>
+  <p class="og">Claude skill</p>
+  <h2>Call-to-follow-up skill</h2>
+  <p class="op">£99<small>+VAT, one-off</small></p>
+  <p class="os">Pulls the transcript from your call recorder, writes a clear recap and drafts the follow-up email in your own tone.</p>
+  <p class="ob"><b>Best for:</b> Founders who record their sales and client calls.</p>
+  <ul class="oh"><li>Works with Fathom, Granola or a pasted transcript</li><li>Recap document plus a ready-to-send draft</li><li>One-page set-up guide</li></ul>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="call-followup" data-mode="waitlist">Join the waitlist</button></div>
 </article>
 <article class="ocard c-purple is-soon" id="linkedin-profile"><span class="tl-soon">Coming soon</span>
   <p class="og">Claude skill + formula guide</p>
@@ -195,25 +182,7 @@
   <p class="os">The formula I used to rewrite my own headline and About section: credential, what the client gets, the outcome. Claude does the rewrite from your real proof, inside LinkedIn&#x27;s limits.</p>
   <p class="ob"><b>Best for:</b> Founders whose profile does not yet do the selling.</p>
   <ul class="oh"><li>Three headline options to choose from</li><li>Two About sections: structured and story-led</li><li>Only claims you can back up, within LinkedIn&#x27;s limits</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="linkedin-profile" data-mode="waitlist">Join the waitlist</button>
-</article>
-<article class="ocard c-purple is-soon" id="proposal-pack"><span class="tl-soon">Coming soon</span>
-  <p class="og">Two Claude skills + pricing guide</p>
-  <h2>Proposal Pack</h2>
-  <p class="op">£149<small>+VAT, one-off</small></p>
-  <p class="os">Turns a call transcript into a branded proposal, as a Word agreement or a slide deck, with phasing and firm commercials.</p>
-  <p class="ob"><b>Best for:</b> Founders and consultants who write proposals by hand.</p>
-  <ul class="oh"><li>Word agreement and slide deck versions</li><li>Three-option template and value-based pricing guide</li><li>Your brand, your clauses, your prices</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="proposal-pack" data-mode="waitlist">Join the waitlist</button>
-</article>
-<article class="ocard c-purple is-soon" id="first-hire"><span class="tl-soon">Coming soon</span>
-  <p class="og">Programme + Claude skill</p>
-  <h2>First Commercial Hire kit</h2>
-  <p class="op">£149<small>+VAT, one-off</small></p>
-  <p class="os">Most first sales hires are set up to fail. This gives them a system to inherit and you a 30/60/90 plan both of you sign.</p>
-  <p class="ob"><b>Best for:</b> Founders about to hire their first salesperson.</p>
-  <ul class="oh"><li>30/60/90 plan with ramped targets</li><li>Proof-based interview rubric</li><li>Commission model with windfall caps</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="first-hire" data-mode="waitlist">Join the waitlist</button>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="linkedin-profile" data-mode="waitlist">Join the waitlist</button></div>
 </article>
 <article class="ocard c-purple is-soon" id="voice-writer"><span class="tl-soon">Coming soon</span>
   <p class="og">Claude skill + voice set-up</p>
@@ -222,30 +191,66 @@
   <p class="os">Dictate a voice note, get a newsletter or LinkedIn post that sounds like you wrote it. Starts by learning your voice from your own posts.</p>
   <p class="ob"><b>Best for:</b> Founders who have plenty to say and no time to write it.</p>
   <ul class="oh"><li>Builds your voice file from 5 to 10 posts</li><li>Newsletter and LinkedIn formats</li><li>Keeps your rhythm, not AI filler</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="voice-writer" data-mode="waitlist">Join the waitlist</button>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="voice-writer" data-mode="waitlist">Join the waitlist</button></div>
 </article>
-<article class="ocard c-purple is-soon" id="sdr-vendor"><span class="tl-soon">Coming soon</span>
-  <p class="og">Brief + benchmarks + handover SOP</p>
-  <h2>SDR Vendor kit</h2>
+<article class="ocard c-purple is-soon" id="story-architect"><span class="tl-soon">Coming soon</span>
+  <p class="og">Claude skill</p>
+  <h2>Newsletter story architect</h2>
   <p class="op">£99<small>+VAT, one-off</small></p>
-  <p class="os">Most outsourced SDR deals fail on the brief, not the caller. A written brief, the numbers to hold them to and a clean handover to whoever closes.</p>
-  <p class="ob"><b>Best for:</b> Founders about to hire, or already paying, an outsourced SDR or calling agency.</p>
-  <ul class="oh"><li>RFP brief to send vendors</li><li>Weekly benchmarks: dials, hours, paper trail</li><li>SDR-to-closer handover SOP</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="sdr-vendor" data-mode="waitlist">Join the waitlist</button>
+  <p class="os">A structural edit for a finished newsletter draft, built on five story principles. It fixes the shape and leaves your voice alone.</p>
+  <p class="ob"><b>Best for:</b> Founders writing a regular newsletter or long post.</p>
+  <ul class="oh"><li>Scene opening, method after results</li><li>Room for the hard part of the story</li><li>A quiet close instead of a hard sell</li></ul>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="story-architect" data-mode="waitlist">Join the waitlist</button></div>
+</article>
+<article class="ocard c-purple is-soon" id="bookkeeping-triage"><span class="tl-soon">Coming soon</span>
+  <p class="og">Prompt and example</p>
+  <h2>Bookkeeping inbox triage</h2>
+  <p class="op">£99<small>+VAT, one-off</small></p>
+  <p class="os">Sorts a messy receipts inbox into what goes to your accounting software, what your bookkeeper needs to fetch and what needs your call.</p>
+  <p class="ob"><b>Best for:</b> Founders running more than one company or a cluttered finance inbox.</p>
+  <ul class="oh"><li>Routes by entity</li><li>Flags duplicates and missing PDFs</li><li>Nothing is forwarded without you</li></ul>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="bookkeeping-triage" data-mode="waitlist">Join the waitlist</button></div>
 </article>
 <article class="ocard c-purple is-soon" id="qualification-rules"><span class="tl-soon">Coming soon</span>
   <p class="og">HubSpot stage map + scoring sheet</p>
   <h2>Qualification and commit rules</h2>
-  <p class="op">£49<small>+VAT, one-off</small></p>
+  <p class="op">£99<small>+VAT, one-off</small></p>
   <p class="os">Clear rules for what counts as qualified and what counts as commit, built into your CRM stages, so the Monday pipeline review shows only real deals.</p>
   <p class="ob"><b>Best for:</b> Founder-led teams whose forecast is mostly hope.</p>
   <ul class="oh"><li>Commit definition you can enforce</li><li>Stage gates mapped to HubSpot fields</li><li>Deal scoring sheet, 0 to 3 per element</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="qualification-rules" data-mode="waitlist">Join the waitlist</button>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="qualification-rules" data-mode="waitlist">Join the waitlist</button></div>
+</article>
+<article class="ocard c-purple is-soon" id="proposal-pack"><span class="tl-soon">Coming soon</span>
+  <p class="og">Two Claude skills + pricing guide</p>
+  <h2>Proposal Pack</h2>
+  <p class="op">£250<small>+VAT, one-off</small></p>
+  <p class="os">Turns a call transcript into a branded proposal, as a Word agreement or a slide deck, with phasing and firm commercials.</p>
+  <p class="ob"><b>Best for:</b> Founders and consultants who write proposals by hand.</p>
+  <ul class="oh"><li>Word agreement and slide deck versions</li><li>Three-option template and value-based pricing guide</li><li>Your brand, your clauses, your prices</li></ul>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="proposal-pack" data-mode="waitlist">Join the waitlist</button></div>
+</article>
+<article class="ocard c-purple is-soon" id="sdr-vendor"><span class="tl-soon">Coming soon</span>
+  <p class="og">Brief + benchmarks + handover SOP</p>
+  <h2>SDR Vendor kit</h2>
+  <p class="op">£250<small>+VAT, one-off</small></p>
+  <p class="os">Most outsourced SDR deals fail on the brief, not the caller. A written brief, the numbers to hold them to and a clean handover to whoever closes.</p>
+  <p class="ob"><b>Best for:</b> Founders about to hire, or already paying, an outsourced SDR or calling agency.</p>
+  <ul class="oh"><li>RFP brief to send vendors</li><li>Weekly benchmarks: dials, hours, paper trail</li><li>SDR-to-closer handover SOP</li></ul>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="sdr-vendor" data-mode="waitlist">Join the waitlist</button></div>
+</article>
+<article class="ocard c-purple is-soon" id="first-hire"><span class="tl-soon">Coming soon</span>
+  <p class="og">Hiring programme + Claude skills</p>
+  <h2>First Commercial Hire kit</h2>
+  <p class="op">£2,000<small>+VAT, one-off</small></p>
+  <p class="os">Everything you need to hire, onboard and ramp your first salesperson, built around your offer. Most first sales hires are set up to fail. This gives them a system to inherit.</p>
+  <p class="ob"><b>Best for:</b> Founders about to hire their first salesperson.</p>
+  <div class="tl-secs"><div class="tl-sec"><b>The offer</b><span>The two or three products your new hire will sell, and the target customer profile.</span></div><div class="tl-sec"><b>Design the role</b><span>Scorecard, KPIs, reporting line, base and commission, and a job spec ready to publish.</span></div><div class="tl-sec"><b>Build the hiring process</b><span>Sourcing plan, interview stages, a live sales exercise and a culture-fit assessment.</span></div><div class="tl-sec"><b>Build the ramp</b><span>A 30/60/90 plan and onboarding pack, plus a playbook you keep for every future hire.</span></div></div>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="first-hire" data-mode="waitlist">Join the waitlist</button></div>
 </article>
   </div></div>
 </section>
 <section class="tl-group" data-group="install">
-  <div class="tl-head"><h2>Done with you</h2><p>The bigger systems. I build them into your business with you, on your tools, with your rules.</p></div>
+  <div class="tl-head"><h2>Done with you, or for you</h2><p>The bigger systems. I build them into your business with you, on your tools, with your rules, or my team runs them for you.</p></div>
   <div class="ocards-wrap"><div class="ocards">
 <article class="ocard c-sky" id="chief-of-staff">
   <p class="og">Done with you</p>
@@ -254,7 +259,7 @@
   <p class="os">A brief waiting on your phone every morning: today&#x27;s meetings, replies you owe, deals at risk, leads to chase, and a prep doc for every sales call.</p>
   <p class="ob"><b>Best for:</b> Founder-led businesses of 10 to 50 people.</p>
   <ul class="oh"><li>Reads your calendar, email, Slack and call notes</li><li>Prep doc for every new business meeting</li><li>Read-only by default, set up with you</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/book/?ref=tools-chief-of-staff" data-tl-go="chief-of-staff">Book a scoping call</a>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><a class="btn btn-ghost btn-sm" href="/book/?ref=tools-chief-of-staff" data-tl-go="chief-of-staff">Book a scoping call</a></div>
 </article>
 <article class="ocard c-sky" id="crm">
   <p class="og">Done with you</p>
@@ -263,7 +268,7 @@
   <p class="os">A simple deal board that updates itself each week from your email, calendar, calls and LinkedIn. It replaced HubSpot in my own business.</p>
   <p class="ob"><b>Best for:</b> Founders who gave up on their CRM.</p>
   <ul class="oh"><li>Kanban board on your own website</li><li>Weekly sweep with evidence for every change</li><li>Your edits always win</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/book/?ref=tools-crm" data-tl-go="crm">Book a scoping call</a>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><a class="btn btn-ghost btn-sm" href="/book/?ref=tools-crm" data-tl-go="crm">Book a scoping call</a></div>
 </article>
 <article class="ocard c-sky" id="newsletter-engine">
   <p class="og">Done with you</p>
@@ -272,30 +277,16 @@
   <p class="os">Dictate the story, approve one draft, and the letter goes out on email, LinkedIn, Substack and your website without you touching it again.</p>
   <p class="ob"><b>Best for:</b> Founders who want one weekly letter on every channel.</p>
   <ul class="oh"><li>Your voice, your format, your brand</li><li>Nothing sends until you say go</li><li>Four channels from one approval</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/book/?ref=tools-newsletter-engine" data-tl-go="newsletter-engine">Book a scoping call</a>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><a class="btn btn-ghost btn-sm" href="/book/?ref=tools-newsletter-engine" data-tl-go="newsletter-engine">Book a scoping call</a></div>
 </article>
 <article class="ocard c-sky" id="fractional-outbound">
-  <p class="og">Done with you</p>
+  <p class="og">Done for you</p>
   <h2>Fractional outbound team</h2>
-  <p class="op">From £3,000<small>+VAT, fixed fee</small></p>
-  <p class="os">An outbound team without the hires: target data, scripts, tools and fractional reps paid on results, with a weekly review run by me.</p>
-  <p class="ob"><b>Best for:</b> Founders who need meetings now and can&#x27;t yet justify a full-time SDR.</p>
-  <ul class="oh"><li>Data build and segmented target list</li><li>Scripts, stack and send limits set up</li><li>Reps on commission or per meeting, reviewed weekly</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/book/?ref=tools-fractional-outbound" data-tl-go="fractional-outbound">Book a scoping call</a>
-</article>
-  </div></div>
-</section>
-<section class="tl-group" data-group="advisory">
-  <div class="tl-head"><h2>Monthly advisory</h2><p>A direct line to someone who has already made the decisions you are making now, before there&#x27;s budget for a retained partner.</p></div>
-  <div class="ocards-wrap"><div class="ocards">
-<article class="ocard c-green" id="founder-line">
-  <p class="og">Monthly advisory</p>
-  <h2>Founder Line</h2>
-  <p class="op">£600<small>+VAT / month</small></p>
-  <p class="os">A monthly call with me or Jordan Adams on whatever&#x27;s live in the business, with message access between calls.</p>
-  <p class="ob"><b>Best for:</b> Founders building the commercial foundations before there&#x27;s budget for a retained partner.</p>
-  <ul class="oh"><li>One 60-minute call a month</li><li>Message access between calls</li><li>Three-month rhythm, then rolling</li></ul>
-  <a class="btn btn-ghost btn-sm" href="/tools/founder-line/" data-tl-go="founder-line">See what's included</a>
+  <p class="op">Pay per meeting<small>no retainer, data not included</small></p>
+  <p class="os">Outbound done completely for you. My team builds the list strategy, writes the scripts and runs the calling and sequences. You only pay for meetings booked in your diary.</p>
+  <p class="ob"><b>Best for:</b> Founders who need qualified meetings now, without hiring an SDR or paying a retainer.</p>
+  <ul class="oh"><li>Completely done for you: strategy, scripts, callers and sequences</li><li>Pay only for meetings booked, nothing for activity</li><li>Contact data not included: buy your own, or I&#x27;ll point you to providers</li></ul>
+  <div class="tl-foot"><a class="btn btn-ghost btn-sm" href="/book/?ref=tools-fractional-outbound" data-tl-go="fractional-outbound">Book a scoping call</a></div>
 </article>
   </div></div>
 </section>
@@ -305,11 +296,11 @@
 <article class="ocard c-green" id="workshop">
   <p class="og">Revenue Room workshop</p>
   <h2>Run your business on Claude</h2>
-  <p class="op">Dates soon</p>
+  <p class="op">£99<small>+VAT per seat</small></p>
   <p class="os">A live session where I show the whole set-up running in my own business, and how to start on yours.</p>
   <p class="ob"><b>Best for:</b> Founders who want to see it working before they build it.</p>
   <ul class="oh"><li>Live demos, not slides</li><li>What to build first and what to skip</li><li>The guardrails that keep it safe</li></ul>
-  <button class="btn btn-ghost btn-sm" type="button" data-tl-form="workshop" data-mode="waitlist">Join the waitlist</button>
+  <div class="tl-foot"><p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p><button class="btn btn-ghost btn-sm" type="button" data-tl-form="workshop" data-mode="waitlist">Join the waitlist</button></div>
 </article>
   </div></div>
 </section>
@@ -323,7 +314,7 @@
 </section>
 <section class="tl-faq">
   <div class="col-wide" style="text-align:center"><h2>Questions</h2></div>
-  <div class="faqs"><div class="q"><h3>What is a Claude skill?</h3><p>A folder of instructions and files that teaches Claude how to do one job your way, every time. You add it to Claude once and it is there whenever you ask for that job.</p></div><div class="q"><h3>What do I need to use a kit?</h3><p>A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which.</p></div><div class="q"><h3>Can I share a kit with my team?</h3><p>Use it across your own business as much as you like. Please don&#x27;t resell it or share it outside your company.</p></div><div class="q"><h3>What if it doesn&#x27;t work for me?</h3><p>Email me at simon@revenueandbeyond.com. I&#x27;ll help you get it running, and if I can&#x27;t, I&#x27;ll refund you.</p></div><div class="q"><h3>What does done with you mean?</h3><p>I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts.</p></div></div>
+  <div class="faqs"><div class="q"><h3>What is a Claude skill?</h3><p>A folder of instructions and files that teaches Claude how to do one job your way, every time. You add it to Claude once and it is there whenever you ask for that job.</p></div><div class="q"><h3>What do I need to use a kit?</h3><p>A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which.</p></div><div class="q"><h3>Can I share a kit with my team?</h3><p>Use it across your own business as much as you like. Please don&#x27;t resell it or share it outside your company.</p></div><div class="q"><h3>What if it doesn&#x27;t work for me?</h3><p>Email me at simon@revenueandbeyond.com. I&#x27;ll help you get it running, and if I can&#x27;t, I&#x27;ll refund you.</p></div><div class="q"><h3>Are these included if I work with you?</h3><p>Yes. If you work with me as a Retained Partner, every kit and done-with-you system here is included at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked.</p></div><div class="q"><h3>How does the fractional outbound team charge?</h3><p>There is no retainer and no set-up fee. My team does the work and you pay for each meeting booked in your diary. Contact data is not included: you buy your own, or I&#x27;ll point you to providers.</p></div><div class="q"><h3>What does done with you mean?</h3><p>I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts.</p></div></div>
   <p class="small center" style="margin-top:34px">Want to talk about your own set-up? <a class="link" href="/book/?ref=tools">Book a free call</a>.</p>
 </section>
 <dialog class="tl-dlg" id="tlDlg" aria-labelledby="tlDlgH">
@@ -429,7 +420,7 @@
 <script>
 window.rbTrack=function(n,p){try{(window.gtag||function(){(window.dataLayer=window.dataLayer||[]).push(arguments);})('event',n,p||{});}catch(e){}};
 (function(){
-  var NAMES={"blueprint": "The founder-led sales blueprint", "budget-2026": "Budget 2026: The Founder's Digest", "objection-coach": "Objection Coach", "call-followup": "Call-to-follow-up skill", "story-architect": "Newsletter story architect", "bookkeeping-triage": "Bookkeeping inbox triage", "kill-criteria": "Channel kill-criteria scorecard", "discovery-prep": "Discovery Call Prep kit", "linkedin-profile": "LinkedIn Profile Rewrite kit", "proposal-pack": "Proposal Pack", "first-hire": "First Commercial Hire kit", "voice-writer": "Voice Writer kit", "sdr-vendor": "SDR Vendor kit", "qualification-rules": "Qualification and commit rules", "chief-of-staff": "AI Chief of Staff", "crm": "The CRM you never update", "newsletter-engine": "Newsletter Engine", "fractional-outbound": "Fractional outbound team", "workshop": "Run your business on Claude", "founder-line": "Founder Line"}, chips=document.querySelectorAll('.tl-chips .chip'), groups=document.querySelectorAll('.tl-group');
+  var NAMES={"blueprint": "The founder-led sales blueprint", "budget-2026": "Budget 2026: The Founder's Digest", "objection-coach": "Objection Coach", "discovery-prep": "Discovery Call Prep kit", "call-followup": "Call-to-follow-up skill", "linkedin-profile": "LinkedIn Profile Rewrite kit", "voice-writer": "Voice Writer kit", "story-architect": "Newsletter story architect", "bookkeeping-triage": "Bookkeeping inbox triage", "qualification-rules": "Qualification and commit rules", "proposal-pack": "Proposal Pack", "sdr-vendor": "SDR Vendor kit", "first-hire": "First Commercial Hire kit", "chief-of-staff": "AI Chief of Staff", "crm": "The CRM you never update", "newsletter-engine": "Newsletter Engine", "fractional-outbound": "Fractional outbound team", "workshop": "Run your business on Claude"}, chips=document.querySelectorAll('.tl-chips .chip'), groups=document.querySelectorAll('.tl-group');
   chips.forEach(function(c){c.addEventListener('click',function(){
     var f=c.getAttribute('data-f'); chips.forEach(function(x){x.classList.toggle('on',x===c);});
     groups.forEach(function(g){g.hidden=!(f==='all'||g.getAttribute('data-group')===f);});

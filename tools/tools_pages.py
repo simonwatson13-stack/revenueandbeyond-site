@@ -23,8 +23,8 @@ h = lambda s: html.escape(s or "", quote=True)
 
 GROUPS = [
     ("free", "Free", "Free tools", "Take them, use them, pass them on.", "c-green"),
-    ("kit", "Kits", "Kits you set up yourself", "A Claude skill, the files it needs and a one-page set-up guide. Buy, download, running in about ten minutes.", "c-purple"),
-    ("install", "Done with you", "Done with you", "The bigger systems. I build them into your business with you, on your tools, with your rules.", "c-sky"),
+    ("kit", "Kits", "Kits you set up yourself", "Claude skills, templates and guides with a one-page set-up guide. Buy, download and run them in your own business.", "c-purple"),
+    ("install", "Done with you", "Done with you, or for you", "The bigger systems. I build them into your business with you, on your tools, with your rules, or my team runs them for you.", "c-sky"),
     ("advisory", "Advisory", "Monthly advisory", "A direct line to someone who has already made the decisions you are making now, before there's budget for a retained partner.", "c-green"),
     ("event", "Workshop", "Workshop", "See it all running before you build anything.", "c-green"),
 ]
@@ -44,6 +44,19 @@ CSS = """
 .ocard .tl-soon{position:absolute;top:18px;right:16px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--tint-purple);color:var(--teal);border-radius:999px;padding:4px 10px}
 .ocard.is-soon .og{padding-right:100px}
 .ocard .btn-solid{background:var(--green);color:var(--teal);border-color:var(--teal)}
+.tl-secs{display:grid;gap:10px;margin:0 0 22px;padding-top:14px;border-top:1px solid var(--divider)}
+.tl-sec{border-left:3px solid var(--green);padding:2px 0 2px 12px}
+.tl-sec b{display:block;color:var(--teal);font-size:.95rem}
+.tl-sec span{font-size:.88rem;color:var(--muted);line-height:1.45}
+.tl-foot{display:flex;flex-direction:column;margin-top:auto;align-self:end}
+.tl-foot .btn{margin-top:0!important;align-self:stretch}
+.tl-rp{font-size:.8rem;font-weight:700;margin:0 0 12px!important}
+.tl-rp a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--green)}
+.tl-rpband{max-width:1132px;margin:6px auto 0;padding:0 24px}
+.tl-rpband div{background:var(--teal);color:#fff;border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.tl-rpband p{margin:0;font-size:1rem;line-height:1.5}
+.tl-rpband b{color:var(--green)}
+.tl-rpband a{color:var(--teal);background:var(--green);border-radius:10px;padding:9px 16px;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap}
 .tl-how{padding:70px 0 20px}
 .tl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1132px;margin:26px auto 0;padding:0 24px;list-style:none}
 .tl-steps li{background:#fff;border:2px solid var(--teal);border-radius:16px;padding:20px;box-shadow:4px 4px 0 var(--green)}
@@ -95,14 +108,17 @@ def card(p, colour):
     tag = '<span class="tl-soon">Coming soon</span>' if soon and p["kind"] != "event" else ""
     pts = "".join(f"<li>{h(x)}</li>" for x in p.get("points", []))
     note = f'<small>{h(p["priceNote"])}</small>' if p.get("priceNote") else ""
+    secs = "".join(f'<div class="tl-sec"><b>{h(t)}</b><span>{h(x)}</span></div>' for t, x in p.get("sections", []))
+    secs = f'<div class="tl-secs">{secs}</div>' if secs else ""
+    partner = "" if p["kind"] == "free" or p.get("noPartner") else '<p class="tl-rp"><a href="/work-with-me/retained-partner/">Included free for Retained Partner clients</a></p>' 
     return f"""<article class="ocard {colour}{' is-soon' if tag else ''}" id="{h(p['id'])}">{tag}
   <p class="og">{h(p['format'])}</p>
   <h2>{h(p['name'])}</h2>
   <p class="op">{h(p['price'])}{note}</p>
   <p class="os">{h(p['summary'])}</p>
   <p class="ob"><b>Best for:</b> {h(p['for'])}</p>
-  <ul class="oh">{pts}</ul>
-  {button(p)}
+  {secs or f'<ul class="oh">{pts}</ul>'}
+  <div class="tl-foot">{partner}{button(p)}</div>
 </article>"""
 
 groups_html = ""
@@ -127,6 +143,8 @@ FAQ = [
     ("What do I need to use a kit?", "A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which."),
     ("Can I share a kit with my team?", "Use it across your own business as much as you like. Please don't resell it or share it outside your company."),
     ("What if it doesn't work for me?", "Email me at simon@revenueandbeyond.com. I'll help you get it running, and if I can't, I'll refund you."),
+    ("Are these included if I work with you?", "Yes. If you work with me as a Retained Partner, every kit and done-with-you system here is included at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked."),
+    ("How does the fractional outbound team charge?", "There is no retainer and no set-up fee. My team does the work and you pay for each meeting booked in your diary. Contact data is not included: you buy your own, or I'll point you to providers."),
     ("What does done with you mean?", "I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts."),
 ]
 faq_html = "".join(f'<div class="q"><h3>{h(q)}</h3><p>{h(a)}</p></div>' for q, a in FAQ)
@@ -136,10 +154,11 @@ MAIN = f"""
   <div class="col">
     <p class="eyebrow" style="justify-content:center">Tools</p>
     <h1>The tools I built to run <span class="hl">my own business</span>.</h1>
-    <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Some are free. Some are kits you set up yourself. The bigger ones I build with you.</p>
+    <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Two are free. The rest are kits you set up yourself, or bigger systems I build with you.</p>
     <div class="chips tl-chips" role="group" aria-label="Filter tools">{chips}</div>
   </div>
 </section>
+<section class="tl-rpband"><div><p><b>Working with me as a Retained Partner?</b> Every kit and done-with-you system on this page is included free.</p><a href="/work-with-me/retained-partner/">See Retained Partner &rarr;</a></div></section>
 {groups_html}
 <section class="tl-how">
   <div class="col-wide" style="text-align:center"><h2>How the <span class="hl">kits</span> work</h2></div>

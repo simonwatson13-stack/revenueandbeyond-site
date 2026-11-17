@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | advisory | event. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written.",
+  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | advisory | event. Optional: sections (list of [title, text]) for a detailed card; noPartner true hides the Retained Partner note. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written.",
   "products": [
     {
       "id": "blueprint",
@@ -35,11 +35,11 @@
     },
     {
       "id": "objection-coach",
-      "kind": "free",
-      "status": "live",
+      "kind": "kit",
+      "status": "soon",
       "format": "PDF + AI prompt",
       "name": "Objection Coach",
-      "price": "Free",
+      "price": "£99",
       "href": "/objection-coach/",
       "summary": "Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can use today.",
       "for": "Founders whose deals stall at \"let's push to Q1\" or \"send me something\".",
@@ -47,71 +47,11 @@
         "Set up in five minutes in Claude or ChatGPT",
         "The eight objections you'll hear most, decoded",
         "Three replies every time, for email or a call"
-      ]
-    },
-    {
-      "id": "call-followup",
-      "kind": "free",
-      "status": "soon",
-      "name": "Call-to-follow-up skill",
-      "format": "Claude skill",
-      "price": "Free",
-      "summary": "Pulls the transcript from your call recorder, writes a clear recap and drafts the follow-up email in your own tone.",
-      "for": "Founders who record their sales and client calls.",
-      "points": [
-        "Works with Fathom, Granola or a pasted transcript",
-        "Recap document plus a ready-to-send draft",
-        "One-page set-up guide"
       ],
-      "file": ""
-    },
-    {
-      "id": "story-architect",
-      "kind": "free",
-      "status": "soon",
-      "name": "Newsletter story architect",
-      "format": "Claude skill",
-      "price": "Free",
-      "summary": "A structural edit for a finished newsletter draft, built on five story principles. It fixes the shape and leaves your voice alone.",
-      "for": "Founders writing a regular newsletter or long post.",
-      "points": [
-        "Scene opening, method after results",
-        "Room for the hard part of the story",
-        "A quiet close instead of a hard sell"
-      ],
-      "file": ""
-    },
-    {
-      "id": "bookkeeping-triage",
-      "kind": "free",
-      "status": "soon",
-      "name": "Bookkeeping inbox triage",
-      "format": "Prompt and example",
-      "price": "Free",
-      "summary": "Sorts a messy receipts inbox into what goes to your accounting software, what your bookkeeper needs to fetch and what needs your call.",
-      "for": "Founders running more than one company or a cluttered finance inbox.",
-      "points": [
-        "Routes by entity",
-        "Flags duplicates and missing PDFs",
-        "Nothing is forwarded without you"
-      ],
-      "file": ""
-    },
-    {
-      "id": "kill-criteria",
-      "kind": "free",
-      "status": "soon",
-      "name": "Channel kill-criteria scorecard",
-      "format": "Scorecard + sheet",
-      "price": "Free",
-      "summary": "Decide before you start when a channel has had a fair test and when to stop paying for it. Built from an outbound programme I paused after three months of dials and no meetings.",
-      "for": "Founders spending money on outbound that isn't booking meetings.",
-      "points": [
-        "Set the stop point before you spend",
-        "Separate the list, the message and the caller",
-        "One page, scored weekly"
-      ],
-      "file": ""
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "file": "objection-coach.pdf"
     },
     {
       "id": "discovery-prep",
@@ -133,6 +73,25 @@
       "file": "discovery-call-prep-kit.zip"
     },
     {
+      "id": "call-followup",
+      "kind": "kit",
+      "status": "soon",
+      "name": "Call-to-follow-up skill",
+      "format": "Claude skill",
+      "price": "£99",
+      "summary": "Pulls the transcript from your call recorder, writes a clear recap and drafts the follow-up email in your own tone.",
+      "for": "Founders who record their sales and client calls.",
+      "points": [
+        "Works with Fathom, Granola or a pasted transcript",
+        "Recap document plus a ready-to-send draft",
+        "One-page set-up guide"
+      ],
+      "file": "call-to-follow-up-kit.zip",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": ""
+    },
+    {
       "id": "linkedin-profile",
       "kind": "kit",
       "status": "soon",
@@ -150,44 +109,6 @@
       "priceNote": "+VAT, one-off",
       "stripeLink": "",
       "stripePaymentLinkId": ""
-    },
-    {
-      "id": "proposal-pack",
-      "kind": "kit",
-      "status": "soon",
-      "name": "Proposal Pack",
-      "format": "Two Claude skills + pricing guide",
-      "price": "£149",
-      "priceNote": "+VAT, one-off",
-      "summary": "Turns a call transcript into a branded proposal, as a Word agreement or a slide deck, with phasing and firm commercials.",
-      "for": "Founders and consultants who write proposals by hand.",
-      "points": [
-        "Word agreement and slide deck versions",
-        "Three-option template and value-based pricing guide",
-        "Your brand, your clauses, your prices"
-      ],
-      "stripeLink": "",
-      "stripePaymentLinkId": "",
-      "file": "proposal-pack.zip"
-    },
-    {
-      "id": "first-hire",
-      "kind": "kit",
-      "status": "soon",
-      "name": "First Commercial Hire kit",
-      "format": "Programme + Claude skill",
-      "price": "£149",
-      "priceNote": "+VAT, one-off",
-      "summary": "Most first sales hires are set up to fail. This gives them a system to inherit and you a 30/60/90 plan both of you sign.",
-      "for": "Founders about to hire their first salesperson.",
-      "points": [
-        "30/60/90 plan with ramped targets",
-        "Proof-based interview rubric",
-        "Commission model with windfall caps"
-      ],
-      "stripeLink": "",
-      "stripePaymentLinkId": "",
-      "file": "first-commercial-hire-kit.zip"
     },
     {
       "id": "voice-writer",
@@ -209,12 +130,88 @@
       "file": "voice-writer-kit.zip"
     },
     {
+      "id": "story-architect",
+      "kind": "kit",
+      "status": "soon",
+      "name": "Newsletter story architect",
+      "format": "Claude skill",
+      "price": "£99",
+      "summary": "A structural edit for a finished newsletter draft, built on five story principles. It fixes the shape and leaves your voice alone.",
+      "for": "Founders writing a regular newsletter or long post.",
+      "points": [
+        "Scene opening, method after results",
+        "Room for the hard part of the story",
+        "A quiet close instead of a hard sell"
+      ],
+      "file": "story-architect-kit.zip",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": ""
+    },
+    {
+      "id": "bookkeeping-triage",
+      "kind": "kit",
+      "status": "soon",
+      "name": "Bookkeeping inbox triage",
+      "format": "Prompt and example",
+      "price": "£99",
+      "summary": "Sorts a messy receipts inbox into what goes to your accounting software, what your bookkeeper needs to fetch and what needs your call.",
+      "for": "Founders running more than one company or a cluttered finance inbox.",
+      "points": [
+        "Routes by entity",
+        "Flags duplicates and missing PDFs",
+        "Nothing is forwarded without you"
+      ],
+      "file": "bookkeeping-triage-kit.zip",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": ""
+    },
+    {
+      "id": "qualification-rules",
+      "kind": "kit",
+      "status": "soon",
+      "name": "Qualification and commit rules",
+      "format": "HubSpot stage map + scoring sheet",
+      "price": "£99",
+      "priceNote": "+VAT, one-off",
+      "summary": "Clear rules for what counts as qualified and what counts as commit, built into your CRM stages, so the Monday pipeline review shows only real deals.",
+      "for": "Founder-led teams whose forecast is mostly hope.",
+      "points": [
+        "Commit definition you can enforce",
+        "Stage gates mapped to HubSpot fields",
+        "Deal scoring sheet, 0 to 3 per element"
+      ],
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "file": "qualification-rules-kit.zip"
+    },
+    {
+      "id": "proposal-pack",
+      "kind": "kit",
+      "status": "soon",
+      "name": "Proposal Pack",
+      "format": "Two Claude skills + pricing guide",
+      "price": "£250",
+      "priceNote": "+VAT, one-off",
+      "summary": "Turns a call transcript into a branded proposal, as a Word agreement or a slide deck, with phasing and firm commercials.",
+      "for": "Founders and consultants who write proposals by hand.",
+      "points": [
+        "Word agreement and slide deck versions",
+        "Three-option template and value-based pricing guide",
+        "Your brand, your clauses, your prices"
+      ],
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "file": "proposal-pack.zip"
+    },
+    {
       "id": "sdr-vendor",
       "kind": "kit",
       "status": "soon",
       "name": "SDR Vendor kit",
       "format": "Brief + benchmarks + handover SOP",
-      "price": "£99",
+      "price": "£250",
       "priceNote": "+VAT, one-off",
       "summary": "Most outsourced SDR deals fail on the brief, not the caller. A written brief, the numbers to hold them to and a clean handover to whoever closes.",
       "for": "Founders about to hire, or already paying, an outsourced SDR or calling agency.",
@@ -228,23 +225,37 @@
       "file": "sdr-vendor-kit.zip"
     },
     {
-      "id": "qualification-rules",
+      "id": "first-hire",
       "kind": "kit",
       "status": "soon",
-      "name": "Qualification and commit rules",
-      "format": "HubSpot stage map + scoring sheet",
-      "price": "£49",
+      "name": "First Commercial Hire kit",
+      "format": "Hiring programme + Claude skills",
+      "price": "£2,000",
       "priceNote": "+VAT, one-off",
-      "summary": "Clear rules for what counts as qualified and what counts as commit, built into your CRM stages, so the Monday pipeline review shows only real deals.",
-      "for": "Founder-led teams whose forecast is mostly hope.",
-      "points": [
-        "Commit definition you can enforce",
-        "Stage gates mapped to HubSpot fields",
-        "Deal scoring sheet, 0 to 3 per element"
-      ],
+      "summary": "Everything you need to hire, onboard and ramp your first salesperson, built around your offer. Most first sales hires are set up to fail. This gives them a system to inherit.",
+      "for": "Founders about to hire their first salesperson.",
+      "points": [],
       "stripeLink": "",
       "stripePaymentLinkId": "",
-      "file": "qualification-rules-kit.zip"
+      "file": "first-commercial-hire-kit.zip",
+      "sections": [
+        [
+          "The offer",
+          "The two or three products your new hire will sell, and the target customer profile."
+        ],
+        [
+          "Design the role",
+          "Scorecard, KPIs, reporting line, base and commission, and a job spec ready to publish."
+        ],
+        [
+          "Build the hiring process",
+          "Sourcing plan, interview stages, a live sales exercise and a culture-fit assessment."
+        ],
+        [
+          "Build the ramp",
+          "A 30/60/90 plan and onboarding pack, plus a playbook you keep for every future hire."
+        ]
+      ]
     },
     {
       "id": "chief-of-staff",
@@ -302,17 +313,18 @@
       "kind": "install",
       "status": "live",
       "name": "Fractional outbound team",
-      "format": "Done with you",
-      "price": "From £3,000",
-      "priceNote": "+VAT, fixed fee",
-      "summary": "An outbound team without the hires: target data, scripts, tools and fractional reps paid on results, with a weekly review run by me.",
-      "for": "Founders who need meetings now and can't yet justify a full-time SDR.",
+      "format": "Done for you",
+      "price": "Pay per meeting",
+      "priceNote": "no retainer, data not included",
+      "summary": "Outbound done completely for you. My team builds the list strategy, writes the scripts and runs the calling and sequences. You only pay for meetings booked in your diary.",
+      "for": "Founders who need qualified meetings now, without hiring an SDR or paying a retainer.",
       "points": [
-        "Data build and segmented target list",
-        "Scripts, stack and send limits set up",
-        "Reps on commission or per meeting, reviewed weekly"
+        "Completely done for you: strategy, scripts, callers and sequences",
+        "Pay only for meetings booked, nothing for activity",
+        "Contact data not included: buy your own, or I'll point you to providers"
       ],
-      "bookRef": "fractional-outbound"
+      "bookRef": "fractional-outbound",
+      "noPartner": true
     },
     {
       "id": "workshop",
@@ -320,31 +332,15 @@
       "status": "soon",
       "name": "Run your business on Claude",
       "format": "Revenue Room workshop",
-      "price": "Dates soon",
+      "price": "£99",
       "summary": "A live session where I show the whole set-up running in my own business, and how to start on yours.",
       "for": "Founders who want to see it working before they build it.",
       "points": [
         "Live demos, not slides",
         "What to build first and what to skip",
         "The guardrails that keep it safe"
-      ]
-    },
-    {
-      "id": "founder-line",
-      "kind": "advisory",
-      "status": "live",
-      "format": "Monthly advisory",
-      "name": "Founder Line",
-      "price": "£600",
-      "priceNote": "+VAT / month",
-      "href": "/tools/founder-line/",
-      "summary": "A monthly call with me or Jordan Adams on whatever's live in the business, with message access between calls.",
-      "for": "Founders building the commercial foundations before there's budget for a retained partner.",
-      "points": [
-        "One 60-minute call a month",
-        "Message access between calls",
-        "Three-month rhythm, then rolling"
-      ]
+      ],
+      "priceNote": "+VAT per seat"
     }
   ]
 }

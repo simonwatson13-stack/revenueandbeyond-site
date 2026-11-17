@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """Builds the Objection Coach free download page from the newsletter page shell.
 
-  site/objection-coach/index.html   open download, no sign-up, indexed and in the sitemap
+  site/objection-coach/index.html   sales page for the £99 kit, indexed and in the sitemap
 
-The PDF lives at site/assets/downloads/rnb-objection-coach.pdf. To publish a new version,
-replace that file (same name) and push. The page and every shared link keep working.
+The kit file lives at kits/objection-coach.pdf and is only served after payment (see
+data/products.json and netlify/functions/tools.mjs). The buy button points at the kit on /tools/.
 Run from the repo root: python3 tools/objection_coach_page.py
 """
 import os, re
@@ -78,20 +78,20 @@ MAIN = f"""
 <section class="bd-hero">
   <div class="col-wide bd-grid">
     <div>
-      <p class="eyebrow">Free tool &middot; For B2B founders</p>
+      <p class="eyebrow">Kit &middot; For B2B founders</p>
       <h1>Objection Coach<span class="dot">.</span></h1>
       <p class="lead">Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can send or say today.</p>
       <div class="bd-stats"><div><b>5 min</b>to set up in Claude or ChatGPT</div><div><b>8</b>objections you'll hear most, decoded</div><div><b>3</b>replies every time, as an email and for a call</div></div>
       <div class="bd-card">
-        <h2>Free to download</h2>
-        <p>No sign-up needed. Six pages: the set-up, the method, and the full prompt to paste into your own AI assistant.</p>
-        <a class="btn" href="{PDF}" target="_blank" rel="noopener" download data-bd-dl="open" style="width:100%">Download the Objection Coach (PDF) &darr;</a>
+        <h2>&pound;99 <small style="font-size:.85rem;font-weight:600;color:var(--muted)">+VAT, one-off</small></h2>
+        <p>Six pages: the set-up, the method, and the full prompt to paste into your own AI assistant. Included free for <a class="link" href="/work-with-me/retained-partner/">Retained Partner</a> clients.</p>
+        <a class="btn" href="/tools/#objection-coach" data-bd-dl="buy" style="width:100%">Get the Objection Coach &rarr;</a>
         <p class="bd-fine" style="margin-top:18px!important"><b>Know a founder who keeps hearing "let's push to Q1"?</b> Pass it on.</p>
         <div class="bd-share">
           <button class="btn" type="button" id="bdCopy">Copy link</button>
           <a class="btn" data-bd-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={ENC}" target="_blank" rel="noopener">Share on LinkedIn</a>
-          <a class="btn" data-bd-share="whatsapp" href="https://wa.me/?text=Free%20Objection%20Coach%20for%20founders%3A%20{ENC}" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn" data-bd-share="email" href="mailto:?subject=Objection%20Coach%2C%20a%20free%20tool%20for%20founders&amp;body=Thought%20you%27d%20find%20this%20useful%3A%20{ENC}">Email it</a>
+          <a class="btn" data-bd-share="whatsapp" href="https://wa.me/?text=Objection%20Coach%20for%20founders%3A%20{ENC}" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn" data-bd-share="email" href="mailto:?subject=Objection%20Coach%20for%20founders&amp;body=Thought%20you%27d%20find%20this%20useful%3A%20{ENC}">Email it</a>
         </div>
         <p class="bd-fine" id="bdCopied" role="status" hidden>Link copied.</p>
         <p class="bd-fine">Not getting The Founder Read yet? <a href="/newsletter/">It's free, every Sunday evening</a>.</p>
@@ -109,7 +109,7 @@ MAIN = f"""
       <img src="/assets/img/simon-watson-headshot.jpg" alt="Simon Watson" width="76" height="76" loading="lazy">
       <p><b>Built by Simon Watson.</b> Exited founder. Three exits: an IPO, a trade sale and a VC-backed sale. 20+ years selling and scaling B2B businesses across EMEA.</p>
     </div>
-    <p class="bd-end small">Want a second pair of eyes on a deal that's stalling? <a class="link" href="/book/">Book a free Diagnosis Call</a>. More free tools on the <a class="link" href="/tools/">tools page</a>.</p>
+    <p class="bd-end small">Want a second pair of eyes on a deal that's stalling? <a class="link" href="/book/">Book a free Diagnosis Call</a>. More tools on the <a class="link" href="/tools/">tools page</a>.</p>
   </div>
 </section>
 """
@@ -138,9 +138,9 @@ document.addEventListener('click',function(e){{
 def E(s):
     return s.replace("&", "&amp;").replace('"', "&quot;")
 
-TITLE = "Objection Coach, a free tool for B2B founders | Revenue & Beyond"
-DESC = ("Free Objection Coach for B2B founders. Paste what the prospect said and get what it really means, "
-        "the questions that bring out the real objection, and three replies you can use today. Free PDF, no sign-up.")
+TITLE = "Objection Coach, an objection-handling kit for B2B founders | Revenue & Beyond"
+DESC = ("Objection Coach for B2B founders. Paste what the prospect said and get what it really means, "
+        "the questions that bring out the real objection, and three replies you can use today.")
 
 s = shell
 s = re.sub(r"<title>.*?</title>", f"<title>{E(TITLE)}</title>", s, flags=re.S)
@@ -150,7 +150,7 @@ s = re.sub(r'<meta (property|name)="(og|twitter):description" content="[^"]*">',
 s = s.replace('content="https://revenueandbeyond.com/newsletter/"', f'content="{URL}"')
 s = s.replace('href="https://revenueandbeyond.com/newsletter/"', f'href="{URL}"')
 s = s.replace("/assets/img/og-image.png", "/assets/img/objection-coach-og.png")
-s = s.replace('content="Revenue &amp; Beyond. Build, scale and sell your B2B business."', 'content="Objection Coach, a free tool by Simon Watson."')
+s = s.replace('content="Revenue &amp; Beyond. Build, scale and sell your B2B business."', 'content="Objection Coach, a kit by Simon Watson."')
 s = s.replace('{"@type":"ListItem","position":2,"name":"Newsletter","item":"https://revenueandbeyond.com/newsletter/"}',
               '{"@type":"ListItem","position":2,"name":"Objection Coach","item":"%s"}' % URL)
 s = s.replace('class="pg-newsletter"', 'class="pg-objection-coach"')
