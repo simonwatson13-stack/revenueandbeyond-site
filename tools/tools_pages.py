@@ -153,10 +153,10 @@ FAQ = [
     ("What is a Claude skill?", "A folder of instructions and files that teaches Claude how to do one job your way, every time. You add it to Claude once and it is there whenever you ask for that job."),
     ("What do I need to use a kit?", "A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which."),
     ("Can I share a kit with my team?", "Use it across your own business as much as you like. Please don't resell it or share it outside your company."),
-    ("What if it doesn't work for me?", "Email me at simon@revenueandbeyond.com. I'll help you get it running, and if I can't, I'll refund you."),
+    ("What if it doesn't work for me?", "Email me at simon@revenueandbeyond.com. I'll help you get it running."),
     ("Are these included if I work with you?", "Yes. Every client who works with me gets access to everything here at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked."),
     ("How does the fractional outbound team charge?", "There is no retainer and no set-up fee. My team does the work and you pay for each meeting booked in your diary. Contact data is not included: you buy your own, or I'll point you to providers."),
-    ("What does done with you mean?", "I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts."),
+    ("What does done with you mean?", "I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the scope before anything starts."),
 ]
 faq_html = "".join(f'<div class="q"><h3>{h(q)}</h3><p>{h(a)}</p></div>' for q, a in FAQ)
 
@@ -174,8 +174,8 @@ MAIN = f"""
 <section class="tl-how">
   <div class="col-wide" style="text-align:center"><h2>How the <span class="hl">kits</span> work</h2></div>
   <ol class="tl-steps">
-    <li><span class="n">01</span><b>Buy</b><span>Secure checkout with Stripe. You get a VAT receipt by email.</span></li>
-    <li><span class="n">02</span><b>Download</b><span>Straight after payment, from your order page. Bookmark it to download again.</span></li>
+    <li><span class="n">01</span><b>Ask</b><span>Tell me which kit you want. Clients get access as part of working with me.</span></li>
+    <li><span class="n">02</span><b>Download</b><span>You get a link to your kit by email. Bookmark it to download again.</span></li>
     <li><span class="n">03</span><b>Set up</b><span>Add the skill to Claude and follow the one-page guide. About ten minutes.</span></li>
   </ol>
 </section>
