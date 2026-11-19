@@ -1,4 +1,4 @@
-/* Shared made-up data for the two demos (/tools/demo/crm/ and /tools/demo/chief-of-staff/).
+/* Shared made-up data for the two demos (/founder-portal/demo/crm/ and /founder-portal/demo/chief-of-staff/).
    Every company, person and email address here is invented. Dates are relative to today so the
    demo always looks current. */
 (function () {

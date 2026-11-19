@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/tools/demo/demo.css">
+<link rel="stylesheet" href="/founder-portal/demo/demo.css">
 <style>
 .pp-wrap{max-width:1440px;margin:0 auto;padding:18px 24px 40px}
 .pp-hide{display:none!important}
@@ -102,10 +102,10 @@
 </style>
 </head>
 <body class="dm">
-<div class="dm-ribbon"><b>Demo.</b> Every company, person and number here is made up. Drag cards, open them, run the weekly sweep. <a href="/tools/#crm">Back to the Founder Portal</a></div>
+<div class="dm-ribbon"><b>Demo.</b> Every company, person and number here is made up. Drag cards, open them, run the weekly sweep. <a href="/founder-portal/#crm">Back to the Founder Portal</a></div>
 <div class="dm-head">
   <a class="logo" href="/">Revenue<span class="amp">&amp;</span>Beyond.</a>
-  <nav class="dm-switch" aria-label="Switch demo"><a href="/tools/demo/chief-of-staff/">Morning brief</a><a href="/tools/demo/crm/" aria-current="page">Deal board</a></nav>
+  <nav class="dm-switch" aria-label="Switch demo"><a href="/founder-portal/demo/chief-of-staff/">Morning brief</a><a href="/founder-portal/demo/crm/" aria-current="page">Deal board</a></nav>
   <button class="dm-btn ghost sm" type="button" id="resetBtn">Reset demo</button>
 </div>
 
@@ -169,7 +169,7 @@
 </dialog>
 <div class="dm-toast" id="toast" role="status"></div>
 
-<script src="/tools/demo/demo-data.js"></script>
+<script src="/founder-portal/demo/demo-data.js"></script>
 <script>
 (function(){
   var D=RBDemo, board=document.getElementById('board'), q='', quiet=false, cur=null, pending=D.load('pending',{});
@@ -251,8 +251,8 @@
         L+='<a class="dm-btn sm dm-ext" target="_blank" rel="noopener" href="'+D.gmailSearch(d.email)+'">Email thread in Gmail</a>';
         L+='<a class="dm-btn sm dm-ext" target="_blank" rel="noopener" href="'+D.gmailCompose(d.email,'Following up','Hi '+d.contact.split(' ')[0]+',\n\n')+'">Draft follow-up in Gmail</a>';
       }
-      if(d.prep&&d.stage==='discovery') L+='<a class="dm-btn sm primary" href="/tools/demo/chief-of-staff/#prep-'+d.id+'">Open discovery prep</a>';
-      L+='<a class="dm-btn sm" href="/tools/demo/chief-of-staff/#brief">See it in the morning brief</a>';
+      if(d.prep&&d.stage==='discovery') L+='<a class="dm-btn sm primary" href="/founder-portal/demo/chief-of-staff/#prep-'+d.id+'">Open discovery prep</a>';
+      L+='<a class="dm-btn sm" href="/founder-portal/demo/chief-of-staff/#brief">See it in the morning brief</a>';
     }
     $('links').innerHTML=L;
     $('ev').innerHTML=d?'<h3>Evidence trail</h3><ul>'+evidence(d).map(function(e){return '<li><span>'+e[0]+'</span><span>'+esc(e[1])+'</span></li>'}).join('')+'</ul>':'';

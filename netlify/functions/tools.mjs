@@ -1,4 +1,4 @@
-// Tools and kits shop (/tools/). Three routes:
+// Tools and kits shop (/founder-portal/). Three routes:
 //
 // POST /api/tools/lead     {product, email, first_name?, website?}  -> {ok, url?}
 //   Free tools and waitlists. Saves the lead in Netlify Blobs (store "tools-leads", key = email)
@@ -6,7 +6,7 @@
 //   is a free tool with a file, returns its download url.
 //
 // GET  /api/tools/order?session_id=cs_...                        -> {ok, product:{id,name,format}, download}
-//   Called by /tools/thanks/ after a Stripe Payment Link redirects there. Checks the Checkout
+//   Called by /founder-portal/thanks/ after a Stripe Payment Link redirects there. Checks the Checkout
 //   Session with Stripe (STRIPE_SECRET_KEY, a restricted key with read access to Checkout
 //   Sessions is enough), matches its payment_link to a product in data/products.json, and
 //   records the order in Netlify Blobs (store "orders", key = session id).
@@ -16,7 +16,7 @@
 //   on the site). Limited to MAX_DOWNLOADS per order.
 //
 // Stripe set-up per kit: Payment Link > After payment > "Don't show confirmation page" >
-// redirect to https://revenueandbeyond.com/tools/thanks/?session_id={CHECKOUT_SESSION_ID}
+// redirect to https://revenueandbeyond.com/founder-portal/thanks/?session_id={CHECKOUT_SESSION_ID}
 import { getStore } from "@netlify/blobs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -123,7 +123,7 @@ async function lead(req) {
         utm_source: "tools",
         utm_medium: "website",
         utm_campaign: `tools-${product.id}`,
-        referring_site: "revenueandbeyond.com/tools/",
+        referring_site: "revenueandbeyond.com/founder-portal/",
       };
       const res = await fetch(`https://api.beehiiv.com/v2/publications/${pub}/subscriptions`, {
         method: "POST",

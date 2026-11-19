@@ -4,7 +4,7 @@
   site/objection-coach/index.html   sales page for the £99 kit, indexed and in the sitemap
 
 The kit file lives at kits/objection-coach.pdf and is only served after payment (see
-data/products.json and netlify/functions/tools.mjs). The buy button points at the kit on /tools/.
+data/products.json and netlify/functions/tools.mjs). The buy button points at the kit on /founder-portal/.
 Run from the repo root: python3 tools/objection_coach_page.py
 """
 import os, re
@@ -85,7 +85,7 @@ MAIN = f"""
       <div class="bd-card">
         <h2>&pound;99 <small style="font-size:.85rem;font-weight:600;color:var(--muted)">+VAT, one-off</small></h2>
         <p>Six pages: the set-up, the method, and the full prompt to paste into your own AI assistant. Included free for <a class="link" href="/work-with-me/retained-partner/">Retained Partner</a> clients.</p>
-        <a class="btn" href="/tools/#objection-coach" data-bd-dl="buy" style="width:100%">Get the Objection Coach &rarr;</a>
+        <a class="btn" href="/founder-portal/#objection-coach" data-bd-dl="buy" style="width:100%">Get the Objection Coach &rarr;</a>
         <p class="bd-fine" style="margin-top:18px!important"><b>Know a founder who keeps hearing "let's push to Q1"?</b> Pass it on.</p>
         <div class="bd-share">
           <button class="btn" type="button" id="bdCopy">Copy link</button>
@@ -109,7 +109,7 @@ MAIN = f"""
       <img src="/assets/img/simon-watson-headshot.jpg" alt="Simon Watson" width="76" height="76" loading="lazy">
       <p><b>Built by Simon Watson.</b> Exited founder. Three exits: an IPO, a trade sale and a VC-backed sale. 20+ years selling and scaling B2B businesses across EMEA.</p>
     </div>
-    <p class="bd-end small">Want a second pair of eyes on a deal that's stalling? <a class="link" href="/book/">Book a free Diagnosis Call</a>. More tools in the <a class="link" href="/tools/">Founder Portal</a>.</p>
+    <p class="bd-end small">Want a second pair of eyes on a deal that's stalling? <a class="link" href="/book/">Book a free Diagnosis Call</a>. More tools in the <a class="link" href="/founder-portal/">Founder Portal</a>.</p>
   </div>
 </section>
 """

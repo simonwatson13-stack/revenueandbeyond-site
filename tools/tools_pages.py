@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Builds the tools shop from data/products.json, using the newsletter page as the shell.
 
-  site/tools/index.html          the catalogue: free tools, kits (Stripe), done-with-you installs
-  site/tools/thanks/index.html   where Stripe Payment Links send buyers (noindex); checks the
+  site/founder-portal/index.html          the catalogue: free tools, kits (Stripe), done-with-you installs
+  site/founder-portal/thanks/index.html   where Stripe Payment Links send buyers (noindex); checks the
                                  order with /api/tools/order and offers the download
 
 To change a product, edit data/products.json, run python3 tools/tools_pages.py, push.
@@ -282,7 +282,7 @@ THANKS_MAIN = """
         <p class="tl-fine">If you've paid, email <a href="mailto:simon@revenueandbeyond.com">simon@revenueandbeyond.com</a> with your receipt and I'll send the kit straight over.</p>
       </div>
     </div>
-    <p class="small center" style="margin-top:28px"><a class="link" href="/tools/">Back to all tools</a></p>
+    <p class="small center" style="margin-top:28px"><a class="link" href="/founder-portal/">Back to all tools</a></p>
   </div>
 </section>
 """
@@ -324,7 +324,7 @@ def build(path, title, desc, main, js, indexable):
         s = re.sub(r'<link rel="canonical" href="[^"]*">\n', "", s)
         s = s.replace('content="index, follow, max-image-preview:large"', 'content="noindex, nofollow"')
     s = s.replace('{"@type":"ListItem","position":2,"name":"Newsletter","item":"https://revenueandbeyond.com/newsletter/"}',
-                  '{"@type":"ListItem","position":2,"name":"Founder Portal","item":"%s"}' % (DOMAIN + "/tools/"))
+                  '{"@type":"ListItem","position":2,"name":"Founder Portal","item":"%s"}' % (DOMAIN + "/founder-portal/"))
     s = s.replace('class="pg-newsletter"', 'class="pg-tools"')
     s = s.replace('<a href="/newsletter/" class="active" aria-current="page">Newsletter</a>', '<a href="/newsletter/">Newsletter</a>')
     s = s.replace("../assets/", "/assets/")
@@ -336,7 +336,7 @@ def build(path, title, desc, main, js, indexable):
     open(out, "w", encoding="utf-8").write(s)
     print("wrote", out)
 
-build("/tools/", "Founder Portal: tools and kits for founder-led businesses | Revenue & Beyond",
+build("/founder-portal/", "Founder Portal: tools and kits for founder-led businesses | Revenue & Beyond",
       "The AI tools I built with Claude to run my own business: free tools, kits you set up yourself, and done-with-you systems for founder-led B2B businesses.",
       MAIN, JS, not HIDDEN)
-build("/tools/thanks/", "Your order | Revenue & Beyond", "Download your kit.", THANKS_MAIN, THANKS_JS, False)
+build("/founder-portal/thanks/", "Your order | Revenue & Beyond", "Download your kit.", THANKS_MAIN, THANKS_JS, False)

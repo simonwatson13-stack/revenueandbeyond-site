@@ -21,11 +21,11 @@
   X-Robots-Tag: noindex
   Cache-Control: public, max-age=0, must-revalidate
 
-# Soft launch: remove this /tools/* block at launch.
-/tools/*
+# Soft launch: remove this /founder-portal/* block at launch.
+/founder-portal/*
   X-Robots-Tag: noindex, nofollow
 
-/tools/thanks/*
+/founder-portal/thanks/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
   Referrer-Policy: no-referrer

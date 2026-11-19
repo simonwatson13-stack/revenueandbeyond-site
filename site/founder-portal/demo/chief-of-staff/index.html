@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/tools/demo/demo.css">
+<link rel="stylesheet" href="/founder-portal/demo/demo.css">
 <style>
 :root{--hot:#C2410C;--hot-bg:#FFE7D6;--warm:#8A5A00;--warm-bg:#FFF1C9;--cool-bg:#E6F2F0}
 .cs-wrap{max-width:1180px;margin:0 auto;padding:18px 24px 40px}
@@ -94,10 +94,10 @@
 </style>
 </head>
 <body class="dm">
-<div class="dm-ribbon"><b>Demo.</b> Every company, person and number here is made up. Tap anything. <a href="/tools/#chief-of-staff">Back to the Founder Portal</a></div>
+<div class="dm-ribbon"><b>Demo.</b> Every company, person and number here is made up. Tap anything. <a href="/founder-portal/#chief-of-staff">Back to the Founder Portal</a></div>
 <div class="dm-head">
   <a class="logo" href="/">Revenue<span class="amp">&amp;</span>Beyond.</a>
-  <nav class="dm-switch" aria-label="Switch demo"><a href="/tools/demo/chief-of-staff/" aria-current="page">Morning brief</a><a href="/tools/demo/crm/">Deal board</a></nav>
+  <nav class="dm-switch" aria-label="Switch demo"><a href="/founder-portal/demo/chief-of-staff/" aria-current="page">Morning brief</a><a href="/founder-portal/demo/crm/">Deal board</a></nav>
   <button class="dm-btn ghost sm" type="button" id="resetBtn">Reset demo</button>
 </div>
 
@@ -113,7 +113,7 @@
         <ol>
           <li>Tap <b>Prep doc</b> on the 11:00 Kelso Labs call to see the research, questions and the Claude project prompt it writes.</li>
           <li>Tap <b>Draft reply</b> on Hannah's email. It opens Gmail with the reply written, ready for you to edit and send.</li>
-          <li>Tap <b>On the board</b> to jump to that deal in the <a href="/tools/demo/crm/">self-updating deal board</a>.</li>
+          <li>Tap <b>On the board</b> to jump to that deal in the <a href="/founder-portal/demo/crm/">self-updating deal board</a>.</li>
           <li>Tick things off with <b>Done</b>. Tomorrow's brief drops them.</li>
         </ol>
       </div>
@@ -131,7 +131,7 @@
 <p class="dm-foot">Demo only. Gmail links open your own Gmail with a made-up address filled in. Nothing is sent unless you send it. <a href="/privacy-policy.html">Privacy policy</a></p>
 <div class="dm-toast" id="toast" role="status"></div>
 
-<script src="/tools/demo/demo-data.js"></script>
+<script src="/founder-portal/demo/demo-data.js"></script>
 <script>
 (function(){
   var D=RBDemo, done=D.load('done',{});
@@ -158,7 +158,7 @@
     D.meetings.forEach(function(m){
       h+='<div class="ev '+m.kind+'"><div class="tm">'+m.t+'<small>'+m.end+'</small></div><div><div class="tt">'+esc(m.title)+'</div><div class="dd">'+esc(m.who)+'</div>'+
         (m.prep?'<a class="chiplink g" href="#prep-'+m.deal+'">Prep doc</a>':'')+
-        (m.deal?'<a class="chiplink" href="/tools/demo/crm/#deal-'+m.deal+'">On the board</a>':'')+'</div></div>';
+        (m.deal?'<a class="chiplink" href="/founder-portal/demo/crm/#deal-'+m.deal+'">On the board</a>':'')+'</div></div>';
     });
     h+='</section>';
     // replies
@@ -169,7 +169,7 @@
         '<div class="t">'+esc(r.from)+', '+esc(r.co)+'</div><div class="who">'+esc(r.subj)+' &middot; '+r.age+'</div><p><q>'+esc(r.snippet)+'</q></p>'+
         '<div class="acts"><a class="go" target="_blank" rel="noopener" href="'+D.gmailCompose(r.email,'Re: '+r.subj.replace(/^Re: /,''),r.draft)+'">Draft reply</a>'+
         '<a class="go w" target="_blank" rel="noopener" href="'+D.gmailSearch(r.email)+'">Open in Gmail</a>'+
-        '<a class="go w" href="/tools/demo/crm/#deal-'+r.deal+'">On the board</a>'+
+        '<a class="go w" href="/founder-portal/demo/crm/#deal-'+r.deal+'">On the board</a>'+
         '<button class="go w" type="button" data-done="'+k+'">'+(isDone?'Undo':'Done')+'</button></div></div>';
     });
     h+='</section>';
@@ -178,12 +178,12 @@
     risk.forEach(function(d){
       h+='<div class="row"><div class="t">'+esc(d.company)+' <span class="who">'+D.money(d.mrr)+(d.mrr?' / month':'')+'</span></div><div class="who">'+esc(d.contact)+' &middot; no reply for '+d.last+' days</div><p>'+esc(d.nextAction)+'</p>'+
         '<div class="acts"><a class="go" target="_blank" rel="noopener" href="'+D.gmailCompose(d.email,'Quick question',"Hi "+d.contact.split(' ')[0]+",\n\nI don't want to chase you if the timing isn't right. Is this still a priority for this quarter, or should we pick it up in the new year?\n\nBest,\nAlex")+'">Draft a nudge</a>'+
-        '<a class="go w" href="/tools/demo/crm/#deal-'+d.id+'">On the board</a></div></div>';
+        '<a class="go w" href="/founder-portal/demo/crm/#deal-'+d.id+'">On the board</a></div></div>';
     });
     h+='</section>';
     // coming up
     h+='<section class="sec s"><div class="sh"><h2>Coming up</h2><span class="n">tomorrow</span></div>'+
-      '<div class="ev client"><div class="tm">15:30<small>16:15</small></div><div><div class="tt">Discovery call: Brightpath Logistics</div><div class="dd">Tom Ellery, Founder</div><a class="chiplink g" href="#prep-brightpath">Prep doc</a><a class="chiplink" href="/tools/demo/crm/#deal-brightpath">On the board</a></div></div></section>';
+      '<div class="ev client"><div class="tm">15:30<small>16:15</small></div><div><div class="tt">Discovery call: Brightpath Logistics</div><div class="dd">Tom Ellery, Founder</div><a class="chiplink g" href="#prep-brightpath">Prep doc</a><a class="chiplink" href="/founder-portal/demo/crm/#deal-brightpath">On the board</a></div></div></section>';
     // leads
     h+='<section class="sec p"><div class="sh"><h2>Leads to chase</h2><span class="n">'+D.leads.length+'</span></div>';
     D.leads.forEach(function(l){h+='<div class="row"><div class="t">'+esc(l.name)+', '+esc(l.co)+'</div><p>'+esc(l.signal)+'</p><div class="who"><b>Suggested:</b> '+esc(l.action)+'</div></div>'});
@@ -196,7 +196,7 @@
     var p=D.prep[id], d=D.deal(id); if(!p) return;
     var ticks=D.load('ticks-'+id,{}), prompt=D.projectPrompt(id);
     var h='<div class="pd-top"><div><a class="dm-btn sm ghost" href="#brief">&larr; Back to the brief</a><h1>Discovery prep: <span class="hl">'+esc(p.company)+'</span></h1><p>'+esc(p.when)+' &middot; with '+esc(p.person.name)+', '+esc(p.person.role)+'. Built automatically when the call landed in your calendar.</p></div>'+
-      '<div class="pd-acts"><a class="dm-btn" href="/tools/demo/crm/#deal-'+id+'">Open on the deal board</a><a class="dm-btn primary" href="#claude-'+id+'">Claude project prompt</a></div></div>';
+      '<div class="pd-acts"><a class="dm-btn" href="/founder-portal/demo/crm/#deal-'+id+'">Open on the deal board</a><a class="dm-btn primary" href="#claude-'+id+'">Claude project prompt</a></div></div>';
     h+='<div class="pd-grid">';
     h+='<div class="pd-card"><h2>The company</h2><p style="margin:0 0 10px">'+esc(p.oneLiner)+'</p><dl class="pd-facts">'+p.facts.map(function(f){return '<dt>'+esc(f[0])+'</dt><dd>'+esc(f[1])+'</dd>'}).join('')+'</dl></div>';
     h+='<div class="pd-card p"><h2>The person</h2><p style="margin:0 0 8px"><b>'+esc(p.person.name)+'</b>, '+esc(p.person.role)+'</p><p style="margin:0 0 8px">'+esc(p.person.bio)+'</p><p style="margin:0;color:var(--teal)"><b>Recent:</b> '+esc(p.person.recent)+'</p></div>';
