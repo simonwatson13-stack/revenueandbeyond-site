@@ -22,6 +22,7 @@ shell = open(os.path.join(SITE, "newsletter", "index.html"), encoding="utf-8").r
 h = lambda s: html.escape(s or "", quote=True)
 
 GROUPS = [
+    ("start", "Start here", "Start here", "Working with me? Every engagement begins with this.", "c-sky"),
     ("free", "Free", "Free tools", "Take them, use them, pass them on.", "c-green"),
     ("kit", "Kits", "Kits you set up yourself", "Claude skills, templates and guides with a one-page set-up guide. Buy, download and run them in your own business.", "c-purple"),
     ("install", "Done with you", "Done with you, or for you", "The bigger systems. I build them into your business with you, on your tools, with your rules, or my team runs them for you.", "c-sky"),
@@ -93,6 +94,8 @@ CSS = """
 
 def button(p):
     k, live = p["kind"], p["status"] == "live"
+    if k == "start" and p.get("href"):
+        return f'<a class="btn btn-sm btn-solid" href="{h(p["href"])}" data-tl-go="{h(p["id"])}">Start your pack &rarr;</a>'
     if k == "free" and p.get("href"):
         return f'<a class="btn btn-ghost btn-sm" href="{h(p["href"])}" data-tl-go="{h(p["id"])}">Get it free</a>'
     if k == "free" and live and p.get("file"):

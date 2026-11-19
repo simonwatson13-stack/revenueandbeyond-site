@@ -1,6 +1,37 @@
 {
-  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: free | kit | install | advisory | event. Optional: sections (list of [title, text]) for a detailed card; noPartner true hides the Retained Partner note. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written. Optional: demo (path to a live demo page) adds a 'See the live demo' button.",
+  "_readme": "Single source of truth for /tools/. Edit here, run python3 tools/tools_pages.py, push. kind: start | free | kit | install | advisory | event. Optional: sections (list of [title, text]) for a detailed card; noPartner true hides the Retained Partner note. status: live | soon. A kit becomes buyable when stripeLink (https://buy.stripe.com/...) and stripePaymentLinkId (plink_...) are set and its file exists in kits/. Free tools with a file are served from /assets/downloads/. Prices are shown as written. Optional: demo (path to a live demo page) adds a 'See the live demo' button.",
   "products": [
+    {
+      "id": "pre-engagement",
+      "kind": "start",
+      "status": "live",
+      "format": "Online form, 45 to 60 minutes",
+      "name": "Pre-Engagement Pack",
+      "price": "Free",
+      "priceNote": "for new clients, before we start",
+      "href": "/preengagement-2woipwnn5y/",
+      "summary": "A conversation on paper. Before I start work with you, it helps me understand your business, your story and the problem you want solved, so our first session goes straight to the real issue.",
+      "for": "New clients, before the first working session.",
+      "points": [],
+      "sections": [
+        [
+          "Your business and revenue",
+          "The basics, where revenue comes from today, how dependent it is on you, and your sales process."
+        ],
+        [
+          "The problem to solve",
+          "The core revenue challenge, what you've already tried, and what solving it would mean for you."
+        ],
+        [
+          "Clients, positioning and story",
+          "Your ideal client, what makes you different, and the credibility you've built."
+        ],
+        [
+          "Where you're headed",
+          "Ambition, you as the founder, your sales and marketing resource, AI and collateral."
+        ]
+      ]
+    },
     {
       "id": "blueprint",
       "kind": "free",
