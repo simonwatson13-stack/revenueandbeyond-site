@@ -23,7 +23,7 @@ h = lambda s: html.escape(s or "", quote=True)
 
 GROUPS = [
     ("start", "Start here", "Start here", "Working with me? Every engagement begins with this.", "c-sky"),
-    ("free", "Free", "Free tools", "Take them, use them, pass them on.", "c-green"),
+    ("free", "PDF guides", "PDF guides", "Take them, use them, pass them on.", "c-green"),
     ("kit", "Kits", "Kits you set up yourself", "Claude skills, templates and guides with a one-page set-up guide. Buy, download and run them in your own business.", "c-purple"),
     ("install", "Done with you", "Done with you, or for you", "The bigger systems. I build them into your business with you, on your tools, with your rules, or my team runs them for you.", "c-sky"),
     ("advisory", "Advisory", "Monthly advisory", "A direct line to someone who has already made the decisions you are making now, before there's budget for a retained partner.", "c-green"),
@@ -165,7 +165,7 @@ MAIN = f"""
   <div class="col">
     <h1 class="fp-title">Founder <span class="hl">Portal</span><span class="dot">.</span></h1>
     <p class="fp-kicker">The tools I built to run my own business.</p>
-    <p class="lead" style="margin-top:20px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Every client who works with me gets access to all of it. Not a client yet? The founder-led sales blueprint and the Budget digest are free to take today.</p>
+    <p class="lead" style="margin-top:20px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Every client who works with me gets access to all of it.</p>
     <div class="chips tl-chips" role="group" aria-label="Filter tools">{chips}</div>
   </div>
 </section>
