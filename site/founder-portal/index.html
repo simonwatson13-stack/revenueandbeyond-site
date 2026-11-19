@@ -58,6 +58,9 @@
 .tl-foot .tl-demo{margin-bottom:10px!important}
 .tl-rp{font-size:.8rem;font-weight:700;margin:0 0 12px!important}
 .tl-rp a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--green)}
+.fp-title{font-size:clamp(3.4rem,9vw,7.2rem)!important;line-height:.95!important;letter-spacing:-.05em;margin:0 auto}
+.fp-kicker{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:800;color:var(--teal);letter-spacing:-.02em;margin:18px auto 0;line-height:1.2}
+@supports (grid-template-rows: subgrid){.tl-group .ocard{grid-row:span 6}}
 .tl-rpband{max-width:1132px;margin:6px auto 0;padding:0 24px}
 .tl-rpband div{background:var(--teal);color:#fff;border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .tl-rpband p{margin:0;font-size:1rem;line-height:1.5}
@@ -116,13 +119,13 @@
 <main id="main">
 <section class="hero" style="padding-bottom:30px">
   <div class="col">
-    <p class="eyebrow" style="justify-content:center">Founder Portal</p>
-    <h1>The tools I built to run <span class="hl">my own business</span>.</h1>
-    <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Two are free. The rest are kits you set up yourself, or bigger systems I build with you.</p>
+    <h1 class="fp-title">Founder <span class="hl">Portal</span><span class="dot">.</span></h1>
+    <p class="fp-kicker">The tools I built to run my own business.</p>
+    <p class="lead" style="margin-top:20px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Every client who works with me gets access to all of it. Not a client yet? The founder-led sales blueprint and the Budget digest are free to take today.</p>
     <div class="chips tl-chips" role="group" aria-label="Filter tools"><button class="chip on" type="button" data-f="all">All</button><button class="chip" type="button" data-f="start">Start here</button><button class="chip" type="button" data-f="free">Free</button><button class="chip" type="button" data-f="kit">Kits</button><button class="chip" type="button" data-f="install">Done with you</button><button class="chip" type="button" data-f="event">Workshop</button></div>
   </div>
 </section>
-<section class="tl-rpband"><div><p><b>Working with me as a Retained Partner?</b> Every kit and done-with-you system on this page is included free.</p><a href="/work-with-me/retained-partner/">See Retained Partner &rarr;</a></div></section>
+<section class="tl-rpband"><div><p><b>Working with me?</b> Every client gets access to everything on this page.</p><a href="/work-with-me/">See how I work with clients &rarr;</a></div></section>
 
 <section class="tl-group" data-group="start">
   <div class="tl-head"><h2>Start here</h2><p>Working with me? Every engagement begins with this.</p></div>
@@ -130,7 +133,6 @@
 <article class="ocard c-sky" id="pre-engagement">
   <p class="og">Online form, 45 to 60 minutes</p>
   <h2>Pre-Engagement Pack</h2>
-  <p class="op">Free<small>for new clients, before we start</small></p>
   <p class="os">A conversation on paper. Before I start work with you, it helps me understand your business, your story and the problem you want solved, so our first session goes straight to the real issue.</p>
   <p class="ob"><b>Best for:</b> New clients, before the first working session.</p>
   <div class="tl-secs"><div class="tl-sec"><b>Your business and revenue</b><span>The basics, where revenue comes from today, how dependent it is on you, and your sales process.</span></div><div class="tl-sec"><b>The problem to solve</b><span>The core revenue challenge, what you&#x27;ve already tried, and what solving it would mean for you.</span></div><div class="tl-sec"><b>Clients, positioning and story</b><span>Your ideal client, what makes you different, and the credibility you&#x27;ve built.</span></div><div class="tl-sec"><b>Where you&#x27;re headed</b><span>Ambition, you as the founder, your sales and marketing resource, AI and collateral.</span></div></div>
@@ -144,7 +146,6 @@
 <article class="ocard c-green" id="blueprint">
   <p class="og">PDF guide</p>
   <h2>The founder-led sales blueprint</h2>
-  <p class="op">Free</p>
   <p class="os">Seven parts and a scorecard on getting sales out of your head and into a system that grows, holds and sells without you.</p>
   <p class="ob"><b>Best for:</b> B2B founders who still close every deal themselves.</p>
   <ul class="oh"><li>Seven parts, each with actions for this month</li><li>A scorecard to show where sales still depends on you</li><li>20 minutes to read end to end</li></ul>
@@ -153,7 +154,6 @@
 <article class="ocard c-green" id="budget-2026">
   <p class="og">PDF digest</p>
   <h2>Budget 2026: The Founder&#x27;s Digest</h2>
-  <p class="op">Free</p>
   <p class="os">The parts of the Budget that matter to a founder-led business, in plain English, with worked examples.</p>
   <p class="ob"><b>Best for:</b> UK founders planning a raise, a sale or their next hire.</p>
   <ul class="oh"><li>Founders&#x27; Relief and BADR changes</li><li>British Business Bank funding lines</li><li>EMI, CSOP and wage changes</li></ul>
@@ -167,7 +167,6 @@
 <article class="ocard c-purple" id="objection-coach">
   <p class="og">PDF + AI prompt</p>
   <h2>Objection Coach</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can use today.</p>
   <p class="ob"><b>Best for:</b> Founders whose deals stall at &quot;let&#x27;s push to Q1&quot; or &quot;send me something&quot;.</p>
   <ul class="oh"><li>Set up in five minutes in Claude or ChatGPT</li><li>The eight objections you&#x27;ll hear most, decoded</li><li>Three replies every time, for email or a call</li></ul>
@@ -176,7 +175,6 @@
 <article class="ocard c-purple" id="discovery-prep">
   <p class="og">Claude skill + discovery guide</p>
   <h2>Discovery Call Prep kit</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Researches the prospect before the call: company, founder, competitors, reviews and filings. Then a brief with a fit read, the questions to ask and a pre-call message.</p>
   <p class="ob"><b>Best for:</b> Founders running their own discovery calls.</p>
   <ul class="oh"><li>Prospect and competitor research in minutes</li><li>7-step discovery call guide and follow-up ladder</li><li>Set up once with your ICP and offer</li></ul>
@@ -185,7 +183,6 @@
 <article class="ocard c-purple" id="call-followup">
   <p class="og">Claude skill</p>
   <h2>Call-to-follow-up skill</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Pulls the transcript from your call recorder, writes a clear recap and drafts the follow-up email in your own tone.</p>
   <p class="ob"><b>Best for:</b> Founders who record their sales and client calls.</p>
   <ul class="oh"><li>Works with Fathom, Granola or a pasted transcript</li><li>Recap document plus a ready-to-send draft</li><li>One-page set-up guide</li></ul>
@@ -194,7 +191,6 @@
 <article class="ocard c-purple" id="linkedin-profile">
   <p class="og">Claude skill + formula guide</p>
   <h2>LinkedIn Profile Rewrite kit</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">The formula I used to rewrite my own headline and About section: credential, what the client gets, the outcome. Claude does the rewrite from your real proof, inside LinkedIn&#x27;s limits.</p>
   <p class="ob"><b>Best for:</b> Founders whose profile does not yet do the selling.</p>
   <ul class="oh"><li>Three headline options to choose from</li><li>Two About sections: structured and story-led</li><li>Only claims you can back up, within LinkedIn&#x27;s limits</li></ul>
@@ -203,7 +199,6 @@
 <article class="ocard c-purple" id="voice-writer">
   <p class="og">Claude skill + voice set-up</p>
   <h2>Voice Writer kit</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Dictate a voice note, get a newsletter or LinkedIn post that sounds like you wrote it. Starts by learning your voice from your own posts.</p>
   <p class="ob"><b>Best for:</b> Founders who have plenty to say and no time to write it.</p>
   <ul class="oh"><li>Builds your voice file from 5 to 10 posts</li><li>Newsletter and LinkedIn formats</li><li>Keeps your rhythm, not AI filler</li></ul>
@@ -212,7 +207,6 @@
 <article class="ocard c-purple" id="story-architect">
   <p class="og">Claude skill</p>
   <h2>Newsletter story architect</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">A structural edit for a finished newsletter draft, built on five story principles. It fixes the shape and leaves your voice alone.</p>
   <p class="ob"><b>Best for:</b> Founders writing a regular newsletter or long post.</p>
   <ul class="oh"><li>Scene opening, method after results</li><li>Room for the hard part of the story</li><li>A quiet close instead of a hard sell</li></ul>
@@ -221,7 +215,6 @@
 <article class="ocard c-purple" id="bookkeeping-triage">
   <p class="og">Prompt and example</p>
   <h2>Bookkeeping inbox triage</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Sorts a messy receipts inbox into what goes to your accounting software, what your bookkeeper needs to fetch and what needs your call.</p>
   <p class="ob"><b>Best for:</b> Founders running more than one company or a cluttered finance inbox.</p>
   <ul class="oh"><li>Routes by entity</li><li>Flags duplicates and missing PDFs</li><li>Nothing is forwarded without you</li></ul>
@@ -230,7 +223,6 @@
 <article class="ocard c-purple" id="qualification-rules">
   <p class="og">HubSpot stage map + scoring sheet</p>
   <h2>Qualification and commit rules</h2>
-  <p class="op">£99<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Clear rules for what counts as qualified and what counts as commit, built into your CRM stages, so the Monday pipeline review shows only real deals.</p>
   <p class="ob"><b>Best for:</b> Founder-led teams whose forecast is mostly hope.</p>
   <ul class="oh"><li>Commit definition you can enforce</li><li>Stage gates mapped to HubSpot fields</li><li>Deal scoring sheet, 0 to 3 per element</li></ul>
@@ -239,7 +231,6 @@
 <article class="ocard c-purple" id="proposal-pack">
   <p class="og">Two Claude skills + pricing guide</p>
   <h2>Proposal Pack</h2>
-  <p class="op">£250<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Turns a call transcript into a branded proposal, as a Word agreement or a slide deck, with phasing and firm commercials.</p>
   <p class="ob"><b>Best for:</b> Founders and consultants who write proposals by hand.</p>
   <ul class="oh"><li>Word agreement and slide deck versions</li><li>Three-option template and value-based pricing guide</li><li>Your brand, your clauses, your prices</li></ul>
@@ -248,7 +239,6 @@
 <article class="ocard c-purple" id="sdr-vendor">
   <p class="og">Brief + benchmarks + handover SOP</p>
   <h2>SDR Vendor kit</h2>
-  <p class="op">£250<small>+VAT, one-off</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Most outsourced SDR deals fail on the brief, not the caller. A written brief, the numbers to hold them to and a clean handover to whoever closes.</p>
   <p class="ob"><b>Best for:</b> Founders about to hire, or already paying, an outsourced SDR or calling agency.</p>
   <ul class="oh"><li>RFP brief to send vendors</li><li>Weekly benchmarks: dials, hours, paper trail</li><li>SDR-to-closer handover SOP</li></ul>
@@ -262,7 +252,6 @@
 <article class="ocard c-sky" id="chief-of-staff">
   <p class="og">Done with you</p>
   <h2>AI Chief of Staff</h2>
-  <p class="op">From £1,500<small>+VAT, fixed fee</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">A brief waiting on your phone every morning: today&#x27;s meetings, replies you owe, deals at risk, leads to chase, and a prep doc for every sales call.</p>
   <p class="ob"><b>Best for:</b> Founder-led businesses of 10 to 50 people.</p>
   <ul class="oh"><li>Reads your calendar, email, Slack and call notes</li><li>Prep doc for every new business meeting</li><li>Read-only by default, set up with you</li></ul>
@@ -271,7 +260,6 @@
 <article class="ocard c-sky" id="crm">
   <p class="og">Done with you</p>
   <h2>The CRM you never update</h2>
-  <p class="op">From £2,000<small>+VAT, fixed fee</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">A simple deal board that updates itself each week from your email, calendar, calls and LinkedIn. It replaced HubSpot in my own business.</p>
   <p class="ob"><b>Best for:</b> Founders who gave up on their CRM.</p>
   <ul class="oh"><li>Kanban board on your own website</li><li>Weekly sweep with evidence for every change</li><li>Your edits always win</li></ul>
@@ -280,7 +268,6 @@
 <article class="ocard c-sky" id="newsletter-engine">
   <p class="og">Done with you</p>
   <h2>Newsletter Engine</h2>
-  <p class="op">From £2,000<small>+VAT, fixed fee</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Dictate the story, approve one draft, and the letter goes out on email, LinkedIn, Substack and your website without you touching it again.</p>
   <p class="ob"><b>Best for:</b> Founders who want one weekly letter on every channel.</p>
   <ul class="oh"><li>Your voice, your format, your brand</li><li>Nothing sends until you say go</li><li>Four channels from one approval</li></ul>
@@ -289,7 +276,6 @@
 <article class="ocard c-sky" id="first-hire">
   <p class="og">Done with you</p>
   <h2>First Commercial Hire kit</h2>
-  <p class="op">£2,000<small>+VAT, fixed fee</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Everything you need to hire, onboard and ramp your first salesperson, built around your offer. Most first sales hires are set up to fail. This gives them a system to inherit.</p>
   <p class="ob"><b>Best for:</b> Founders about to hire their first salesperson.</p>
   <div class="tl-secs"><div class="tl-sec"><b>The offer</b><span>The two or three products your new hire will sell, and the target customer profile.</span></div><div class="tl-sec"><b>Design the role</b><span>Scorecard, KPIs, reporting line, base and commission, and a job spec ready to publish.</span></div><div class="tl-sec"><b>Build the hiring process</b><span>Sourcing plan, interview stages, a live sales exercise and a culture-fit assessment.</span></div><div class="tl-sec"><b>Build the ramp</b><span>A 30/60/90 plan and onboarding pack, plus a playbook you keep for every future hire.</span></div></div>
@@ -298,7 +284,6 @@
 <article class="ocard c-sky" id="outbound-engine">
   <p class="og">Done with you</p>
   <h2>Outbound Engine</h2>
-  <p class="op">From £3,000<small>+VAT, fixed set-up fee</small><small class="tl-rpn">Included free for Retained Partner clients</small></p>
   <p class="os">Highly personalised AI and human outreach across LinkedIn, email and phone, aimed only at accounts that match your ideal customer. 70% connection rates and 65% reply rates on LinkedIn.</p>
   <p class="ob"><b>Best for:</b> Founders who want a steady flow of conversations with the right buyers, without building an outbound team.</p>
   <div class="tl-secs"><div class="tl-sec"><b>Dedicated ICP match</b><span>Technology that scores every prospect against your ideal customer, so you only reach the accounts most likely to buy.</span></div><div class="tl-sec"><b>AI plus human personalisation</b><span>Messages written from each prospect&#x27;s own signals, then checked by a person, so they read like you wrote them.</span></div><div class="tl-sec"><b>Three channels, one sequence</b><span>Best-in-breed tools and my own methods across LinkedIn, email and phone, working together.</span></div><div class="tl-sec"><b>Installed, optimised and run with you</b><span>I set it up on your accounts, tune it weekly on the numbers, and run it alongside you.</span></div></div>
@@ -307,7 +292,6 @@
 <article class="ocard c-sky" id="fractional-outbound">
   <p class="og">Done for you</p>
   <h2>Fractional outbound team</h2>
-  <p class="op">Pay per meeting<small>no retainer, data not included</small></p>
   <p class="os">Outbound done completely for you. My team builds the list strategy, writes the scripts and runs the calling and sequences. You only pay for meetings booked in your diary.</p>
   <p class="ob"><b>Best for:</b> Founders who need qualified meetings now, without hiring an SDR or paying a retainer.</p>
   <ul class="oh"><li>Completely done for you: strategy, scripts, callers and sequences</li><li>Pay only for meetings booked, nothing for activity</li><li>Contact data not included: buy your own, or I&#x27;ll point you to providers</li></ul>
@@ -321,7 +305,6 @@
 <article class="ocard c-green" id="workshop">
   <p class="og">Free live session</p>
   <h2>Run your business on Claude</h2>
-  <p class="op">Free</p>
   <p class="os">A free live session where I show the whole set-up running in my own business, and how to start on yours.</p>
   <p class="ob"><b>Best for:</b> Founders who want to see it working before they build it.</p>
   <ul class="oh"><li>Live demos, not slides</li><li>What to build first and what to skip</li><li>The guardrails that keep it safe</li></ul>
@@ -339,7 +322,7 @@
 </section>
 <section class="tl-faq">
   <div class="col-wide" style="text-align:center"><h2>Questions</h2></div>
-  <div class="faqs"><div class="q"><h3>What is a Claude skill?</h3><p>A folder of instructions and files that teaches Claude how to do one job your way, every time. You add it to Claude once and it is there whenever you ask for that job.</p></div><div class="q"><h3>What do I need to use a kit?</h3><p>A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which.</p></div><div class="q"><h3>Can I share a kit with my team?</h3><p>Use it across your own business as much as you like. Please don&#x27;t resell it or share it outside your company.</p></div><div class="q"><h3>What if it doesn&#x27;t work for me?</h3><p>Email me at simon@revenueandbeyond.com. I&#x27;ll help you get it running, and if I can&#x27;t, I&#x27;ll refund you.</p></div><div class="q"><h3>Are these included if I work with you?</h3><p>Yes. If you work with me as a Retained Partner, every kit and done-with-you system here is included at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked.</p></div><div class="q"><h3>How does the fractional outbound team charge?</h3><p>There is no retainer and no set-up fee. My team does the work and you pay for each meeting booked in your diary. Contact data is not included: you buy your own, or I&#x27;ll point you to providers.</p></div><div class="q"><h3>What does done with you mean?</h3><p>I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts.</p></div></div>
+  <div class="faqs"><div class="q"><h3>What is a Claude skill?</h3><p>A folder of instructions and files that teaches Claude how to do one job your way, every time. You add it to Claude once and it is there whenever you ask for that job.</p></div><div class="q"><h3>What do I need to use a kit?</h3><p>A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which.</p></div><div class="q"><h3>Can I share a kit with my team?</h3><p>Use it across your own business as much as you like. Please don&#x27;t resell it or share it outside your company.</p></div><div class="q"><h3>What if it doesn&#x27;t work for me?</h3><p>Email me at simon@revenueandbeyond.com. I&#x27;ll help you get it running, and if I can&#x27;t, I&#x27;ll refund you.</p></div><div class="q"><h3>Are these included if I work with you?</h3><p>Yes. Every client who works with me gets access to everything here at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked.</p></div><div class="q"><h3>How does the fractional outbound team charge?</h3><p>There is no retainer and no set-up fee. My team does the work and you pay for each meeting booked in your diary. Contact data is not included: you buy your own, or I&#x27;ll point you to providers.</p></div><div class="q"><h3>What does done with you mean?</h3><p>I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts.</p></div></div>
   <p class="small center" style="margin-top:34px">Want to talk about your own set-up? <a class="link" href="/book/?ref=tools">Book a free call</a>.</p>
 </section>
 <dialog class="tl-dlg" id="tlDlg" aria-labelledby="tlDlgH">

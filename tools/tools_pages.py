@@ -55,6 +55,9 @@ CSS = """
 .tl-foot .tl-demo{margin-bottom:10px!important}
 .tl-rp{font-size:.8rem;font-weight:700;margin:0 0 12px!important}
 .tl-rp a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--green)}
+.fp-title{font-size:clamp(3.4rem,9vw,7.2rem)!important;line-height:.95!important;letter-spacing:-.05em;margin:0 auto}
+.fp-kicker{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:800;color:var(--teal);letter-spacing:-.02em;margin:18px auto 0;line-height:1.2}
+@supports (grid-template-rows: subgrid){.tl-group .ocard{grid-row:span 6}}
 .tl-rpband{max-width:1132px;margin:6px auto 0;padding:0 24px}
 .tl-rpband div{background:var(--teal);color:#fff;border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .tl-rpband p{margin:0;font-size:1rem;line-height:1.5}
@@ -123,7 +126,6 @@ def card(p, colour):
     return f"""<article class="ocard {colour}{' is-soon' if tag else ''}" id="{h(p['id'])}">{tag}
   <p class="og">{h(p['format'])}</p>
   <h2>{h(p['name'])}</h2>
-  <p class="op">{h(p['price'])}{note}</p>
   <p class="os">{h(p['summary'])}</p>
   <p class="ob"><b>Best for:</b> {h(p['for'])}</p>
   {secs or f'<ul class="oh">{pts}</ul>'}
@@ -152,7 +154,7 @@ FAQ = [
     ("What do I need to use a kit?", "A paid Claude plan (Pro or above) and ten minutes. Each kit comes with a one-page set-up guide. Some kits work better with your call recorder or email connected to Claude, and the guide says which."),
     ("Can I share a kit with my team?", "Use it across your own business as much as you like. Please don't resell it or share it outside your company."),
     ("What if it doesn't work for me?", "Email me at simon@revenueandbeyond.com. I'll help you get it running, and if I can't, I'll refund you."),
-    ("Are these included if I work with you?", "Yes. If you work with me as a Retained Partner, every kit and done-with-you system here is included at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked."),
+    ("Are these included if I work with you?", "Yes. Every client who works with me gets access to everything here at no extra cost. The fractional outbound team is the exception, because you pay per meeting booked."),
     ("How does the fractional outbound team charge?", "There is no retainer and no set-up fee. My team does the work and you pay for each meeting booked in your diary. Contact data is not included: you buy your own, or I'll point you to providers."),
     ("What does done with you mean?", "I build the system into your business on your own tools, test it with you and hand it over working. It starts with a free scoping call so we both know the fixed fee before anything starts."),
 ]
@@ -161,13 +163,13 @@ faq_html = "".join(f'<div class="q"><h3>{h(q)}</h3><p>{h(a)}</p></div>' for q, a
 MAIN = f"""
 <section class="hero" style="padding-bottom:30px">
   <div class="col">
-    <p class="eyebrow" style="justify-content:center">Founder Portal</p>
-    <h1>The tools I built to run <span class="hl">my own business</span>.</h1>
-    <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Two are free. The rest are kits you set up yourself, or bigger systems I build with you.</p>
+    <h1 class="fp-title">Founder <span class="hl">Portal</span><span class="dot">.</span></h1>
+    <p class="fp-kicker">The tools I built to run my own business.</p>
+    <p class="lead" style="margin-top:20px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Every client who works with me gets access to all of it. Not a client yet? The founder-led sales blueprint and the Budget digest are free to take today.</p>
     <div class="chips tl-chips" role="group" aria-label="Filter tools">{chips}</div>
   </div>
 </section>
-<section class="tl-rpband"><div><p><b>Working with me as a Retained Partner?</b> Every kit and done-with-you system on this page is included free.</p><a href="/work-with-me/retained-partner/">See Retained Partner &rarr;</a></div></section>
+<section class="tl-rpband"><div><p><b>Working with me?</b> Every client gets access to everything on this page.</p><a href="/work-with-me/">See how I work with clients &rarr;</a></div></section>
 {groups_html}
 <section class="tl-how">
   <div class="col-wide" style="text-align:center"><h2>How the <span class="hl">kits</span> work</h2></div>

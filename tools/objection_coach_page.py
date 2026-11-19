@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Builds the Objection Coach free download page from the newsletter page shell.
 
-  site/objection-coach/index.html   sales page for the £99 kit, indexed and in the sitemap
+  site/objection-coach/index.html   sales page for the kit, indexed and in the sitemap
 
 The kit file lives at kits/objection-coach.pdf and is only served after payment (see
 data/products.json and netlify/functions/tools.mjs). The buy button points at the kit on /founder-portal/.
@@ -83,8 +83,8 @@ MAIN = f"""
       <p class="lead">Paste what the prospect said. Get what it really means, the questions that bring out the real objection, and three replies you can send or say today.</p>
       <div class="bd-stats"><div><b>5 min</b>to set up in Claude or ChatGPT</div><div><b>8</b>objections you'll hear most, decoded</div><div><b>3</b>replies every time, as an email and for a call</div></div>
       <div class="bd-card">
-        <h2>&pound;99 <small style="font-size:.85rem;font-weight:600;color:var(--muted)">+VAT, one-off</small></h2>
-        <p>Six pages: the set-up, the method, and the full prompt to paste into your own AI assistant. Included free for <a class="link" href="/work-with-me/retained-partner/">Retained Partner</a> clients.</p>
+        <h2>Get the Objection Coach</h2>
+        <p>Six pages: the set-up, the method, and the full prompt to paste into your own AI assistant. Every client who works with me gets access.</p>
         <a class="btn" href="/founder-portal/#objection-coach" data-bd-dl="buy" style="width:100%">Get the Objection Coach &rarr;</a>
         <p class="bd-fine" style="margin-top:18px!important"><b>Know a founder who keeps hearing "let's push to Q1"?</b> Pass it on.</p>
         <div class="bd-share">

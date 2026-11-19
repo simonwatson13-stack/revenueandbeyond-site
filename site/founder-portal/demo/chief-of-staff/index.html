@@ -119,7 +119,7 @@
       </div>
       <div class="cs-feeds" aria-label="Sources it reads"><span>Google Calendar</span><span>Gmail</span><span>Slack</span><span>Granola</span><span>Fathom</span><span>LinkedIn</span><span>Deal board</span></div>
       <div class="dm-cta" style="margin-top:26px">
-        <div><h2>Want this on your phone?</h2><p>I set it up with you on your own accounts, from £1,500 + VAT. Read-only by default. Included free for Retained Partner clients.</p></div>
+        <div><h2>Want this on your phone?</h2><p>I set it up with you on your own accounts, read-only by default. Every client who works with me gets access.</p></div>
         <a class="dm-btn primary" href="/book/?ref=demo-chief-of-staff">Book a scoping call &rarr;</a>
       </div>
     </aside>
@@ -208,7 +208,7 @@
       '<div class="pd-steps"><div><b>1</b>Copy the prompt below.</div><div><b>2</b>In Claude, create a new Project with the name at the top and paste the rest into its instructions.</div><div><b>3</b>Add the files listed at the bottom. Then paste each call transcript into the Project as it happens.</div></div>'+
       '<pre class="pd-prompt" id="promptTxt">'+esc(prompt)+'</pre><div class="pd-acts"><button class="dm-btn primary" type="button" id="cpPrompt">Copy the prompt</button><a class="dm-btn dm-ext" target="_blank" rel="noopener" href="https://claude.ai/projects">Open Claude Projects</a></div></div>';
     h+='</div>';
-    h+='<div class="dm-cta"><div><h2>A prep doc like this for every call</h2><p>Part of the AI Chief of Staff, from £1,500 + VAT. Included free for Retained Partner clients.</p></div><a class="dm-btn primary" href="/book/?ref=demo-prep">Book a scoping call &rarr;</a></div>';
+    h+='<div class="dm-cta"><div><h2>A prep doc like this for every call</h2><p>Part of the AI Chief of Staff. Every client who works with me gets access.</p></div><a class="dm-btn primary" href="/book/?ref=demo-prep">Book a scoping call &rarr;</a></div>';
     $('prep').innerHTML=h;
     $('cpMsg').onclick=function(){copy(p.message,'Message copied.')};
     $('cpPrompt').onclick=function(){copy(prompt,'Prompt copied. Paste it into a new Claude Project.')};
