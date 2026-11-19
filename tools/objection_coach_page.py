@@ -109,7 +109,7 @@ MAIN = f"""
       <img src="/assets/img/simon-watson-headshot.jpg" alt="Simon Watson" width="76" height="76" loading="lazy">
       <p><b>Built by Simon Watson.</b> Exited founder. Three exits: an IPO, a trade sale and a VC-backed sale. 20+ years selling and scaling B2B businesses across EMEA.</p>
     </div>
-    <p class="bd-end small">Want a second pair of eyes on a deal that's stalling? <a class="link" href="/book/">Book a free Diagnosis Call</a>. More tools on the <a class="link" href="/tools/">tools page</a>.</p>
+    <p class="bd-end small">Want a second pair of eyes on a deal that's stalling? <a class="link" href="/book/">Book a free Diagnosis Call</a>. More tools in the <a class="link" href="/tools/">Founder Portal</a>.</p>
   </div>
 </section>
 """

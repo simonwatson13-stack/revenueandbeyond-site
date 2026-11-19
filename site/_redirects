@@ -11,6 +11,8 @@
 /home-v2-k4w9p2/*      /                      301
 /home-v2-k4w9p2       /                      301
 /assets/downloads/rnb-objection-coach.pdf   /objection-coach/   302
+/founder-portal/*      /tools/:splat          301
+/founder-portal       /tools/                301
 /services             /work-with-me/         301
 /work                 /work-with-me/         301
 /the-work             /work-with-me/         301

@@ -158,7 +158,7 @@ faq_html = "".join(f'<div class="q"><h3>{h(q)}</h3><p>{h(a)}</p></div>' for q, a
 MAIN = f"""
 <section class="hero" style="padding-bottom:30px">
   <div class="col">
-    <p class="eyebrow" style="justify-content:center">Tools</p>
+    <p class="eyebrow" style="justify-content:center">Founder Portal</p>
     <h1>The tools I built to run <span class="hl">my own business</span>.</h1>
     <p class="lead" style="margin-top:22px">I run Revenue &amp; Beyond on a set of AI tools I built with Claude: a brief on my phone every morning, a deal board that updates itself, proposals straight from a call and a newsletter that goes out on four channels. Two are free. The rest are kits you set up yourself, or bigger systems I build with you.</p>
     <div class="chips tl-chips" role="group" aria-label="Filter tools">{chips}</div>
@@ -321,7 +321,7 @@ def build(path, title, desc, main, js, indexable):
         s = re.sub(r'<link rel="canonical" href="[^"]*">\n', "", s)
         s = s.replace('content="index, follow, max-image-preview:large"', 'content="noindex, nofollow"')
     s = s.replace('{"@type":"ListItem","position":2,"name":"Newsletter","item":"https://revenueandbeyond.com/newsletter/"}',
-                  '{"@type":"ListItem","position":2,"name":"Tools","item":"%s"}' % (DOMAIN + "/tools/"))
+                  '{"@type":"ListItem","position":2,"name":"Founder Portal","item":"%s"}' % (DOMAIN + "/tools/"))
     s = s.replace('class="pg-newsletter"', 'class="pg-tools"')
     s = s.replace('<a href="/newsletter/" class="active" aria-current="page">Newsletter</a>', '<a href="/newsletter/">Newsletter</a>')
     s = s.replace("../assets/", "/assets/")
@@ -333,7 +333,7 @@ def build(path, title, desc, main, js, indexable):
     open(out, "w", encoding="utf-8").write(s)
     print("wrote", out)
 
-build("/tools/", "Tools and kits for founder-led businesses | Revenue & Beyond",
+build("/tools/", "Founder Portal: tools and kits for founder-led businesses | Revenue & Beyond",
       "The AI tools I built with Claude to run my own business: free tools, kits you set up yourself, and done-with-you systems for founder-led B2B businesses.",
       MAIN, JS, not HIDDEN)
 build("/tools/thanks/", "Your order | Revenue & Beyond", "Download your kit.", THANKS_MAIN, THANKS_JS, False)
