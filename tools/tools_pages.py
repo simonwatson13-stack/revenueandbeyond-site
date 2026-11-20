@@ -57,7 +57,6 @@ CSS = """
 .tl-rp a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--green)}
 .fp-title{font-size:clamp(3.4rem,9vw,7.2rem)!important;line-height:.95!important;letter-spacing:-.05em;margin:0 auto}
 .fp-kicker{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:800;color:var(--teal);letter-spacing:-.02em;margin:18px auto 0;line-height:1.2}
-@supports (grid-template-rows: subgrid){.tl-group .ocard{grid-row:span 6}}
 .tl-rpband{max-width:1132px;margin:6px auto 0;padding:0 24px}
 .tl-rpband div{background:var(--teal);color:#fff;border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .tl-rpband p{margin:0;font-size:1rem;line-height:1.5}
@@ -118,14 +117,13 @@ def card(p, colour):
     tag = ""
     pts = "".join(f"<li>{h(x)}</li>" for x in p.get("points", []))
     note = f'<small>{h(p["priceNote"])}</small>' if p.get("priceNote") else ""
-    if p["kind"] != "free" and p.get("price") != "Free" and not p.get("noPartner"):
-        note += '<small class="tl-rpn">Included free for Retained Partner clients</small>'
     secs = "".join(f'<div class="tl-sec"><b>{h(t)}</b><span>{h(x)}</span></div>' for t, x in p.get("sections", []))
     secs = f'<div class="tl-secs">{secs}</div>' if secs else ""
     partner = f'<a class="btn btn-sm btn-solid tl-demo" href="{h(p["demo"])}" data-tl-go="{h(p["id"])}-demo">See the live demo &rarr;</a>' if p.get("demo") else ""
     return f"""<article class="ocard {colour}{' is-soon' if tag else ''}" id="{h(p['id'])}">{tag}
   <p class="og">{h(p['format'])}</p>
   <h2>{h(p['name'])}</h2>
+  <p class="op">{h(p['price'])}{note}</p>
   <p class="os">{h(p['summary'])}</p>
   <p class="ob"><b>Best for:</b> {h(p['for'])}</p>
   {secs or f'<ul class="oh">{pts}</ul>'}
