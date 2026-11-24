@@ -218,6 +218,44 @@
       "file": "qualification-rules-kit.zip"
     },
     {
+      "kind": "kit",
+      "status": "soon",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "id": "cold-calling",
+      "name": "Cold Calling Openers and Scripts",
+      "format": "Scripts + Claude skill",
+      "price": "£99",
+      "file": "cold-calling-kit.zip",
+      "summary": "Openers that earn the next 30 seconds, and scripts that get to a booked meeting. A Claude skill writes versions for each of your buyer types.",
+      "for": "Founders and first sales hires picking up the phone to prospects.",
+      "points": [
+        "Tested openers for the first 10 seconds",
+        "Scripts for gatekeepers, objections and the ask",
+        "Tailored to your ICP and offer by Claude"
+      ]
+    },
+    {
+      "kind": "kit",
+      "status": "soon",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "id": "founder-time",
+      "name": "Founder Time Tracker",
+      "format": "Tracker + Claude skill",
+      "price": "£99",
+      "file": "founder-time-tracker-kit.zip",
+      "summary": "Log a normal week, or let it read your calendar. It shows where your hours really go and highlights what to delegate, automate or stop.",
+      "for": "Founders who feel busy all week but can't say where the time went.",
+      "points": [
+        "Two-minute daily log, or built from your calendar",
+        "Your week split into founder work and everything else",
+        "A clear list of where the time savings are"
+      ]
+    },
+    {
       "id": "proposal-pack",
       "kind": "kit",
       "status": "soon",
@@ -254,6 +292,44 @@
       "stripeLink": "",
       "stripePaymentLinkId": "",
       "file": "sdr-vendor-kit.zip"
+    },
+    {
+      "kind": "kit",
+      "status": "soon",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "id": "comp-plan",
+      "name": "Sales Comp Plan Creator",
+      "format": "Claude skill + calculator",
+      "price": "£250",
+      "file": "sales-comp-plan-kit.zip",
+      "summary": "Builds a sales compensation plan that pays for the behaviour you want: base, commission, accelerators and clawbacks, modelled against your targets and margin.",
+      "for": "Founders hiring or re-paying salespeople who want a plan that's fair, motivating and affordable.",
+      "points": [
+        "Base and variable split for each role",
+        "Commission, accelerators and clawbacks modelled",
+        "A one-page plan you can hand to the hire"
+      ]
+    },
+    {
+      "kind": "kit",
+      "status": "soon",
+      "priceNote": "+VAT, one-off",
+      "stripeLink": "",
+      "stripePaymentLinkId": "",
+      "id": "pnl-producer",
+      "name": "P&L Producer",
+      "format": "Claude skill + template",
+      "price": "£250",
+      "file": "pnl-producer-kit.zip",
+      "summary": "Turns your bank and accounting exports into a clean monthly profit and loss, with gross margin, EBITDA and a plain-English read of what changed.",
+      "for": "Founders who want to see their numbers every month without waiting for the accountant.",
+      "points": [
+        "Monthly P&L from your exports in minutes",
+        "Gross margin and EBITDA, month on month",
+        "A plain-English summary of what moved and why"
+      ]
     },
     {
       "id": "chief-of-staff",
