@@ -117,10 +117,37 @@ footer{padding:34px 0;font-size:14px;color:var(--muted);border-top:1.5px solid v
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--muted)}
 .rainbow{height:5px;background:linear-gradient(90deg,var(--green),var(--purple),var(--sky))}
+nav.mini{display:flex;align-items:center;gap:22px}
+nav.mini a.l{font-weight:600;font-size:15px;text-decoration:none;color:var(--black)}
+nav.mini a.l:hover{color:var(--teal);text-decoration:underline;text-underline-offset:4px}
+.book{display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center}
+.book h2{font-size:clamp(30px,3.8vw,44px);margin:12px 0 12px}
+.book p{margin:0 0 10px;font-size:17.5px}
+.book ul{margin:8px 0 0}
+.book .side{text-align:center}
+.book .side img{width:150px;height:150px;object-fit:cover;border-radius:22px;border:3px solid var(--teal);box-shadow:6px 6px 0 var(--green);margin:0 auto 18px}
+.book .side small{display:block;margin-top:12px;color:var(--muted);font-size:13.5px}
+.more{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+a.mc{display:block;min-width:0;overflow-wrap:anywhere;background:#fff;border:2px solid var(--teal);border-radius:16px;padding:20px;text-decoration:none;color:var(--black);box-shadow:4px 4px 0 var(--teal);transition:transform .12s}
+a.mc:nth-child(2){box-shadow:4px 4px 0 var(--green)}a.mc:nth-child(3){box-shadow:4px 4px 0 var(--purple)}a.mc:nth-child(4){box-shadow:4px 4px 0 var(--sky)}
+a.mc:hover{transform:translate(-2px,-2px)}
+a.mc b{display:block;font-size:19px;font-weight:900;letter-spacing:-.02em;color:var(--teal);margin-bottom:6px}
+a.mc span{font-size:15px;color:var(--muted)}
+a.mc i{display:block;font-style:normal;font-weight:800;color:var(--teal);margin-top:12px;font-size:14.5px}
+footer.full{padding:44px 0 30px}
+footer.full .wrap{display:block}
+footer.full .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;margin-bottom:26px}
+footer.full h4{margin:0 0 10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+footer.full ul{list-style:none;margin:0;padding:0}footer.full li{margin:0 0 7px}
+footer.full a{color:var(--black);text-decoration:none}footer.full a:hover{text-decoration:underline}
+footer.full .base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1.5px solid var(--div);padding-top:18px}
 @media (max-width:900px){
+ nav.mini a.l{display:none}
+ .book,.more,footer.full .cols{grid-template-columns:1fr}
+
  .hero{padding:36px 0 20px}.hero .grid,.g2,.about{grid-template-columns:1fr;gap:34px}
  .g3{grid-template-columns:1fr}.about img{width:160px;height:160px}
- header.top .btn{display:none}section.band{padding:54px 0}
+ header.top .btn{padding:8px 12px;font-size:13.5px}section.band{padding:54px 0}
 }
 </style>
 <script src="/assets/js/analytics.js" defer></script>
@@ -128,7 +155,10 @@ footer a{color:var(--muted)}
 <body>
 <header class="top"><div class="wrap">
 <a class="logo" href="/" aria-label="Revenue &amp; Beyond, home">Revenue<span class="amp">&amp;</span>Beyond.</a>
+<nav class="mini" aria-label="Main site">
+<a class="l" href="/">Home</a><a class="l" href="/about/">About</a><a class="l" href="/insights/">Insights</a><a class="l" href="/newsletter/">Newsletter</a>
 <a class="btn sm" href="#get">Get the kit free</a>
+</nav>
 </div></header>
 
 <main>
@@ -206,9 +236,38 @@ footer a{color:var(--muted)}
 <p>Normally &pound;99 +VAT. Free for everyone on the webinar.</p>
 <a class="btn" href="#get">Get the Objection Coach</a>
 </div></section>
+
+<section class="band" id="book"><div class="wrap"><div class="card g book">
+<div><span class="tape">Free 30-minute call</span>
+<h2>Got a deal stuck at <span class="hl">"not now"?</span></h2>
+<p>Book a free Diagnosis Call. We will look at one stalled deal together, work out what is really going on, and agree the reply that moves it forward.</p>
+<ul class="ticks"><li>Bring a live deal, a stalled prospect or your sales numbers</li><li>Leave with two or three things to do this month</li><li>No pitch unless you ask for one</li></ul>
+</div>
+<div class="side"><img src="/assets/downloads/webinar-7q4k/simon-watson.jpg" alt="Simon Watson" width="150" height="150" loading="lazy">
+<a class="btn" href="/book/" data-track="book">Book a call with me</a>
+<small>Pick a time that suits you. Takes a minute.</small></div>
+</div></div></section>
+
+<section class="band" style="padding-top:10px"><div class="wrap">
+<div class="sh"><span class="tape">More from me</span><h2>Keep <span class="hl">exploring</span></h2><p>Head over to the main site for more on founder-led sales, pricing and building a business that sells.</p></div>
+<div class="more">
+<a class="mc" href="/insights/"><b>Insights</b><span>Stories and lessons from three exits and the founders I work with.</span><i>Read the articles &rarr;</i></a>
+<a class="mc" href="/newsletter/"><b>The Founder Read</b><span>My free weekly newsletter. Three minutes, every Sunday evening.</span><i>Subscribe free &rarr;</i></a>
+<a class="mc" href="/blueprint/"><b>Founder-led sales blueprint</b><span>Seven parts and a scorecard to get sales out of your head.</span><i>Get the free guide &rarr;</i></a>
+<a class="mc" href="/"><b>revenueandbeyond.com</b><span>How I help B2B founders sell more without doing it all themselves.</span><i>Visit the website &rarr;</i></a>
+</div>
+</div></section>
 </main>
 <div class="rainbow"></div>
-<footer><div class="wrap"><span>&copy; 2026 Revenue &amp; Beyond. R&amp;B Consulting Group.</span><span><a href="/">Home</a> &nbsp;&middot;&nbsp; <a href="/book/">Book a call</a> &nbsp;&middot;&nbsp; <a href="/privacy-policy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="/terms-of-service.html">Terms</a></span></div></footer>
+<footer class="full"><div class="wrap">
+<div class="cols">
+<div><a class="logo" href="/">Revenue<span class="amp">&amp;</span>Beyond.</a><p style="margin:10px 0 0;font-size:14.5px;color:var(--muted)">Build, scale and sell your B2B business. That's what I help founders do.</p></div>
+<div><h4>Explore</h4><ul><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/work-with-me/">Work with me</a></li></ul></div>
+<div><h4>Free content</h4><ul><li><a href="/insights/">Insights</a></li><li><a href="/newsletter/">Newsletter</a></li><li><a href="/blueprint/">Sales blueprint</a></li></ul></div>
+<div><h4>Get in touch</h4><ul><li><a href="/book/">Book a call</a></li><li><a href="https://www.linkedin.com/in/simonwatson13" rel="noopener">LinkedIn</a></li><li><a href="mailto:simon@revenueandbeyond.com">simon@revenueandbeyond.com</a></li></ul></div>
+</div>
+<div class="base"><span>&copy; 2026 Revenue &amp; Beyond. London.</span><span><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms-of-service.html">Terms of Service</a></span></div>
+</div></footer>
 <script>
 (function(){
   var f=document.getElementById('kitform'); if(!f) return;
@@ -217,6 +276,7 @@ footer a{color:var(--muted)}
   function track(n,p){try{(window.gtag||function(){(window.dataLayer=window.dataLayer||[]).push(arguments);})('event',n,p||{});}catch(e){}}
   function reveal(){f.style.display='none';done.classList.add('show');try{localStorage.setItem(KEY,'1')}catch(e){}}
   try{if(localStorage.getItem(KEY)==='1'){f.style.display='none';done.classList.add('show');}}catch(e){}
+  document.querySelectorAll('a[data-track=book]').forEach(function(a){a.addEventListener('click',function(){track('book_call_click',{item_id:product});});});
   done.querySelectorAll('a.dl').forEach(function(a){a.addEventListener('click',function(){track('webinar_download',{item_id:product,file:a.getAttribute('href').split('/').pop()});});});
   f.addEventListener('submit',function(e){
     e.preventDefault(); err.style.display='none';
