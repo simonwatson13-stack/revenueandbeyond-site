@@ -29,3 +29,7 @@
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
   Referrer-Policy: no-referrer
+
+# Webinar giveaway pages (Nov 2026): unlisted
+/webinar/*
+  X-Robots-Tag: noindex, nofollow

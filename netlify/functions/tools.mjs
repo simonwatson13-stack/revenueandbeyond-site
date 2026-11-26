@@ -27,6 +27,14 @@ const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[a-z]{2,}$/i;
 const SESSION_RE = /^cs_(test_|live_)?[A-Za-z0-9]{10,200}$/;
 const PRODUCTS = catalogue.products;
 
+// Webinar giveaways (Nov 2026): unlisted pages /webinar/<id>/ post here with source "webinar".
+// Files live in site/assets/downloads/webinar-7q4k/ (noindex, not linked anywhere else).
+const WEBINAR_DIR = "/assets/downloads/webinar-7q4k/";
+const WEBINAR_FILES = {
+  "objection-coach": ["RnB-Objection-Coach.pdf", "Objection-Coach-Prompt.txt"],
+  "discovery-prep": ["discovery-call-prep-skill.zip", "RnB-Discovery-Call-Guide.pdf"],
+};
+
 const json = (status, body) =>
   new Response(JSON.stringify(body), {
     status,
@@ -99,8 +107,11 @@ async function lead(req) {
   const firstName = String(body.first_name || "").trim().slice(0, 80);
   if (!EMAIL_RE.test(email)) return json(400, { error: "Please enter a valid email address." });
 
+  const webinar = body.source === "webinar" && WEBINAR_FILES[product.id] ? WEBINAR_FILES[product.id] : null;
   const freeFile = product.kind === "free" && product.status === "live" && product.file;
-  const type = freeFile ? "download" : "waitlist";
+  const type = webinar ? "webinar" : freeFile ? "download" : "waitlist";
+  // Webinar sign-ups join the newsletter only if they ticked the box.
+  const wantsNewsletter = webinar ? body.newsletter === true : true;
   const at = new Date().toISOString();
   const store = getStore({ name: "tools-leads", consistency: "strong" });
   let rec = null;
@@ -111,16 +122,20 @@ async function lead(req) {
   rec.firstName = firstName || rec.firstName || "";
   rec.last = at;
   rec.items[product.id] = { type, at };
+  if (webinar) {
+    rec.website = String(body.company || "").trim().slice(0, 200) || rec.website || "";
+    rec.newsletterOptIn = wantsNewsletter || rec.newsletterOptIn || false;
+  }
 
   const key = process.env.BEEHIIV_API_KEY;
   const pub = process.env.BEEHIIV_PUBLICATION_ID;
-  if (key && pub && rec.beehiiv !== "added") {
+  if (key && pub && wantsNewsletter && rec.beehiiv !== "added") {
     try {
       const payload = {
         email,
         reactivate_existing: false,
         send_welcome_email: true,
-        utm_source: "tools",
+        utm_source: webinar ? "webinar" : "tools",
         utm_medium: "website",
         utm_campaign: `tools-${product.id}`,
         referring_site: "revenueandbeyond.com/founder-portal/",
@@ -134,12 +149,13 @@ async function lead(req) {
     } catch {
       rec.beehiiv = "error network";
     }
-  } else if (!key || !pub) {
+  } else if (wantsNewsletter && (!key || !pub)) {
     rec.beehiiv = rec.beehiiv || "not configured";
   }
   try {
     await store.setJSON(email, rec);
   } catch {}
+  if (webinar) return json(200, { ok: true, type, files: webinar.map((f) => WEBINAR_DIR + f) });
   return json(200, { ok: true, type, url: freeFile ? `/assets/downloads/${product.file}` : null });
 }
 
