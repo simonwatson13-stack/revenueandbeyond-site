@@ -268,13 +268,6 @@ def page(k):
 <div class="faq">{faq}</div>
 </div></section>
 
-<section class="band tealband final"><div class="wrap">
-<span class="tape">Free today</span>
-<h2>{k['final_h2']}</h2>
-<p>Normally &pound;99 +VAT. Free for everyone on the webinar.</p>
-<a class="btn" href="#get">Get the {E(t)}</a>
-</div></section>
-
 <section class="band" id="book"><div class="wrap"><div class="card g book">
 <div><span class="tape">Free 30-minute call</span>
 <h2>{k['book_h2']}</h2>
